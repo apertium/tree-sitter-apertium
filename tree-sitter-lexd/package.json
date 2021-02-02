@@ -1,0 +1,23 @@
+{
+  "name": "tree-sitter-lexd",
+  "version": "0.0.1",
+  "description": "tree-sitter parser of Apertium lexd files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tree-sitter test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mr-martian/tree-sitter-apertium.git"
+  },
+  "keywords": [
+    "tree-sitter",
+    "apertium"
+  ],
+  "author": "Daniel Swanson",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/mr-martian/tree-sitter-apertium/issues"
+  },
+  "homepage": "https://github.com/mr-martian/tree-sitter-apertium#readme"
+}
