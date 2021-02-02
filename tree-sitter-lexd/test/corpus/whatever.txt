@@ -1,0 +1,68 @@
+================
+lexd test
+================
+
+PATTERNS
+W X(2) < Y # comment
+
+PATTERN Y
+[a] Z
+
+LEXICON X(3)
+a:a b :q
+j: d v
+
+LEXICON W
+a\ b
+
+---
+
+(source_file
+  (pattern_block
+    (pattern_start)
+    (pattern_line
+      (pattern_token (identifier))
+      (pattern_token
+        (identifier)
+        (number))
+      (pattern_token (left_sieve))
+      (pattern_token (identifier))
+      (comment)))
+  (pattern_block
+    (named_pattern_start)
+    (identifier)
+    (pattern_line
+      (pattern_token
+        (anonymous_lexicon
+          (lexicon_segment (lexicon_string))))
+      (pattern_token (identifier))))
+  (lexicon_block
+    (lexicon_start)
+    (identifier)
+    (number)
+    (lexicon_line
+      (lexicon_segment
+        (lexicon_string)
+        (colon)
+        (lexicon_string))
+      (lexicon_segment
+        (lexicon_string))
+      (lexicon_segment
+        (colon)
+        (lexicon_string)))
+    (lexicon_line
+      (lexicon_segment
+        (lexicon_string)
+        (colon))
+      (lexicon_segment
+        (lexicon_string))
+      (lexicon_segment
+        (lexicon_string))))
+  (lexicon_block
+    (lexicon_start)
+    (identifier)
+    (lexicon_line
+      (lexicon_segment
+        (lexicon_string)
+        (escaped_char)
+        (lexicon_string)))))
