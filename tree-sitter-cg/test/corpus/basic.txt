@@ -1,0 +1,34 @@
+===========
+simple test
+===========
+
+SETS
+
+LIST X = a b c;
+LIST Y = d e f;
+
+SECTION
+
+SELECT X IF (1 Y);
+
+---
+
+(source_file
+  (list
+    (setname)
+    (eq)
+    (taglist (tag (ntag)) (tag (ntag)) (tag (ntag)))
+    (semicolon))
+  (list
+    (setname)
+    (eq)
+    (taglist (tag (ntag)) (tag (ntag)) (tag (ntag)))
+    (semicolon))
+  (section)
+  (rule
+    (ruletype)
+    (inlineset (inlineset_single (setname)))
+    (contexttest
+      (contextpos (ntag))
+      (setname))
+    (semicolon)))

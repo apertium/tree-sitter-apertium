@@ -1,0 +1,28 @@
+{
+  "name": "tree-sitter-cg",
+  "version": "0.0.1",
+  "description": "tree-sitter grammar of VISL-CG",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tree-sitter test",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mr-martian/tree-sitter-apertium.git"
+  },
+  "keywords": [
+    "tree-sitter",
+    "apertium"
+  ],
+  "author": "Daniel Swanson",
+  "license": "GPL-3.0-or-later",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/mr-martian/tree-sitter-apertium/issues"
+  },
+  "homepage": "https://github.com/mr-martian/tree-sitter-apertium#readme"
+}
