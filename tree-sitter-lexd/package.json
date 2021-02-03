@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-lexd",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "tree-sitter parser of Apertium lexd files.",
   "main": "index.js",
   "scripts": {
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/mr-martian/tree-sitter-apertium/issues"
   },
+    "dependencies": {
+        "nan": "^2.8.0"
+    },
   "homepage": "https://github.com/mr-martian/tree-sitter-apertium/tree/master/tree-sitter-lexd"
 }
