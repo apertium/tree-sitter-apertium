@@ -1,0 +1,1170 @@
+[
+  {
+    "type": "before_sections",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "compotag",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "contextpos",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ntag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "contexttest",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "contextpos",
+          "named": true
+        },
+        {
+          "type": "contexttest",
+          "named": true
+        },
+        {
+          "type": "inlineset",
+          "named": true
+        },
+        {
+          "type": "setname",
+          "named": true
+        },
+        {
+          "type": "setname_t",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "filepath",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "qtag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "include",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "rawpath",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inlineset",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "inlineset_single",
+          "named": true
+        },
+        {
+          "type": "set_op",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inlineset_single",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "setname",
+          "named": true
+        },
+        {
+          "type": "taglist",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eq",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        },
+        {
+          "type": "setname",
+          "named": true
+        },
+        {
+          "type": "taglist",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "mapping_prefix",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eq",
+          "named": true
+        },
+        {
+          "type": "prefix",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parentheses",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "compotag",
+          "named": true
+        },
+        {
+          "type": "eq",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "contexttest",
+          "named": true
+        },
+        {
+          "type": "inlineset",
+          "named": true
+        },
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "qtag",
+          "named": true
+        },
+        {
+          "type": "ruleflag",
+          "named": true
+        },
+        {
+          "type": "ruletype",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_addcohort",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "contexttest",
+          "named": true
+        },
+        {
+          "type": "inlineset",
+          "named": true
+        },
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "qtag",
+          "named": true
+        },
+        {
+          "type": "ruleflag",
+          "named": true
+        },
+        {
+          "type": "ruletype_addcohort",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_external",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "contexttest",
+          "named": true
+        },
+        {
+          "type": "filepath",
+          "named": true
+        },
+        {
+          "type": "inlineset",
+          "named": true
+        },
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "qtag",
+          "named": true
+        },
+        {
+          "type": "ruleflag",
+          "named": true
+        },
+        {
+          "type": "ruletype_external",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_map_etc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "contexttest",
+          "named": true
+        },
+        {
+          "type": "inlineset",
+          "named": true
+        },
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "qtag",
+          "named": true
+        },
+        {
+          "type": "ruleflag",
+          "named": true
+        },
+        {
+          "type": "ruletype_map_etc",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_move",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "contexttest",
+          "named": true
+        },
+        {
+          "type": "inlineset",
+          "named": true
+        },
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "qtag",
+          "named": true
+        },
+        {
+          "type": "ruleflag",
+          "named": true
+        },
+        {
+          "type": "ruletype_move",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_parentchild",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "contexttest",
+          "named": true
+        },
+        {
+          "type": "inlineset",
+          "named": true
+        },
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "qtag",
+          "named": true
+        },
+        {
+          "type": "ruleflag",
+          "named": true
+        },
+        {
+          "type": "ruletype_parentchild",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_relation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "contexttest",
+          "named": true
+        },
+        {
+          "type": "inlineset",
+          "named": true
+        },
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "qtag",
+          "named": true
+        },
+        {
+          "type": "ruleflag",
+          "named": true
+        },
+        {
+          "type": "ruletype_relation",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_relations",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "contexttest",
+          "named": true
+        },
+        {
+          "type": "inlineset",
+          "named": true
+        },
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "qtag",
+          "named": true
+        },
+        {
+          "type": "ruleflag",
+          "named": true
+        },
+        {
+          "type": "ruletype_relations",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_substitute_etc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "contexttest",
+          "named": true
+        },
+        {
+          "type": "inlineset",
+          "named": true
+        },
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "qtag",
+          "named": true
+        },
+        {
+          "type": "ruleflag",
+          "named": true
+        },
+        {
+          "type": "ruletype_substitute_etc",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_switch",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "contexttest",
+          "named": true
+        },
+        {
+          "type": "inlineset",
+          "named": true
+        },
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "qtag",
+          "named": true
+        },
+        {
+          "type": "ruleflag",
+          "named": true
+        },
+        {
+          "type": "ruletype_switch",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ruleflag",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "ruleflag_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "section",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "set",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eq",
+          "named": true
+        },
+        {
+          "type": "inlineset",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        },
+        {
+          "type": "setname",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "set_special_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eq",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        },
+        {
+          "type": "special_list_name",
+          "named": true
+        },
+        {
+          "type": "taglist",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "setname",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "setname_t",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "after_sections",
+          "named": true
+        },
+        {
+          "type": "before_sections",
+          "named": true
+        },
+        {
+          "type": "include",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "mapping_prefix",
+          "named": true
+        },
+        {
+          "type": "null_section",
+          "named": true
+        },
+        {
+          "type": "parentheses",
+          "named": true
+        },
+        {
+          "type": "rule",
+          "named": true
+        },
+        {
+          "type": "rule_addcohort",
+          "named": true
+        },
+        {
+          "type": "rule_external",
+          "named": true
+        },
+        {
+          "type": "rule_map_etc",
+          "named": true
+        },
+        {
+          "type": "rule_move",
+          "named": true
+        },
+        {
+          "type": "rule_parentchild",
+          "named": true
+        },
+        {
+          "type": "rule_relation",
+          "named": true
+        },
+        {
+          "type": "rule_relations",
+          "named": true
+        },
+        {
+          "type": "rule_substitute_etc",
+          "named": true
+        },
+        {
+          "type": "rule_switch",
+          "named": true
+        },
+        {
+          "type": "section",
+          "named": true
+        },
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "set_special_list",
+          "named": true
+        },
+        {
+          "type": "static_sets",
+          "named": true
+        },
+        {
+          "type": "subreadings",
+          "named": true
+        },
+        {
+          "type": "template",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "special_list_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "static_sets",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eq",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        },
+        {
+          "type": "setname",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "subreadings",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eq",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "qtag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "taglist",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "compotag",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "template",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "contexttest",
+          "named": true
+        },
+        {
+          "type": "eq",
+          "named": true
+        },
+        {
+          "type": "ntag",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "AFTER",
+    "named": false
+  },
+  {
+    "type": "ALL",
+    "named": false
+  },
+  {
+    "type": "ALWAYS",
+    "named": false
+  },
+  {
+    "type": "BEFORE",
+    "named": false
+  },
+  {
+    "type": "BEFORE-SECTIONS",
+    "named": false
+  },
+  {
+    "type": "CONSTRAINTS",
+    "named": false
+  },
+  {
+    "type": "CORRECTIONS",
+    "named": false
+  },
+  {
+    "type": "DELIMITERS",
+    "named": false
+  },
+  {
+    "type": "END",
+    "named": false
+  },
+  {
+    "type": "FROM",
+    "named": false
+  },
+  {
+    "type": "IF",
+    "named": false
+  },
+  {
+    "type": "INCLUDE",
+    "named": false
+  },
+  {
+    "type": "LINK",
+    "named": false
+  },
+  {
+    "type": "LIST",
+    "named": false
+  },
+  {
+    "type": "LTR",
+    "named": false
+  },
+  {
+    "type": "MAPPING-PREFIX",
+    "named": false
+  },
+  {
+    "type": "MAPPINGS",
+    "named": false
+  },
+  {
+    "type": "NEGATE",
+    "named": false
+  },
+  {
+    "type": "NOCHILD",
+    "named": false
+  },
+  {
+    "type": "NONE",
+    "named": false
+  },
+  {
+    "type": "NOT",
+    "named": false
+  },
+  {
+    "type": "ONCE",
+    "named": false
+  },
+  {
+    "type": "OR",
+    "named": false
+  },
+  {
+    "type": "PARENTHESES",
+    "named": false
+  },
+  {
+    "type": "PREFERRED-TARGETS",
+    "named": false
+  },
+  {
+    "type": "RTL",
+    "named": false
+  },
+  {
+    "type": "SECTION",
+    "named": false
+  },
+  {
+    "type": "SET",
+    "named": false
+  },
+  {
+    "type": "SETS",
+    "named": false
+  },
+  {
+    "type": "SOFT-DELIMITERS",
+    "named": false
+  },
+  {
+    "type": "STATIC-SETS",
+    "named": false
+  },
+  {
+    "type": "SUBREADINGS",
+    "named": false
+  },
+  {
+    "type": "TARGET",
+    "named": false
+  },
+  {
+    "type": "TEMPLATE",
+    "named": false
+  },
+  {
+    "type": "TO",
+    "named": false
+  },
+  {
+    "type": "WITH",
+    "named": false
+  },
+  {
+    "type": "WITHCHILD",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "after_sections",
+    "named": true
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "eq",
+    "named": true
+  },
+  {
+    "type": "ntag",
+    "named": true
+  },
+  {
+    "type": "null_section",
+    "named": true
+  },
+  {
+    "type": "prefix",
+    "named": true
+  },
+  {
+    "type": "qtag",
+    "named": true
+  },
+  {
+    "type": "rawpath",
+    "named": true
+  },
+  {
+    "type": "ruleflag_name",
+    "named": true
+  },
+  {
+    "type": "ruletype",
+    "named": true
+  },
+  {
+    "type": "ruletype_addcohort",
+    "named": true
+  },
+  {
+    "type": "ruletype_external",
+    "named": true
+  },
+  {
+    "type": "ruletype_map_etc",
+    "named": true
+  },
+  {
+    "type": "ruletype_move",
+    "named": true
+  },
+  {
+    "type": "ruletype_parentchild",
+    "named": true
+  },
+  {
+    "type": "ruletype_relation",
+    "named": true
+  },
+  {
+    "type": "ruletype_relations",
+    "named": true
+  },
+  {
+    "type": "ruletype_substitute_etc",
+    "named": true
+  },
+  {
+    "type": "ruletype_switch",
+    "named": true
+  },
+  {
+    "type": "semicolon",
+    "named": true
+  },
+  {
+    "type": "set_op",
+    "named": true
+  }
+]
