@@ -30,10 +30,6 @@
                 "name": "subreadings"
               },
               {
-                "type": "STRING",
-                "value": "SETS"
-              },
-              {
                 "type": "SYMBOL",
                 "name": "list"
               },
@@ -51,19 +47,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "before_sections"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "section"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "after_sections"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "null_section"
+                "name": "section_header"
               },
               {
                 "type": "SYMBOL",
@@ -112,8 +96,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "END"
+              "type": "SYMBOL",
+              "name": "END"
             },
             {
               "type": "BLANK"
@@ -121,6 +105,10 @@
           ]
         }
       ]
+    },
+    "END": {
+      "type": "PATTERN",
+      "value": "[Ee][Nn][Dd]"
     },
     "eq": {
       "type": "STRING",
@@ -134,16 +122,16 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "DELIMITERS"
+          "type": "PATTERN",
+          "value": "[Dd][Ee][Ll][Ii][Mm][Ii][Tt][Ee][Rr][Ss]"
         },
         {
-          "type": "STRING",
-          "value": "SOFT-DELIMITERS"
+          "type": "PATTERN",
+          "value": "[Ss][Oo][Ff][Tt]-[Dd][Ee][Ll][Ii][Mm][Ii][Tt][Ee][Rr][Ss]"
         },
         {
-          "type": "STRING",
-          "value": "PREFERRED-TARGETS"
+          "type": "PATTERN",
+          "value": "[Pp][Rr][Ee][Ff][Ee][Rr][Rr][Ee][Dd]-[Tt][Aa][Rr][Gg][Ee][Tt][Ss]"
         }
       ]
     },
@@ -168,12 +156,16 @@
         }
       ]
     },
+    "STATIC_SETS": {
+      "type": "PATTERN",
+      "value": "[Ss][Tt][Aa][Tt][Ii][Cc]-[Ss][Ee][Tt][Ss]"
+    },
     "static_sets": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "STATIC-SETS"
+          "type": "SYMBOL",
+          "name": "STATIC_SETS"
         },
         {
           "type": "SYMBOL",
@@ -192,12 +184,16 @@
         }
       ]
     },
+    "MAPPING_PREFIX": {
+      "type": "PATTERN",
+      "value": "[Mm][Aa][Pp][Pp][Ii][Nn][Gg]-[Pp][Rr][Ee][Ff][Ii][Xx]"
+    },
     "mapping_prefix": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "MAPPING-PREFIX"
+          "type": "SYMBOL",
+          "name": "MAPPING_PREFIX"
         },
         {
           "type": "SYMBOL",
@@ -213,12 +209,24 @@
         }
       ]
     },
+    "SUBREADINGS": {
+      "type": "PATTERN",
+      "value": "[Ss][Uu][Bb][Rr][Ee][Aa][Dd][Ii][Nn][Gg][Ss]"
+    },
+    "RTL": {
+      "type": "PATTERN",
+      "value": "[Rr][Tt][Ll]"
+    },
+    "LTR": {
+      "type": "PATTERN",
+      "value": "[Ll][Tt][Rr]"
+    },
     "subreadings": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "SUBREADINGS"
+          "type": "SYMBOL",
+          "name": "SUBREADINGS"
         },
         {
           "type": "SYMBOL",
@@ -228,12 +236,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "RTL"
+              "type": "SYMBOL",
+              "name": "RTL"
             },
             {
-              "type": "STRING",
-              "value": "LTR"
+              "type": "SYMBOL",
+              "name": "LTR"
             }
           ]
         },
@@ -243,12 +251,16 @@
         }
       ]
     },
+    "PARENTHESES": {
+      "type": "PATTERN",
+      "value": "[Pp][Aa][Rr][Ee][Nn][Tt][Hh][Ee][Ss][Ee][Ss]"
+    },
     "parentheses": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "PARENTHESES"
+          "type": "SYMBOL",
+          "name": "PARENTHESES"
         },
         {
           "type": "SYMBOL",
@@ -267,12 +279,16 @@
         }
       ]
     },
+    "LIST": {
+      "type": "PATTERN",
+      "value": "[Ll][Ii][Ss][Tt]"
+    },
     "list": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "LIST"
+          "type": "SYMBOL",
+          "name": "LIST"
         },
         {
           "type": "SYMBOL",
@@ -292,12 +308,16 @@
         }
       ]
     },
+    "SET": {
+      "type": "PATTERN",
+      "value": "[Ss][Ee][Tt]"
+    },
     "set": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "SET"
+          "type": "SYMBOL",
+          "name": "SET"
         },
         {
           "type": "SYMBOL",
@@ -317,12 +337,16 @@
         }
       ]
     },
+    "INCLUDE": {
+      "type": "PATTERN",
+      "value": "[Ii][Nn][Cc][Ll][Uu][Dd][Ee]"
+    },
     "include": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "INCLUDE"
+          "type": "SYMBOL",
+          "name": "INCLUDE"
         },
         {
           "type": "SYMBOL",
@@ -334,43 +358,42 @@
         }
       ]
     },
-    "before_sections": {
+    "section_header": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "BEFORE-SECTIONS"
+          "type": "PATTERN",
+          "value": "[Ss][Ee][Tt][Ss]"
         },
         {
-          "type": "STRING",
-          "value": "MAPPINGS"
+          "type": "PATTERN",
+          "value": "[Bb][Ee][Ff][Oo][Rr][Ee]-[Ss][Ee][Cc][Tt][Ii][Oo][Nn][Ss]"
         },
         {
-          "type": "STRING",
-          "value": "CORRECTIONS"
+          "type": "PATTERN",
+          "value": "[Mm][Aa][Pp][Pp][Ii][Nn][Gg][Ss]"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[Cc][Oo][Rr][Rr][Ee][Cc][Tt][Ii][Oo][Nn][Ss]"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[Ss][Ee][Cc][Tt][Ii][Oo][Nn]"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[Cc][Oo][Nn][Ss][Tt][Rr][Aa][Ii][Nn][Tt][Ss]"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[Aa][Ff][Tt][Ee][Rr]-[Ss][Ee][Cc][Tt][Ii][Oo][Nn][Ss]"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[Nn][Uu][Ll][Ll]-[Ss][Ee][Cc][Tt][Ii][Oo][Nn]"
         }
       ]
-    },
-    "section": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "SECTION"
-        },
-        {
-          "type": "STRING",
-          "value": "CONSTRAINTS"
-        }
-      ]
-    },
-    "after_sections": {
-      "type": "STRING",
-      "value": "AFTER-SECTIONS"
-    },
-    "null_section": {
-      "type": "STRING",
-      "value": "NULL-SECTION"
     },
     "_context": {
       "type": "REPEAT1",
@@ -392,6 +415,10 @@
         ]
       }
     },
+    "IF": {
+      "type": "PATTERN",
+      "value": "[Ii][Ff]"
+    },
     "_if_context": {
       "type": "SEQ",
       "members": [
@@ -399,8 +426,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "IF"
+              "type": "SYMBOL",
+              "name": "IF"
             },
             {
               "type": "BLANK"
@@ -413,6 +440,10 @@
         }
       ]
     },
+    "TARGET": {
+      "type": "PATTERN",
+      "value": "[Tt][Aa][Rr][Gg][Ee][Tt]"
+    },
     "_rule_target": {
       "type": "SEQ",
       "members": [
@@ -420,8 +451,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "TARGET"
+              "type": "SYMBOL",
+              "name": "TARGET"
             },
             {
               "type": "BLANK"
@@ -631,6 +662,14 @@
         }
       ]
     },
+    "TO": {
+      "type": "PATTERN",
+      "value": "[Tt][Oo]"
+    },
+    "FROM": {
+      "type": "PATTERN",
+      "value": "[Ff][Rr][Oo][Mm]"
+    },
     "_to_from": {
       "type": "SEQ",
       "members": [
@@ -638,12 +677,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "TO"
+              "type": "SYMBOL",
+              "name": "TO"
             },
             {
-              "type": "STRING",
-              "value": "FROM"
+              "type": "SYMBOL",
+              "name": "FROM"
             }
           ]
         },
@@ -722,6 +761,14 @@
         }
       ]
     },
+    "WITHCHILD": {
+      "type": "PATTERN",
+      "value": "[Ww][Ii][Tt][Hh][Cc][Hh][Ii][Ll][Dd]"
+    },
+    "NOCHILD": {
+      "type": "PATTERN",
+      "value": "[Nn][Oo][Cc][Hh][Ii][Ll][Dd]"
+    },
     "_child_specifier": {
       "type": "CHOICE",
       "members": [
@@ -729,8 +776,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
-              "value": "WITHCHILD"
+              "type": "SYMBOL",
+              "name": "WITHCHILD"
             },
             {
               "type": "SYMBOL",
@@ -739,10 +786,18 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "NOCHILD"
+          "type": "SYMBOL",
+          "name": "NOCHILD"
         }
       ]
+    },
+    "BEFORE": {
+      "type": "PATTERN",
+      "value": "[Bb][Ee][Ff][Oo][Rr][Ee]"
+    },
+    "AFTER": {
+      "type": "PATTERN",
+      "value": "[Aa][Ff][Tt][Ee][Rr]"
     },
     "rule_move": {
       "type": "SEQ",
@@ -811,12 +866,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "BEFORE"
+              "type": "SYMBOL",
+              "name": "BEFORE"
             },
             {
-              "type": "STRING",
-              "value": "AFTER"
+              "type": "SYMBOL",
+              "name": "AFTER"
             }
           ]
         },
@@ -841,6 +896,10 @@
           "name": "semicolon"
         }
       ]
+    },
+    "WITH": {
+      "type": "PATTERN",
+      "value": "[Ww][Ii][Tt][Hh]"
     },
     "rule_switch": {
       "type": "SEQ",
@@ -902,8 +961,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "WITH"
+          "type": "SYMBOL",
+          "name": "WITH"
         },
         {
           "type": "SYMBOL",
@@ -1116,12 +1175,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "BEFORE"
+              "type": "SYMBOL",
+              "name": "BEFORE"
             },
             {
-              "type": "STRING",
-              "value": "AFTER"
+              "type": "SYMBOL",
+              "name": "AFTER"
             }
           ]
         },
@@ -1130,6 +1189,14 @@
           "name": "_shared_rule_end"
         }
       ]
+    },
+    "ONCE": {
+      "type": "PATTERN",
+      "value": "[Oo][Nn][Cc][Ee]"
+    },
+    "ALWAYS": {
+      "type": "PATTERN",
+      "value": "[Aa][Ll][Ww][Aa][Yy][Ss]"
     },
     "rule_external": {
       "type": "SEQ",
@@ -1166,12 +1233,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "ONCE"
+              "type": "SYMBOL",
+              "name": "ONCE"
             },
             {
-              "type": "STRING",
-              "value": "ALWAYS"
+              "type": "SYMBOL",
+              "name": "ALWAYS"
             }
           ]
         },
@@ -1197,12 +1264,16 @@
         }
       ]
     },
+    "TEMPLATE": {
+      "type": "PATTERN",
+      "value": "[Tt][Ee][Mm][Pp][Ll][Aa][Tt][Ee]"
+    },
     "template": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "TEMPLATE"
+          "type": "SYMBOL",
+          "name": "TEMPLATE"
         },
         {
           "type": "SYMBOL",
@@ -1222,6 +1293,22 @@
         }
       ]
     },
+    "context_modifier": {
+      "type": "PATTERN",
+      "value": "[Aa][Ll][Ll]|[Nn][Oo][Nn][Ee]|[Nn][Oo][Tt]|[Nn][Ee][Gg][Aa][Tt][Ee]"
+    },
+    "BARRIER": {
+      "type": "PATTERN",
+      "value": "[Cc]?[Bb][Aa][Rr][Rr][Ii][Ee][Rr]"
+    },
+    "LINK": {
+      "type": "PATTERN",
+      "value": "[Ll][Ii][Nn][Kk]"
+    },
+    "OR": {
+      "type": "PATTERN",
+      "value": "[Oo][Rr]"
+    },
     "contexttest": {
       "type": "CHOICE",
       "members": [
@@ -1232,25 +1319,8 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": "ALL"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "NONE"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "NOT"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "NEGATE"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "context_modifier"
                 },
                 {
                   "type": "BLANK"
@@ -1311,8 +1381,8 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "PATTERN",
-                      "value": "C?BARRIER"
+                      "type": "SYMBOL",
+                      "name": "BARRIER"
                     },
                     {
                       "type": "SYMBOL",
@@ -1332,8 +1402,8 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "STRING",
-                      "value": "LINK"
+                      "type": "SYMBOL",
+                      "name": "LINK"
                     },
                     {
                       "type": "SYMBOL",
@@ -1386,8 +1456,8 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "STRING",
-                      "value": "LINK"
+                      "type": "SYMBOL",
+                      "name": "LINK"
                     },
                     {
                       "type": "SYMBOL",
@@ -1423,8 +1493,8 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "STRING",
-                    "value": "OR"
+                    "type": "SYMBOL",
+                    "name": "OR"
                   },
                   {
                     "type": "STRING",
@@ -1498,7 +1568,7 @@
     },
     "set_op": {
       "type": "PATTERN",
-      "value": "OR|[|+^∆∩-]"
+      "value": "[Oo][Rr]|[|+^∆∩-]"
     },
     "taglist": {
       "type": "REPEAT1",
@@ -1576,47 +1646,47 @@
     },
     "ruletype": {
       "type": "PATTERN",
-      "value": "SELECT|REMOVE|IFF|DELIMIT|MATCH|REMCOHORT|UNMAP"
+      "value": "[Ss][Ee][Ll][Ee][Cc][Tt]|[Rr][Ee][Mm][Oo][Vv][Ee]|[Ii][Ff][Ff]|[Dd][Ee][Ll][Ii][Mm][Ii][Tt]|[Mm][Aa][Tt][Cc][Hh]|[Rr][Ee][Mm][Cc][Oo][Hh][Oo][Rr][Tt]|[Uu][Nn][Mm][Aa][Pp]"
     },
     "ruletype_substitute_etc": {
       "type": "PATTERN",
-      "value": "SUBSTITTUTE|SETVARIABLE|EXECUTE"
+      "value": "[Ss][Uu][Bb][Ss][Tt][Ii][Tt][Tt][Uu][Tt][Ee]|[Ss][Ee][Tt][Vv][Aa][Rr][Ii][Aa][Bb][Ll][Ee]|[Ee][Xx][Ee][Cc][Uu][Tt][Ee]"
     },
     "ruletype_parentchild": {
       "type": "PATTERN",
-      "value": "SETPARENT|SETCHILD"
+      "value": "[Ss][Ee][Tt][Pp][Aa][Rr][Ee][Nn][Tt]|[Ss][Ee][Tt][Cc][Hh][Ii][Ll][Dd]"
     },
     "ruletype_relation": {
       "type": "PATTERN",
-      "value": "(ADD|SET|REM)RELATION"
+      "value": "([Aa][Dd][Dd]|[Ss][Ee][Tt]|[Rr][Ee][Mm])[Rr][Ee][Ll][Aa][Tt][Ii][Oo][Nn]"
     },
     "ruletype_relations": {
       "type": "PATTERN",
-      "value": "(ADD|SET|REM)RELATIONS"
+      "value": "([Aa][Dd][Dd]|[Ss][Ee][Tt]|[Rr][Ee][Mm])[Rr][Ee][Ll][Aa][Tt][Ii][Oo][Nn][Ss]"
     },
     "ruletype_map_etc": {
       "type": "PATTERN",
-      "value": "ADD|MAP|REPLACE|APPEND|COPY|REMVARIABLE|JUMP"
+      "value": "[Aa][Dd][Dd]|[Mm][Aa][Pp]|[Rr][Ee][Pp][Ll][Aa][Cc][Ee]|[Aa][Pp][Pp][Ee][Nn][Dd]|[Cc][Oo][Pp][Yy]|[Rr][Ee][Mm][Vv][Aa][Rr][Ii][Aa][Bb][Ll][Ee]|[Jj][Uu][Mm][Pp]"
     },
     "ruletype_addcohort": {
-      "type": "STRING",
-      "value": "ADDCOHORT"
+      "type": "PATTERN",
+      "value": "[Aa][Dd][Dd][Cc][Oo][Hh][Oo][Rr][Tt]"
     },
     "ruletype_move": {
-      "type": "STRING",
-      "value": "MOVE"
+      "type": "PATTERN",
+      "value": "[Mm][Oo][Vv][Ee]"
     },
     "ruletype_switch": {
-      "type": "STRING",
-      "value": "SWITCH"
+      "type": "PATTERN",
+      "value": "[Ss][Ww][Ii][Tt][Cc][Hh]"
     },
     "ruletype_external": {
-      "type": "STRING",
-      "value": "EXTERNAL"
+      "type": "PATTERN",
+      "value": "[Ee][Xx][Tt][Ee][Rr][Nn][Aa][Ll]"
     },
     "ruleflag_name": {
       "type": "PATTERN",
-      "value": "NEAREST|ALLOWLOOP|DELAYED|IMMEDIATE|LOOK(DELETED|DELAYED)|(UN)?SAFE|REMEMBERX|RESETX|(KEEP|VARY)ORDER|ENCL_(INNER|OUTER|FINAL|ANY)|ALLOWCROSS|(NO)?ITERATE|UNMAPLAST|REVERSE|SUB"
+      "value": "[Nn][Ee][Aa][Rr][Ee][Ss][Tt]|[Aa][Ll][Ll][Oo][Ww][Ll][Oo][Oo][Pp]|[Dd][Ee][Ll][Aa][Yy][Ee][Dd]|[Ii][Mm][Mm][Ee][Dd][Ii][Aa][Tt][Ee]|[Ll][Oo][Oo][Kk]([Dd][Ee][Ll][Ee][Tt][Ee][Dd]|[Dd][Ee][Ll][Aa][Yy][Ee][Dd])|([Uu][Nn])?[Ss][Aa][Ff][Ee]|[Rr][Ee][Mm][Ee][Mm][Bb][Ee][Rr][Xx]|[Rr][Ee][Ss][Ee][Tt][Xx]|([Kk][Ee][Ee][Pp]|[Vv][Aa][Rr][Yy])[Oo][Rr][Dd][Ee][Rr]|[Ee][Nn][Cc][Ll][__]([Ii][Nn][Nn][Ee][Rr]|[Oo][Uu][Tt][Ee][Rr]|[Ff][Ii][Nn][Aa][Ll]|[Aa][Nn][Yy])|[Aa][Ll][Ll][Oo][Ww][Cc][Rr][Oo][Ss][Ss]|([Nn][Oo])?[Ii][Tt][Ee][Rr][Aa][Tt][Ee]|[Uu][Nn][Mm][Aa][Pp][Ll][Aa][Ss][Tt]|[Rr][Ee][Vv][Ee][Rr][Ss][Ee]|[Ss][Uu][Bb]"
     },
     "ruleflag": {
       "type": "REPEAT1",

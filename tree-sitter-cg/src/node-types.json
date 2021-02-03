@@ -1,10 +1,5 @@
 [
   {
-    "type": "before_sections",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "compotag",
     "named": true,
     "fields": {},
@@ -42,6 +37,22 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "BARRIER",
+          "named": true
+        },
+        {
+          "type": "LINK",
+          "named": true
+        },
+        {
+          "type": "OR",
+          "named": true
+        },
+        {
+          "type": "context_modifier",
+          "named": true
+        },
         {
           "type": "contextpos",
           "named": true
@@ -92,6 +103,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "INCLUDE",
+          "named": true
+        },
         {
           "type": "rawpath",
           "named": true
@@ -150,6 +165,10 @@
       "required": true,
       "types": [
         {
+          "type": "LIST",
+          "named": true
+        },
+        {
           "type": "eq",
           "named": true
         },
@@ -177,6 +196,10 @@
       "required": true,
       "types": [
         {
+          "type": "MAPPING_PREFIX",
+          "named": true
+        },
+        {
           "type": "eq",
           "named": true
         },
@@ -200,6 +223,10 @@
       "required": true,
       "types": [
         {
+          "type": "PARENTHESES",
+          "named": true
+        },
+        {
           "type": "compotag",
           "named": true
         },
@@ -222,6 +249,14 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "IF",
+          "named": true
+        },
+        {
+          "type": "TARGET",
+          "named": true
+        },
         {
           "type": "contexttest",
           "named": true
@@ -262,6 +297,22 @@
       "required": true,
       "types": [
         {
+          "type": "AFTER",
+          "named": true
+        },
+        {
+          "type": "BEFORE",
+          "named": true
+        },
+        {
+          "type": "IF",
+          "named": true
+        },
+        {
+          "type": "TARGET",
+          "named": true
+        },
+        {
           "type": "contexttest",
           "named": true
         },
@@ -300,6 +351,22 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "ALWAYS",
+          "named": true
+        },
+        {
+          "type": "IF",
+          "named": true
+        },
+        {
+          "type": "ONCE",
+          "named": true
+        },
+        {
+          "type": "TARGET",
+          "named": true
+        },
         {
           "type": "contexttest",
           "named": true
@@ -344,6 +411,14 @@
       "required": true,
       "types": [
         {
+          "type": "IF",
+          "named": true
+        },
+        {
+          "type": "TARGET",
+          "named": true
+        },
+        {
           "type": "contexttest",
           "named": true
         },
@@ -382,6 +457,30 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "AFTER",
+          "named": true
+        },
+        {
+          "type": "BEFORE",
+          "named": true
+        },
+        {
+          "type": "IF",
+          "named": true
+        },
+        {
+          "type": "NOCHILD",
+          "named": true
+        },
+        {
+          "type": "TARGET",
+          "named": true
+        },
+        {
+          "type": "WITHCHILD",
+          "named": true
+        },
         {
           "type": "contexttest",
           "named": true
@@ -422,6 +521,22 @@
       "required": true,
       "types": [
         {
+          "type": "FROM",
+          "named": true
+        },
+        {
+          "type": "IF",
+          "named": true
+        },
+        {
+          "type": "TARGET",
+          "named": true
+        },
+        {
+          "type": "TO",
+          "named": true
+        },
+        {
           "type": "contexttest",
           "named": true
         },
@@ -460,6 +575,22 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "FROM",
+          "named": true
+        },
+        {
+          "type": "IF",
+          "named": true
+        },
+        {
+          "type": "TARGET",
+          "named": true
+        },
+        {
+          "type": "TO",
+          "named": true
+        },
         {
           "type": "contexttest",
           "named": true
@@ -500,6 +631,22 @@
       "required": true,
       "types": [
         {
+          "type": "FROM",
+          "named": true
+        },
+        {
+          "type": "IF",
+          "named": true
+        },
+        {
+          "type": "TARGET",
+          "named": true
+        },
+        {
+          "type": "TO",
+          "named": true
+        },
+        {
           "type": "contexttest",
           "named": true
         },
@@ -539,6 +686,14 @@
       "required": true,
       "types": [
         {
+          "type": "IF",
+          "named": true
+        },
+        {
+          "type": "TARGET",
+          "named": true
+        },
+        {
           "type": "contexttest",
           "named": true
         },
@@ -577,6 +732,18 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "IF",
+          "named": true
+        },
+        {
+          "type": "TARGET",
+          "named": true
+        },
+        {
+          "type": "WITH",
+          "named": true
+        },
         {
           "type": "contexttest",
           "named": true
@@ -628,7 +795,7 @@
     }
   },
   {
-    "type": "section",
+    "type": "section_header",
     "named": true,
     "fields": {}
   },
@@ -640,6 +807,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "SET",
+          "named": true
+        },
         {
           "type": "eq",
           "named": true
@@ -702,14 +873,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "after_sections",
-          "named": true
-        },
-        {
-          "type": "before_sections",
+          "type": "END",
           "named": true
         },
         {
@@ -722,10 +889,6 @@
         },
         {
           "type": "mapping_prefix",
-          "named": true
-        },
-        {
-          "type": "null_section",
           "named": true
         },
         {
@@ -773,7 +936,7 @@
           "named": true
         },
         {
-          "type": "section",
+          "type": "section_header",
           "named": true
         },
         {
@@ -813,6 +976,10 @@
       "required": true,
       "types": [
         {
+          "type": "STATIC_SETS",
+          "named": true
+        },
+        {
           "type": "eq",
           "named": true
         },
@@ -835,6 +1002,18 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "LTR",
+          "named": true
+        },
+        {
+          "type": "RTL",
+          "named": true
+        },
+        {
+          "type": "SUBREADINGS",
+          "named": true
+        },
         {
           "type": "eq",
           "named": true
@@ -893,6 +1072,10 @@
       "required": true,
       "types": [
         {
+          "type": "TEMPLATE",
+          "named": true
+        },
+        {
           "type": "contexttest",
           "named": true
         },
@@ -929,151 +1112,103 @@
   },
   {
     "type": "AFTER",
-    "named": false
-  },
-  {
-    "type": "ALL",
-    "named": false
+    "named": true
   },
   {
     "type": "ALWAYS",
-    "named": false
+    "named": true
+  },
+  {
+    "type": "BARRIER",
+    "named": true
   },
   {
     "type": "BEFORE",
-    "named": false
-  },
-  {
-    "type": "BEFORE-SECTIONS",
-    "named": false
-  },
-  {
-    "type": "CONSTRAINTS",
-    "named": false
-  },
-  {
-    "type": "CORRECTIONS",
-    "named": false
-  },
-  {
-    "type": "DELIMITERS",
-    "named": false
+    "named": true
   },
   {
     "type": "END",
-    "named": false
+    "named": true
   },
   {
     "type": "FROM",
-    "named": false
+    "named": true
   },
   {
     "type": "IF",
-    "named": false
+    "named": true
   },
   {
     "type": "INCLUDE",
-    "named": false
+    "named": true
   },
   {
     "type": "LINK",
-    "named": false
+    "named": true
   },
   {
     "type": "LIST",
-    "named": false
+    "named": true
   },
   {
     "type": "LTR",
-    "named": false
+    "named": true
   },
   {
-    "type": "MAPPING-PREFIX",
-    "named": false
-  },
-  {
-    "type": "MAPPINGS",
-    "named": false
-  },
-  {
-    "type": "NEGATE",
-    "named": false
+    "type": "MAPPING_PREFIX",
+    "named": true
   },
   {
     "type": "NOCHILD",
-    "named": false
-  },
-  {
-    "type": "NONE",
-    "named": false
-  },
-  {
-    "type": "NOT",
-    "named": false
+    "named": true
   },
   {
     "type": "ONCE",
-    "named": false
+    "named": true
   },
   {
     "type": "OR",
-    "named": false
+    "named": true
   },
   {
     "type": "PARENTHESES",
-    "named": false
-  },
-  {
-    "type": "PREFERRED-TARGETS",
-    "named": false
+    "named": true
   },
   {
     "type": "RTL",
-    "named": false
-  },
-  {
-    "type": "SECTION",
-    "named": false
+    "named": true
   },
   {
     "type": "SET",
-    "named": false
+    "named": true
   },
   {
-    "type": "SETS",
-    "named": false
-  },
-  {
-    "type": "SOFT-DELIMITERS",
-    "named": false
-  },
-  {
-    "type": "STATIC-SETS",
-    "named": false
+    "type": "STATIC_SETS",
+    "named": true
   },
   {
     "type": "SUBREADINGS",
-    "named": false
+    "named": true
   },
   {
     "type": "TARGET",
-    "named": false
+    "named": true
   },
   {
     "type": "TEMPLATE",
-    "named": false
+    "named": true
   },
   {
     "type": "TO",
-    "named": false
+    "named": true
   },
   {
     "type": "WITH",
-    "named": false
+    "named": true
   },
   {
     "type": "WITHCHILD",
-    "named": false
+    "named": true
   },
   {
     "type": "[",
@@ -1084,11 +1219,11 @@
     "named": false
   },
   {
-    "type": "after_sections",
+    "type": "comment",
     "named": true
   },
   {
-    "type": "comment",
+    "type": "context_modifier",
     "named": true
   },
   {
@@ -1097,10 +1232,6 @@
   },
   {
     "type": "ntag",
-    "named": true
-  },
-  {
-    "type": "null_section",
     "named": true
   },
   {

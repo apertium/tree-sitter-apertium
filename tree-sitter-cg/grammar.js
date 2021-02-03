@@ -1,4 +1,17 @@
 // closely based on https://github.com/TinoDidriksen/cg3/blob/master/cg3.g
+
+function kwd(in_str) {
+    var out_str = "";
+    for (var i = 0; i < in_str.length; i++) {
+        if ('-|()?'.includes(in_str[i])) {
+            out_str += in_str[i];
+        } else {
+            out_str += '[' + in_str[i] + in_str[i].toLowerCase() + ']';
+        }
+    }
+    return new RegExp(out_str);
+}
+
 module.exports = grammar({
     name: "cg",
 
@@ -15,15 +28,11 @@ module.exports = grammar({
                 $.parentheses,
                 $.mapping_prefix,
                 $.subreadings,
-                "SETS",
                 $.list,
                 $.set,
                 $.template,
                 $.include,
-                $.before_sections,
-                $.section,
-                $.after_sections,
-                $.null_section,
+                $.section_header,
                 $.rule,
                 $.rule_substitute_etc,
                 $.rule_map_etc,
@@ -35,16 +44,18 @@ module.exports = grammar({
                 $.rule_addcohort,
                 $.rule_external
             )),
-            optional("END")
+            optional($.END)
         ),
+
+        END: $ => kwd("END"),
 
         eq: $ => "=",
         semicolon: $ => ";",
 
         special_list_name: $ => choice(
-            "DELIMITERS",
-            "SOFT-DELIMITERS",
-            "PREFERRED-TARGETS"
+            kwd("DELIMITERS"),
+            kwd("SOFT-DELIMITERS"),
+            kwd("PREFERRED-TARGETS")
         ),
         
         set_special_list: $ => seq(
@@ -54,84 +65,91 @@ module.exports = grammar({
             $.semicolon
         ),
 
+        STATIC_SETS: $ => kwd("STATIC-SETS"),
         static_sets: $ => seq(
-            "STATIC-SETS",
+            $.STATIC_SETS,
             $.eq,
             repeat1($.setname),
             $.semicolon
         ),
 
+        MAPPING_PREFIX: $ => kwd("MAPPING-PREFIX"),
         mapping_prefix: $ => seq(
-            "MAPPING-PREFIX",
+            $.MAPPING_PREFIX,
             $.eq,
             $.prefix,
             $.semicolon
         ),
 
+        SUBREADINGS: $ => kwd("SUBREADINGS"),
+        RTL: $ => kwd("RTL"),
+        LTR: $ => kwd("LTR"),
         subreadings: $ => seq(
-            "SUBREADINGS",
+            $.SUBREADINGS,
             $.eq,
-            choice("RTL", "LTR"),
+            choice($.RTL, $.LTR),
             $.semicolon
         ),
 
+        PARENTHESES: $ => kwd("PARENTHESES"),
         parentheses: $ => seq(
-            "PARENTHESES",
+            $.PARENTHESES,
             $.eq,
             repeat1($.compotag),
             $.semicolon
         ),
 
+        LIST: $ => kwd("LIST"),
         list: $ => seq(
-            "LIST",
+            $.LIST,
             $.setname,
             $.eq,
             $.taglist,
             $.semicolon
         ),
 
+        SET: $ => kwd("SET"),
         set: $ => seq(
-            "SET",
+            $.SET,
             $.setname,
             $.eq,
             $.inlineset,
             $.semicolon
         ),
 
+        INCLUDE: $ => kwd("INCLUDE"),
         include: $ => seq(
-            "INCLUDE",
+            $.INCLUDE,
             $.rawpath,
             $.semicolon
         ),
 
-        before_sections: $ => choice(
-            "BEFORE-SECTIONS",
-            "MAPPINGS",
-            "CORRECTIONS"
+        section_header: $ => choice(
+            kwd("SETS"),
+            kwd("BEFORE-SECTIONS"),
+            kwd("MAPPINGS"),
+            kwd("CORRECTIONS"),
+            kwd("SECTION"),
+            kwd("CONSTRAINTS"),
+            kwd("AFTER-SECTIONS"),
+            kwd("NULL-SECTION")
         ),
-
-        section: $ => choice(
-            "SECTION",
-            "CONSTRAINTS"
-        ),
-
-        after_sections: $ => "AFTER-SECTIONS",
-
-        null_section: $ => "NULL-SECTION",
 
         _context: $ => repeat1(seq(
             "(",
             $.contexttest,
             ")"
         )),
-        
+
+        IF: $ => kwd("IF"),
         _if_context: $ => seq(
-            optional("IF"),
+            optional($.IF),
             $._context
         ),
 
+        TARGET: $ => kwd("TARGET"),
         _rule_target: $ => seq(
-            optional("TARGET"),
+            optional($.TARGET),
             $.inlineset
         ),
 
@@ -173,8 +191,10 @@ module.exports = grammar({
             $._shared_rule_end
         ),
 
+        TO: $ => kwd("TO"),
+        FROM: $ => kwd("FROM"),
         _to_from: $ => seq(
-            choice("TO", "FROM"),
+            choice($.TO, $.FROM),
             $._context
         ),
 
@@ -189,11 +209,15 @@ module.exports = grammar({
             $.semicolon
         ),
 
+        WITHCHILD: $ => kwd("WITHCHILD"),
+        NOCHILD: $ => kwd("NOCHILD"),
         _child_specifier: $ => choice(
-            seq("WITHCHILD", $.inlineset),
-            "NOCHILD"
+            seq($.WITHCHILD, $.inlineset),
+            $.NOCHILD
         ),
 
+        BEFORE: $ => kwd("BEFORE"),
+        AFTER: $ => kwd("AFTER"),
         rule_move: $ => seq(
             optional($.qtag),
             $.ruletype_move,
@@ -202,12 +226,13 @@ module.exports = grammar({
             $._child_specifier,
             $._rule_target,
             optional($._if_context),
-            choice("BEFORE", "AFTER"),
+            choice($.BEFORE, $.AFTER),
             optional($._child_specifier),
             $._context,
             $.semicolon
         ),
 
+        WITH: $ => kwd("WITH"),
         rule_switch: $ => seq(
             optional($.qtag),
             $.ruletype_switch,
@@ -215,7 +240,7 @@ module.exports = grammar({
             optional($.ruleflag),
             $._rule_target,
             optional($._if_context),
-            "WITH",
+            $.WITH,
             $._context,
             $.semicolon
         ),
@@ -251,41 +276,48 @@ module.exports = grammar({
             optional($._rule_tag),
             optional($.ruleflag),
             $.inlineset,
-            choice("BEFORE", "AFTER"),
+            choice($.BEFORE, $.AFTER),
             $._shared_rule_end
         ),
 
+        ONCE: $ => kwd("ONCE"),
+        ALWAYS: $ => kwd("ALWAYS"),
         rule_external: $ => seq(
             optional($.qtag),
             $.ruletype_external,
             optional($._rule_tag),
-            choice("ONCE", "ALWAYS"),
+            choice($.ONCE, $.ALWAYS),
             $.filepath,
             optional($.ruleflag),
             $._shared_rule_end
         ),
 
+        TEMPLATE: $ => kwd("TEMPLATE"),
         template: $ => seq(
-            "TEMPLATE",
+            $.TEMPLATE,
             $.ntag,
             $.eq,
             $.contexttest,
             $.semicolon
         ),
 
+        context_modifier: $ => kwd("ALL|NONE|NOT|NEGATE"),
+        BARRIER: $ => kwd("C?BARRIER"),
+        LINK: $ => kwd("LINK"),
+        OR: $ => kwd("OR"),
         contexttest: $ => choice(
             seq(
-                optional(choice("ALL", "NONE", "NOT", "NEGATE")),
+                optional($.context_modifier),
                 choice(
                     seq(optional($.contextpos), $.setname_t),
                     seq($.contextpos, optional($.setname))
                 ),
                 optional(seq(
-                    /C?BARRIER/,
+                    $.BARRIER,
                     $.inlineset
                 )),
                 optional(seq(
-                    "LINK",
+                    $.LINK,
                     $.contexttest
                 ))
             ),
@@ -298,7 +330,7 @@ module.exports = grammar({
                 )),
                 "]",
                 optional(seq(
-                    "LINK",
+                    $.LINK,
                     $.contexttest
                 ))
             ),
@@ -307,7 +339,7 @@ module.exports = grammar({
                 $.contexttest,
                 ")",
                 repeat(seq(
-                    "OR",
+                    $.OR,
                     "(",
                     $.contexttest,
                     ")"
@@ -328,7 +360,7 @@ module.exports = grammar({
             $.setname
         ),
 
-        set_op: $ => /OR|[|+^∆∩-]/,
+        set_op: $ => /[Oo][Rr]|[|+^∆∩-]/,
 
         taglist: $ => repeat1(choice($.tag, $.compotag)),
 
@@ -344,27 +376,27 @@ module.exports = grammar({
 
         prefix: $ => /[^\s#]/,
 
-        ruletype: $ => /SELECT|REMOVE|IFF|DELIMIT|MATCH|REMCOHORT|UNMAP/,
+        ruletype: $ => kwd("SELECT|REMOVE|IFF|DELIMIT|MATCH|REMCOHORT|UNMAP"),
 
-        ruletype_substitute_etc: $ => /SUBSTITTUTE|SETVARIABLE|EXECUTE/,
+        ruletype_substitute_etc: $ => kwd("SUBSTITTUTE|SETVARIABLE|EXECUTE"),
 
-        ruletype_parentchild: $ => /SETPARENT|SETCHILD/,
+        ruletype_parentchild: $ => kwd("SETPARENT|SETCHILD"),
 
-        ruletype_relation: $ => /(ADD|SET|REM)RELATION/,
+        ruletype_relation: $ => kwd("(ADD|SET|REM)RELATION"),
 
-        ruletype_relations: $ => /(ADD|SET|REM)RELATIONS/,
+        ruletype_relations: $ => kwd("(ADD|SET|REM)RELATIONS"),
 
-        ruletype_map_etc: $ => /ADD|MAP|REPLACE|APPEND|COPY|REMVARIABLE|JUMP/,
+        ruletype_map_etc: $ => kwd("ADD|MAP|REPLACE|APPEND|COPY|REMVARIABLE|JUMP"),
 
-        ruletype_addcohort: $ => "ADDCOHORT",
+        ruletype_addcohort: $ => kwd("ADDCOHORT"),
 
-        ruletype_move: $ => "MOVE",
+        ruletype_move: $ => kwd("MOVE"),
 
-        ruletype_switch: $ => "SWITCH",
+        ruletype_switch: $ => kwd("SWITCH"),
 
-        ruletype_external: $ => "EXTERNAL",
+        ruletype_external: $ => kwd("EXTERNAL"),
 
-        ruleflag_name: $ => /NEAREST|ALLOWLOOP|DELAYED|IMMEDIATE|LOOK(DELETED|DELAYED)|(UN)?SAFE|REMEMBERX|RESETX|(KEEP|VARY)ORDER|ENCL_(INNER|OUTER|FINAL|ANY)|ALLOWCROSS|(NO)?ITERATE|UNMAPLAST|REVERSE|SUB/,
+        ruleflag_name: $ => kwd("NEAREST|ALLOWLOOP|DELAYED|IMMEDIATE|LOOK(DELETED|DELAYED)|(UN)?SAFE|REMEMBERX|RESETX|(KEEP|VARY)ORDER|ENCL_(INNER|OUTER|FINAL|ANY)|ALLOWCROSS|(NO)?ITERATE|UNMAPLAST|REVERSE|SUB"),
 
         ruleflag: $ => repeat1(seq(
             $.ruleflag_name,

@@ -11,24 +11,32 @@ SECTION
 
 SELECT X IF (1 Y);
 
+END
+
 ---
 
 (source_file
+  (section_header)
   (list
+    (LIST)
     (setname)
     (eq)
     (taglist (tag (ntag)) (tag (ntag)) (tag (ntag)))
     (semicolon))
   (list
+    (LIST)
     (setname)
     (eq)
     (taglist (tag (ntag)) (tag (ntag)) (tag (ntag)))
     (semicolon))
-  (section)
+  (section_header)
   (rule
     (ruletype)
     (inlineset (inlineset_single (setname)))
+    (IF)
     (contexttest
       (contextpos (ntag))
       (setname))
-    (semicolon)))
+    (semicolon))
+  (END))
+
