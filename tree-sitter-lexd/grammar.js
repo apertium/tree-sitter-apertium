@@ -32,6 +32,7 @@ module.exports = grammar({
         alias: $ => "ALIAS",
         left_sieve: $ => "<",
         right_sieve: $ => ">",
+        pattern_or: $ => "|",
         colon: $ => ":",
 
         pattern_line: $ => seq(
@@ -69,6 +70,7 @@ module.exports = grammar({
         pattern_token: $ => choice(
             $.left_sieve,
             $.right_sieve,
+            $.pattern_or,
             prec.left(2, seq(
                 $._modifiable_pat_tok,
                 optional($.tag_filter),
@@ -181,7 +183,7 @@ module.exports = grammar({
         comment: $ => seq("#", /.*/),
 
         alias_command: $ => seq(
-            alias($.alias, "ALIAS"),
+            $.alias,
             $._ws,
             $.identifier,
             $._ws,

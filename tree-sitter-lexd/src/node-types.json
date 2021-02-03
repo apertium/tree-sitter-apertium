@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "alias",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         }
@@ -170,6 +174,11 @@
     "fields": {}
   },
   {
+    "type": "pattern_or",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "pattern_token",
     "named": true,
     "fields": {},
@@ -203,6 +212,10 @@
         },
         {
           "type": "pattern_operator",
+          "named": true
+        },
+        {
+          "type": "pattern_or",
           "named": true
         },
         {
@@ -334,10 +347,6 @@
     "named": false
   },
   {
-    "type": "ALIAS",
-    "named": false
-  },
-  {
     "type": "[",
     "named": false
   },
@@ -348,6 +357,10 @@
   {
     "type": "^",
     "named": false
+  },
+  {
+    "type": "alias",
+    "named": true
   },
   {
     "type": "colon",

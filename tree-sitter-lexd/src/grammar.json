@@ -125,6 +125,10 @@
       "type": "STRING",
       "value": ">"
     },
+    "pattern_or": {
+      "type": "STRING",
+      "value": "|"
+    },
     "colon": {
       "type": "STRING",
       "value": ":"
@@ -286,6 +290,10 @@
         {
           "type": "SYMBOL",
           "name": "right_sieve"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pattern_or"
         },
         {
           "type": "PREC_LEFT",
@@ -807,13 +815,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "alias"
-          },
-          "named": false,
-          "value": "ALIAS"
+          "type": "SYMBOL",
+          "name": "alias"
         },
         {
           "type": "SYMBOL",

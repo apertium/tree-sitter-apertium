@@ -4,5 +4,6 @@ A tree-sitter grammar of lexd.
 
 # Links
 
-https://github.com/apertium/lexd
-https://github.com/apertium/lexd/blob/master/Usage.md
+[main repo](https://github.com/apertium/lexd)
+
+[syntax description](https://github.com/apertium/lexd/blob/master/Usage.md)
