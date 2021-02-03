@@ -1,0 +1,98 @@
+==========
+tags, tags, all the tags
+==========
+
+PATTERNS
+(NounStem CaseEnding)[^[Decl1,Decl2],^[N,M,F]]
+
+LEXICON NounStem
+mensa:mens[Decl1,F]     # table
+poeta:poet[Decl1,M]     # poet
+dominus:domin[Decl2,M]  # master
+bellum:bell[Decl2,N]    # war
+
+LEXICON CaseEnding[Decl2]
+<nom>:>us[M]
+<nom>:>um[N]
+<acc>:>um[-Decl2]    # M or N
+
+LEXICON CaseEnding[Decl1]
+<nom>:>a     # any gender
+<acc>:>am    # any gender
+
+---
+
+(source_file
+ (pattern_block
+  (pattern_start)
+  (pattern_line
+   (pattern_token
+    (anonymous_pattern
+     (pattern_token (identifier))
+     (pattern_token (identifier)))
+    (tag_filter
+     (tag_distribution
+      (tag_distribution_operator)
+      (tag)
+      (tag))
+     (tag_distribution
+      (tag_distribution_operator)
+      (tag)
+      (tag)
+      (tag))))))
+ (lexicon_block
+  (lexicon_start)
+  (identifier)
+  (lexicon_line
+   (lexicon_segment
+    (lexicon_string)
+    (colon)
+    (lexicon_string)
+    (tag_setting (tag) (tag)))
+   (comment))
+  (lexicon_line
+   (lexicon_segment
+    (lexicon_string)
+    (colon)
+    (lexicon_string)
+    (tag_setting (tag) (tag)))
+   (comment))
+  (lexicon_line
+   (lexicon_segment
+    (lexicon_string) (colon) (lexicon_string)
+    (tag_setting (tag) (tag)))
+   (comment))
+  (lexicon_line
+   (lexicon_segment
+    (lexicon_string) (colon) (lexicon_string)
+    (tag_setting (tag) (tag)))
+   (comment)))
+ (lexicon_block
+  (lexicon_start)
+  (identifier)
+  (tag_setting (tag))
+  (lexicon_line
+   (lexicon_segment
+    (lexicon_string) (colon) (lexicon_string)
+    (tag_setting (tag))))
+  (lexicon_line
+   (lexicon_segment
+    (lexicon_string) (colon) (lexicon_string)
+    (tag_setting (tag))))
+  (lexicon_line
+   (lexicon_segment
+    (lexicon_string) (colon) (lexicon_string)
+    (tag_setting (tag)))
+   (comment)))
+ (lexicon_block
+  (lexicon_start)
+  (identifier)
+  (tag_setting (tag))
+  (lexicon_line
+   (lexicon_segment
+    (lexicon_string) (colon) (lexicon_string))
+   (comment))
+  (lexicon_line
+   (lexicon_segment
+    (lexicon_string) (colon) (lexicon_string))
+   (comment))))

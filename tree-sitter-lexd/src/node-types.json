@@ -30,6 +30,21 @@
     }
   },
   {
+    "type": "anonymous_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "pattern_token",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "comment",
     "named": true,
     "fields": {}
@@ -56,6 +71,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "tag_setting",
           "named": true
         }
       ]
@@ -94,6 +113,10 @@
         },
         {
           "type": "lexicon_string",
+          "named": true
+        },
+        {
+          "type": "tag_setting",
           "named": true
         }
       ]
@@ -142,15 +165,28 @@
     }
   },
   {
+    "type": "pattern_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "pattern_token",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "anonymous_lexicon",
+          "named": true
+        },
+        {
+          "type": "anonymous_pattern",
+          "named": true
+        },
+        {
+          "type": "colon",
           "named": true
         },
         {
@@ -166,11 +202,15 @@
           "named": true
         },
         {
-          "type": "pattern_token",
+          "type": "pattern_operator",
           "named": true
         },
         {
           "type": "right_sieve",
+          "named": true
+        },
+        {
+          "type": "tag_filter",
           "named": true
         }
       ]
@@ -200,6 +240,64 @@
     }
   },
   {
+    "type": "tag_distribution",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tag",
+          "named": true
+        },
+        {
+          "type": "tag_distribution_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag_distribution_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "tag_filter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tag",
+          "named": true
+        },
+        {
+          "type": "tag_distribution",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag_setting",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "\n",
     "named": false
   },
@@ -216,6 +314,26 @@
     "named": false
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "?",
+    "named": false
+  },
+  {
     "type": "ALIAS",
     "named": false
   },
@@ -225,6 +343,10 @@
   },
   {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
     "named": false
   },
   {
@@ -266,5 +388,13 @@
   {
     "type": "right_sieve",
     "named": true
+  },
+  {
+    "type": "tag",
+    "named": true
+  },
+  {
+    "type": "|",
+    "named": false
   }
 ]

@@ -1,0 +1,43 @@
+===================
+sequential lexicons
+===================
+
+PATTERNS
+X Y
+
+LEXICON X
+a
+b
+c
+
+LEXICON Y
+a
+b
+c
+
+---
+
+(source_file
+  (pattern_block
+    (pattern_start)
+    (pattern_line
+      (pattern_token (identifier))
+      (pattern_token (identifier))))
+  (lexicon_block
+    (lexicon_start)
+    (identifier)
+    (lexicon_line
+      (lexicon_segment (lexicon_string)))
+    (lexicon_line
+      (lexicon_segment (lexicon_string)))
+    (lexicon_line
+      (lexicon_segment (lexicon_string))))
+  (lexicon_block
+    (lexicon_start)
+    (identifier)
+    (lexicon_line
+      (lexicon_segment (lexicon_string)))
+    (lexicon_line
+      (lexicon_segment (lexicon_string)))
+    (lexicon_line
+      (lexicon_segment (lexicon_string)))))

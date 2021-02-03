@@ -1,0 +1,23 @@
+============
+minimal file
+============
+
+PATTERNS
+X
+
+LEXICON X
+a
+
+---
+
+(source_file
+  (pattern_block
+    (pattern_start)
+    (pattern_line
+      (pattern_token (identifier))))
+  (lexicon_block
+    (lexicon_start)
+    (identifier)
+    (lexicon_line
+      (lexicon_segment
+        (lexicon_string)))))
