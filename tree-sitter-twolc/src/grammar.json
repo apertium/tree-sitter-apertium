@@ -9,8 +9,16 @@
           "name": "alphabet"
         },
         {
-          "type": "SYMBOL",
-          "name": "sets"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "sets"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -112,6 +120,47 @@
         }
       ]
     },
+    "definitions_header": {
+      "type": "STRING",
+      "value": "Definitions"
+    },
+    "definitions": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "definitions_header"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "definition"
+          }
+        }
+      ]
+    },
+    "definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "symbol"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "eq"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pattern"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "semicolon"
+        }
+      ]
+    },
     "rules_header": {
       "type": "STRING",
       "value": "Rules"
@@ -174,6 +223,18 @@
             "type": "SYMBOL",
             "name": "context"
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "variables"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -188,6 +249,18 @@
     "context": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "except"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "CHOICE",
           "members": [
@@ -222,6 +295,98 @@
         }
       ]
     },
+    "except": {
+      "type": "STRING",
+      "value": "except"
+    },
+    "where": {
+      "type": "STRING",
+      "value": "where"
+    },
+    "variable_keyword": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "mixed"
+        },
+        {
+          "type": "STRING",
+          "value": "matched"
+        }
+      ]
+    },
+    "in_keyword": {
+      "type": "STRING",
+      "value": "in"
+    },
+    "variables": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "where"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "symbol"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "in_keyword"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "symbol"
+                  },
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "loptional"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "pattern"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "roptional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "variable_keyword"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "semicolon"
+        }
+      ]
+    },
     "lpar": {
       "type": "STRING",
       "value": "["
@@ -230,13 +395,21 @@
       "type": "STRING",
       "value": "]"
     },
+    "loptional": {
+      "type": "STRING",
+      "value": "("
+    },
+    "roptional": {
+      "type": "STRING",
+      "value": ")"
+    },
     "prefix_op": {
       "type": "PATTERN",
       "value": "[~\\\\$]"
     },
     "suffix_op": {
       "type": "PATTERN",
-      "value": "([*+^]|\\.[ruli])"
+      "value": "([*+^]|\\.[ruli]|\\^\\d+(,\\d+)?)"
     },
     "ignore_op": {
       "type": "STRING",
@@ -254,6 +427,14 @@
       "type": "PATTERN",
       "value": "\\.[xo]\\."
     },
+    "word_boundary": {
+      "type": "STRING",
+      "value": ".#."
+    },
+    "any": {
+      "type": "STRING",
+      "value": "?"
+    },
     "pattern": {
       "type": "CHOICE",
       "members": [
@@ -264,6 +445,14 @@
         {
           "type": "SYMBOL",
           "name": "symbol_pair"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "word_boundary"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "any"
         },
         {
           "type": "PREC",
@@ -282,6 +471,27 @@
               {
                 "type": "SYMBOL",
                 "name": "rpar"
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 8,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "loptional"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "pattern"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "roptional"
               }
             ]
           }
@@ -425,11 +635,11 @@
     },
     "symbol": {
       "type": "PATTERN",
-      "value": "([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=]|%.)+"
+      "value": "([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)+"
     },
     "symbol_pair": {
       "type": "PATTERN",
-      "value": "(([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=]|%.)*|0):(([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=]|%.)*|0)"
+      "value": "(([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)*|0):(([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)*|0)"
     },
     "comment": {
       "type": "PATTERN",

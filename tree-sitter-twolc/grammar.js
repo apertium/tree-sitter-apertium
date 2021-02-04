@@ -9,7 +9,8 @@ module.exports = grammar({
     rules: {
 	source_file: $ => seq(
 	    $.alphabet,
-	    $.sets,
+	    optional($.sets),
+	    //optional($.definitions),
 	    $.rules
 	),
 
@@ -36,6 +37,19 @@ module.exports = grammar({
 	    $.semicolon
 	),
 
+	definitions_header: $ => "Definitions",
+	definitions: $ => seq(
+	    $.definitions_header,
+	    repeat1($.definition)
+	),
+
+	definition: $ => seq(
+	    $.symbol,
+	    $.eq,
+	    $.pattern,
+	    $.semicolon
+	),
+
 	rules_header: $ => "Rules",
 	rules: $ => seq(
 	    $.rules_header,
@@ -47,32 +61,64 @@ module.exports = grammar({
 	    $.rule_name,
 	    $.symbol_pair,
 	    $.arrow,
-	    repeat1($.context)
+	    repeat1($.context),
+	    optional($.variables)
 	),
 
 	rule_name: $ => /"[^\"\n]+"/,
 
 	locus: $ => "_",
 	context: $ => seq(
+	    optional($.except),
 	    optional($.pattern),
 	    $.locus,
 	    optional($.pattern),
 	    $.semicolon
 	),
 
+	except: $ => "except",
+	where: $ => "where",
+	variable_keyword: $ => choice("mixed", "matched"),
+	in_keyword: $ => "in",
+
+	variables: $ => seq(
+	    $.where,
+	    repeat1(seq(
+		$.symbol,
+		$.in_keyword,
+		choice(
+		    $.symbol,
+		    seq(
+			$.loptional,
+			$.pattern,
+			$.roptional
+		    )
+		)
+	    )),
+	    optional($.variable_keyword),
+	    $.semicolon
+	),
+
 	lpar: $ => "[",
 	rpar: $ => "]",
+	loptional: $ => "(",
+	roptional: $ => ")",
 	prefix_op: $ => /[~\\$]/,
-	suffix_op: $ => /([*+^]|\.[ruli])/,
+	suffix_op: $ => /([*+^]|\.[ruli]|\^\d+(,\d+)?)/,
 	ignore_op: $ => "/",
 	bool_op: $ => /[|&-]/,
 	replace_op: $ => /->|=>/,
 	compose_op: $ => /\.[xo]\./,
+	word_boundary: $ => ".#.",
+	any: $ => "?",
 	
 	pattern: $ => choice(
 	    $.symbol,
 	    $.symbol_pair,
+	    $.word_boundary,
+	    $.any,
 	    prec(8, seq($.lpar, $.pattern, $.rpar)),
+	    prec(8, seq($.loptional, $.pattern, $.roptional)),
 	    prec(7, seq($.prefix_op, $.pattern)),
 	    prec(6, seq($.pattern, $.suffix_op)),
 	    prec.left(5, seq($.pattern, $.ignore_op, $.pattern)),
@@ -82,9 +128,9 @@ module.exports = grammar({
 	    prec.left(1, seq($.pattern, $.compose_op, $.pattern))
 	),
 
-	// special chars: \s%:\[\]~\\$*+^\./|&-=
-	symbol: $ => /([^\s%:\[\]~\\$*+^\./|&-=]|%.)+/,
-	symbol_pair: $ => /(([^\s%:\[\]~\\$*+^\./|&-=]|%.)*|0):(([^\s%:\[\]~\\$*+^\./|&-=]|%.)*|0)/,
+	// special chars: \s%:\[\]~\\$*+^\./|&-=?()
+	symbol: $ => /([^\s%:\[\]~\\$*+^\./|&-=?()]|%.)+/,
+	symbol_pair: $ => /(([^\s%:\[\]~\\$*+^\./|&-=?()]|%.)*|0):(([^\s%:\[\]~\\$*+^\./|&-=?()]|%.)*|0)/,
 
 	comment: $ => /![^\n]*/
     }

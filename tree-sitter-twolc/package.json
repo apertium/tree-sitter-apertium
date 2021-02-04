@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-twolc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "tree-sitter grammar of hfst-twolc",
   "main": "index.js",
   "directories": {

@@ -40,6 +40,10 @@
       "required": true,
       "types": [
         {
+          "type": "except",
+          "named": true
+        },
+        {
           "type": "locus",
           "named": true
         },
@@ -55,6 +59,33 @@
     }
   },
   {
+    "type": "definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eq",
+          "named": true
+        },
+        {
+          "type": "pattern",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "pattern",
     "named": true,
     "fields": {},
@@ -62,6 +93,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "any",
+          "named": true
+        },
         {
           "type": "bool_op",
           "named": true
@@ -72,6 +107,10 @@
         },
         {
           "type": "ignore_op",
+          "named": true
+        },
+        {
+          "type": "loptional",
           "named": true
         },
         {
@@ -91,6 +130,10 @@
           "named": true
         },
         {
+          "type": "roptional",
+          "named": true
+        },
+        {
           "type": "rpar",
           "named": true
         },
@@ -104,6 +147,10 @@
         },
         {
           "type": "symbol_pair",
+          "named": true
+        },
+        {
+          "type": "word_boundary",
           "named": true
         }
       ]
@@ -131,6 +178,10 @@
         },
         {
           "type": "symbol_pair",
+          "named": true
+        },
+        {
+          "type": "variables",
           "named": true
         }
       ]
@@ -225,6 +276,54 @@
     }
   },
   {
+    "type": "variable_keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "variables",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "in_keyword",
+          "named": true
+        },
+        {
+          "type": "loptional",
+          "named": true
+        },
+        {
+          "type": "pattern",
+          "named": true
+        },
+        {
+          "type": "roptional",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "variable_keyword",
+          "named": true
+        },
+        {
+          "type": "where",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "/<=",
     "named": false
   },
@@ -245,6 +344,10 @@
     "named": true
   },
   {
+    "type": "any",
+    "named": true
+  },
+  {
     "type": "bool_op",
     "named": true
   },
@@ -257,7 +360,15 @@
     "named": true
   },
   {
+    "type": "definitions_header",
+    "named": true
+  },
+  {
     "type": "eq",
+    "named": true
+  },
+  {
+    "type": "except",
     "named": true
   },
   {
@@ -265,7 +376,15 @@
     "named": true
   },
   {
+    "type": "in_keyword",
+    "named": true
+  },
+  {
     "type": "locus",
+    "named": true
+  },
+  {
+    "type": "loptional",
     "named": true
   },
   {
@@ -273,11 +392,23 @@
     "named": true
   },
   {
+    "type": "matched",
+    "named": false
+  },
+  {
+    "type": "mixed",
+    "named": false
+  },
+  {
     "type": "prefix_op",
     "named": true
   },
   {
     "type": "replace_op",
+    "named": true
+  },
+  {
+    "type": "roptional",
     "named": true
   },
   {
@@ -310,6 +441,14 @@
   },
   {
     "type": "symbol_pair",
+    "named": true
+  },
+  {
+    "type": "where",
+    "named": true
+  },
+  {
+    "type": "word_boundary",
     "named": true
   }
 ]
