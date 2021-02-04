@@ -86,6 +86,25 @@
     }
   },
   {
+    "type": "definitions",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "definitions_header",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "pattern",
     "named": true,
     "fields": {},
@@ -262,6 +281,10 @@
       "types": [
         {
           "type": "alphabet",
+          "named": true
+        },
+        {
+          "type": "definitions",
           "named": true
         },
         {

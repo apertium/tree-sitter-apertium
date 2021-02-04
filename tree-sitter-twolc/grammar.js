@@ -10,7 +10,7 @@ module.exports = grammar({
 	source_file: $ => seq(
 	    $.alphabet,
 	    optional($.sets),
-	    //optional($.definitions),
+	    optional($.definitions),
 	    $.rules
 	),
 
