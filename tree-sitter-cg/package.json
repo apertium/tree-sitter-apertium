@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-cg",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "tree-sitter grammar of VISL-CG",
   "main": "index.js",
   "directories": {

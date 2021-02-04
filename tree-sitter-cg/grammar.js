@@ -310,7 +310,7 @@ module.exports = grammar({
                 optional($.context_modifier),
                 choice(
                     seq(optional($.contextpos), $.setname_t),
-                    seq($.contextpos, optional($.setname))
+                    seq($.contextpos, optional($.inlineset))
                 ),
                 optional(seq(
                     $.BARRIER,

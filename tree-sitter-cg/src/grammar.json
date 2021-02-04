@@ -1363,7 +1363,7 @@
                       "members": [
                         {
                           "type": "SYMBOL",
-                          "name": "setname"
+                          "name": "inlineset"
                         },
                         {
                           "type": "BLANK"

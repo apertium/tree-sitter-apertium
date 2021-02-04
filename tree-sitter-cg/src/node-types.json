@@ -66,10 +66,6 @@
           "named": true
         },
         {
-          "type": "setname",
-          "named": true
-        },
-        {
           "type": "setname_t",
           "named": true
         }
