@@ -1,0 +1,315 @@
+[
+  {
+    "type": "alphabet",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alphabet_header",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbol_pair",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arrow",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "context",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "locus",
+          "named": true
+        },
+        {
+          "type": "pattern",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "bool_op",
+          "named": true
+        },
+        {
+          "type": "compose_op",
+          "named": true
+        },
+        {
+          "type": "ignore_op",
+          "named": true
+        },
+        {
+          "type": "lpar",
+          "named": true
+        },
+        {
+          "type": "pattern",
+          "named": true
+        },
+        {
+          "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "replace_op",
+          "named": true
+        },
+        {
+          "type": "rpar",
+          "named": true
+        },
+        {
+          "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbol_pair",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arrow",
+          "named": true
+        },
+        {
+          "type": "context",
+          "named": true
+        },
+        {
+          "type": "rule_name",
+          "named": true
+        },
+        {
+          "type": "symbol_pair",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rules",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "rule",
+          "named": true
+        },
+        {
+          "type": "rules_header",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "set",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eq",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbol_pair",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "sets",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "set",
+          "named": true
+        },
+        {
+          "type": "sets_header",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alphabet",
+          "named": true
+        },
+        {
+          "type": "rules",
+          "named": true
+        },
+        {
+          "type": "sets",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "/<=",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "<=>",
+    "named": false
+  },
+  {
+    "type": "=>",
+    "named": false
+  },
+  {
+    "type": "alphabet_header",
+    "named": true
+  },
+  {
+    "type": "bool_op",
+    "named": true
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "compose_op",
+    "named": true
+  },
+  {
+    "type": "eq",
+    "named": true
+  },
+  {
+    "type": "ignore_op",
+    "named": true
+  },
+  {
+    "type": "locus",
+    "named": true
+  },
+  {
+    "type": "lpar",
+    "named": true
+  },
+  {
+    "type": "prefix_op",
+    "named": true
+  },
+  {
+    "type": "replace_op",
+    "named": true
+  },
+  {
+    "type": "rpar",
+    "named": true
+  },
+  {
+    "type": "rule_name",
+    "named": true
+  },
+  {
+    "type": "rules_header",
+    "named": true
+  },
+  {
+    "type": "semicolon",
+    "named": true
+  },
+  {
+    "type": "sets_header",
+    "named": true
+  },
+  {
+    "type": "suffix_op",
+    "named": true
+  },
+  {
+    "type": "symbol",
+    "named": true
+  },
+  {
+    "type": "symbol_pair",
+    "named": true
+  }
+]

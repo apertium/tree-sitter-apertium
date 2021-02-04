@@ -1,0 +1,58 @@
+==========
+basic test
+==========
+
+Alphabet
+ A B Ç
+ a b c
+ %{A%}:a %>:0  ;
+
+Sets
+
+Vowel = A
+        a ;
+
+Rules
+
+"Remove suffix vowel with vowel-ending stem"
+i:0 <=> Vowel %{VSUF%}:0 _ [ m | n ] ;
+
+! Resources:
+! http://wiki.apertium.org/wiki/Starting_a_new_language_with_HFST#Enter_twol
+! https://kitwiki.csc.fi/twiki/bin/view/KitWiki/HfstHome
+! https://github.com/hfst/
+! http://wiki.apertium.org/wiki/Twol
+! http://wiki.apertium.org/wiki/Hfst
+
+---
+
+(source_file
+  (alphabet
+    (alphabet_header)
+    (symbol) (symbol) (symbol)
+    (symbol) (symbol) (symbol)
+    (symbol_pair) (symbol_pair) (semicolon))
+  (sets
+    (sets_header)
+    (set
+      (symbol) (eq) (symbol) (symbol) (semicolon)))
+  (rules
+    (rules_header)
+    (rule
+      (rule_name)
+      (symbol_pair)
+      (arrow)
+      (context
+        (pattern (pattern (symbol)) (pattern (symbol_pair)))
+	(locus)
+	(pattern
+	  (lpar)
+	  (pattern (pattern (symbol)) (bool_op) (pattern (symbol)))
+	  (rpar))
+	(semicolon))))
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment))
