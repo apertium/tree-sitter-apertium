@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-rtx",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "tree-sitter parser of Apertium-recursive rule files.",
   "main": "index.js",
   "scripts": {

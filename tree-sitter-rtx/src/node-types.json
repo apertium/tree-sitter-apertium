@@ -34,6 +34,10 @@
         {
           "type": "ident",
           "named": true
+        },
+        {
+          "type": "string",
+          "named": true
         }
       ]
     }
@@ -131,15 +135,15 @@
           "named": true
         },
         {
-          "type": "condition",
-          "named": true
-        },
-        {
           "type": "not",
           "named": true
         },
         {
           "type": "str_op",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         },
         {
@@ -156,11 +160,6 @@
   },
   {
     "type": "else_tok",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "ident",
     "named": true,
     "fields": {}
   },
@@ -183,6 +182,10 @@
         },
         {
           "type": "ident",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -283,6 +286,10 @@
         {
           "type": "output_var_set",
           "named": true
+        },
+        {
+          "type": "string",
+          "named": true
         }
       ]
     }
@@ -323,6 +330,10 @@
           "named": true
         },
         {
+          "type": "string",
+          "named": true
+        },
+        {
           "type": "string_cond",
           "named": true
         }
@@ -339,6 +350,10 @@
       "types": [
         {
           "type": "ident",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -389,7 +404,7 @@
           "named": true
         },
         {
-          "type": "rule_name",
+          "type": "string",
           "named": true
         },
         {
@@ -510,6 +525,10 @@
           "named": true
         },
         {
+          "type": "string",
+          "named": true
+        },
+        {
           "type": "string_cond",
           "named": true
         }
@@ -614,16 +633,20 @@
     "named": true
   },
   {
+    "type": "ident",
+    "named": true
+  },
+  {
     "type": "ref",
     "named": false
   },
   {
-    "type": "rule_name",
-    "named": true
-  },
-  {
     "type": "sl",
     "named": false
+  },
+  {
+    "type": "string",
+    "named": true
   },
   {
     "type": "tl",

@@ -39,3 +39,26 @@ NP -> adj n {2 _ 1[number=2.number]};
       (output_element
         (num)
 	(output_var_set (ident) (clip (num) (ident)))))))
+
+=========
+negation
+=========
+
+a: (if (not ( 1.b = "hi" ) ) 1(c));
+
+---
+
+(source_file
+  (output_rule
+    (ident)
+    (lu_cond
+      (if_tok)
+      (condition
+        (not)
+        (clip (num) (ident))
+        (str_op)
+        (string))
+      (output_element
+        (num)
+        (macro_name
+          (ident))))))

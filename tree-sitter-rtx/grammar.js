@@ -71,9 +71,8 @@ module.exports = grammar({
 
 	arrow: $ => prec(2, /->|→/),
 
-	_str: $ => /"([^\"]|\\.)*"/,
-	_ident: $ => /([^!@$%()={}\[\]|\/:;<>,.→\s\n\d\"]|\\.)([^!@$%()={}\[\]|\/:;<>,.→\s\n]|\\.)*/,
-	ident: $ => choice($._str, $._ident),
+	string: $ => /"([^\"]|\\.)*"/,
+	ident: $ => /([^!@$%()={}\[\]|\/:;<>,.→\s\n\d\"]|\\.)([^!@$%()={}\[\]|\/:;<>,.→\s\n]|\\.)*/,
 
 	comment: $ => /![^\n]*/,
 
@@ -127,6 +126,7 @@ module.exports = grammar({
 	    optional($.attr_default),
 	    repeat1(choice(
 		$.ident,
+		$.string,
 		seq("@", $.ident),
 		seq("[", $.ident, "]")
 	    )),
@@ -189,14 +189,15 @@ module.exports = grammar({
 	    /[-_]*\|[-_]*/
 	),
 
-	not: $ => choice(
-	    operator("not", false),
-	    operator("~", false),
-	    operator("⌐", false)
-	),
+	not: $ => prec(2, choice(
+	    token(prec(2, operator("not", false))),
+	    token(prec(2, operator("~", false))),
+	    token(prec(2, operator("⌐", false)))
+	)),
 
 	_string_val: $ => choice(
 	    $.clip,
+	    $.string,
 	    $.string_cond
 	),
 
@@ -209,13 +210,14 @@ module.exports = grammar({
 
 	_cond_bool: $ => choice(
 	    $._cond_base_bool,
-	    $.condition,
-	    seq($.not, $.condition),
-	    prec.left(seq($._cond_bool, $.bool_op, $._cond_bool))
+	    prec(3, seq("(", $._cond_bool, ")")),
+	    prec(2, seq($.not, $._cond_bool)),
+	    prec.left(1, seq($._cond_bool, $.bool_op, $._cond_bool))
 	),
 	
 	condition: $ => seq(
 	    "(",
+	    optional($.not),
 	    $._cond_bool,
 	    ")"
 	),
@@ -226,7 +228,8 @@ module.exports = grammar({
 		choice(
 		    seq("$", $.ident),
 		    seq("[", $.ident, "]"),
-		    $.ident
+		    $.ident,
+		    $.string
 		),
 		"@"
 	    )),
@@ -258,7 +261,7 @@ module.exports = grammar({
 	),
 
 	literal_lu: $ => seq(
-	    $.ident,
+	    choice($.ident, $.string),
 	    token.immediate("@"),
 	    listof(
 		choice(
@@ -278,6 +281,7 @@ module.exports = grammar({
 		    choice(
 			$.num,
 			$.ident,
+			$.string,
 			"*"
 		    ),
 		    optional($.macro_name),
@@ -329,10 +333,8 @@ module.exports = grammar({
 	    ";"
 	),
 
-	rule_name: $ => /"[^\"]*"/,
-	
 	reduce_rule: $ => seq(
-	    optional($.rule_name),
+	    optional($.string),
 	    optional(seq($.weight, ":")),
 	    repeat1(choice($.unknown, $.pattern_element)),
 	    optional(seq("?", $.condition)),
