@@ -649,9 +649,121 @@
       "type": "PATTERN",
       "value": "([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)+"
     },
+    "_sym_or_0": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)+"
+        },
+        {
+          "type": "STRING",
+          "value": "0"
+        }
+      ]
+    },
+    "_imm_sym_or_0": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)+"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "0"
+          }
+        }
+      ]
+    },
     "symbol_pair": {
-      "type": "PATTERN",
-      "value": "(([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)*|0):(([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)*|0)"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_sym_or_0"
+              },
+              "named": true,
+              "value": "symbol"
+            },
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": ":"
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_imm_sym_or_0"
+                  },
+                  "named": true,
+                  "value": "symbol"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": ":"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "IMMEDIATE_TOKEN",
+                        "content": {
+                          "type": "PATTERN",
+                          "value": "([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)+"
+                        }
+                      },
+                      {
+                        "type": "IMMEDIATE_TOKEN",
+                        "content": {
+                          "type": "STRING",
+                          "value": "0"
+                        }
+                      }
+                    ]
+                  },
+                  "named": true,
+                  "value": "symbol"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     "comment": {
       "type": "PATTERN",

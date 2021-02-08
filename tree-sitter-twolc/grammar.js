@@ -1,3 +1,6 @@
+// special chars: \s%:\[\]~\\$*+^\./|&-=?()
+SYMBOL_REGEX = /([^\s%:\[\]~\\$*+^\./|&-=?()]|%.)+/;
+
 module.exports = grammar({
     name: "twolc",
 
@@ -128,9 +131,23 @@ module.exports = grammar({
 	    prec.left(1, seq($.pattern, $.compose_op, $.pattern))
 	),
 
-	// special chars: \s%:\[\]~\\$*+^\./|&-=?()
-	symbol: $ => /([^\s%:\[\]~\\$*+^\./|&-=?()]|%.)+/,
-	symbol_pair: $ => /(([^\s%:\[\]~\\$*+^\./|&-=?()]|%.)*|0):(([^\s%:\[\]~\\$*+^\./|&-=?()]|%.)*|0)/,
+	symbol: $ => SYMBOL_REGEX,
+	_sym_or_0: $ => choice(SYMBOL_REGEX, "0"),
+	_imm_sym_or_0: $ => choice(
+	    token.immediate(SYMBOL_REGEX),
+	    token.immediate("0")
+	),
+	symbol_pair: $ => choice(
+	    seq(
+		alias($._sym_or_0, $.symbol),
+		token.immediate(":"),
+		optional(alias($._imm_sym_or_0, $.symbol))
+	    ),
+	    seq(
+		":",
+		optional(alias($._imm_sym_or_0, $.symbol))
+	    )
+	),
 
 	comment: $ => /![^\n]*/
     }

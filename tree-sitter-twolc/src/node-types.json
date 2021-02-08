@@ -299,6 +299,26 @@
     }
   },
   {
+    "type": "symbol",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "symbol_pair",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "variable_keyword",
     "named": true,
     "fields": {}
@@ -348,6 +368,14 @@
   },
   {
     "type": "/<=",
+    "named": false
+  },
+  {
+    "type": "0",
+    "named": false
+  },
+  {
+    "type": ":",
     "named": false
   },
   {
@@ -456,14 +484,6 @@
   },
   {
     "type": "suffix_op",
-    "named": true
-  },
-  {
-    "type": "symbol",
-    "named": true
-  },
-  {
-    "type": "symbol_pair",
     "named": true
   },
   {
