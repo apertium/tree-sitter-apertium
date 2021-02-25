@@ -31,7 +31,7 @@ i:0 <=> Vowel %{VSUF%}:0 _ [ m | n ] ;
     (alphabet_header)
     (symbol) (symbol) (symbol)
     (symbol) (symbol) (symbol)
-    (symbol_pair) (symbol_pair) (semicolon))
+    (symbol_pair (symbol) (symbol)) (symbol_pair (symbol) (symbol)) (semicolon))
   (sets
     (sets_header)
     (set
@@ -40,10 +40,10 @@ i:0 <=> Vowel %{VSUF%}:0 _ [ m | n ] ;
     (rules_header)
     (rule
       (rule_name)
-      (symbol_pair)
+      (symbol_pair (symbol) (symbol))
       (arrow)
       (context
-        (pattern (pattern (symbol)) (pattern (symbol_pair)))
+        (pattern (pattern (symbol)) (pattern (symbol_pair (symbol) (symbol))))
 	(locus)
 	(pattern
 	  (lpar)
