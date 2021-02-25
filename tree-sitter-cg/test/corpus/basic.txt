@@ -36,7 +36,7 @@ END
     (IF)
     (contexttest
       (contextpos (ntag))
-      (setname))
+      (inlineset (inlineset_single (setname))))
     (semicolon))
   (END))
 
