@@ -21,3 +21,19 @@ a
     (lexicon_line
       (lexicon_segment
         (lexicon_string)))))
+
+=========
+Colons
+=========
+
+PATTERNS
+X: :X
+
+---
+
+(source_file
+  (pattern_block
+    (pattern_start)
+	(pattern_line
+	  (pattern_token (identifier) (colon))
+	  (pattern_token (colon) (identifier)))))
