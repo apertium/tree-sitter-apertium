@@ -21,12 +21,13 @@ a\ b
   (pattern_block
     (pattern_start)
     (pattern_line
-      (pattern_token (identifier))
+      (pattern_token (lexicon_reference (identifier)))
       (pattern_token
-        (identifier)
-        (number))
+	    (lexicon_reference
+          (identifier)
+          (number)))
       (pattern_token (left_sieve))
-      (pattern_token (identifier))
+      (pattern_token (lexicon_reference (identifier)))
       (comment)))
   (pattern_block
     (named_pattern_start)
@@ -35,7 +36,7 @@ a\ b
       (pattern_token
         (anonymous_lexicon
           (lexicon_segment (lexicon_string))))
-      (pattern_token (identifier))))
+      (pattern_token (lexicon_reference (identifier)))))
   (lexicon_block
     (lexicon_start)
     (identifier)

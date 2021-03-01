@@ -21,8 +21,8 @@ c
   (pattern_block
     (pattern_start)
     (pattern_line
-      (pattern_token (identifier))
-      (pattern_token (identifier))))
+      (pattern_token (lexicon_reference (identifier)))
+      (pattern_token (lexicon_reference (identifier)))))
   (lexicon_block
     (lexicon_start)
     (identifier)

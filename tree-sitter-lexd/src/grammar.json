@@ -162,27 +162,6 @@
         }
       ]
     },
-    "_ident_number": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "number"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
     "pattern_operator": {
       "type": "CHOICE",
       "members": [
@@ -233,12 +212,45 @@
         }
       ]
     },
+    "lexicon_reference": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "number"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_filter"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
     "_modifiable_pat_tok": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_ident_number"
+          "name": "lexicon_reference"
         },
         {
           "type": "PREC",
@@ -248,7 +260,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_ident_number"
+                "name": "lexicon_reference"
               },
               {
                 "type": "SYMBOL",
@@ -266,7 +278,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_ident_number"
+              "name": "lexicon_reference"
             }
           ]
         },
@@ -275,7 +287,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_ident_number"
+              "name": "lexicon_reference"
             },
             {
               "type": "SYMBOL",
@@ -283,17 +295,51 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_ident_number"
+              "name": "lexicon_reference"
             }
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "anonymous_lexicon"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "anonymous_lexicon"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "tag_filter"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
         },
         {
-          "type": "SYMBOL",
-          "name": "anonymous_pattern"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "anonymous_pattern"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "tag_filter"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -321,18 +367,6 @@
               {
                 "type": "SYMBOL",
                 "name": "_modifiable_pat_tok"
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "tag_filter"
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
               },
               {
                 "type": "CHOICE",

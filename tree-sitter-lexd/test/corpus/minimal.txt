@@ -14,7 +14,7 @@ a
   (pattern_block
     (pattern_start)
     (pattern_line
-      (pattern_token (identifier))))
+      (pattern_token (lexicon_reference (identifier)))))
   (lexicon_block
     (lexicon_start)
     (identifier)
@@ -35,5 +35,5 @@ X: :X
   (pattern_block
     (pattern_start)
 	(pattern_line
-	  (pattern_token (identifier) (colon))
-	  (pattern_token (colon) (identifier)))))
+	  (pattern_token (lexicon_reference (identifier)) (colon))
+	  (pattern_token (colon) (lexicon_reference (identifier))))))

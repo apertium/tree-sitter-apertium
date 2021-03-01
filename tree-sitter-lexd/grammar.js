@@ -41,11 +41,6 @@ module.exports = grammar({
             $._nl
         ),
 
-        _ident_number: $ => seq(
-            $.identifier,
-            optional($.number)
-        ),
-
         pattern_operator: $ => choice(
             "*",
             "+",
@@ -59,13 +54,19 @@ module.exports = grammar({
             ")"
         ),
 
+		lexicon_reference: $ => seq(
+			$.identifier,
+			optional($.number),
+			optional($.tag_filter)
+		),
+
         _modifiable_pat_tok: $ => choice(
-            $._ident_number,
-            prec(2, seq($._ident_number, $.colon)),
-            seq($.colon, $._ident_number),
-			seq($._ident_number, $.colon, $._ident_number),
-            $.anonymous_lexicon,
-            $.anonymous_pattern
+            $.lexicon_reference,
+            prec(2, seq($.lexicon_reference, $.colon)),
+            seq($.colon, $.lexicon_reference),
+			seq($.lexicon_reference, $.colon, $.lexicon_reference),
+            seq($.anonymous_lexicon, optional($.tag_filter)),
+            seq($.anonymous_pattern, optional($.tag_filter))
         ),
         
         pattern_token: $ => choice(
@@ -74,7 +75,6 @@ module.exports = grammar({
             $.pattern_or,
             prec.left(2, seq(
                 $._modifiable_pat_tok,
-                optional($.tag_filter),
                 optional($.pattern_operator)
             ))
         ),
