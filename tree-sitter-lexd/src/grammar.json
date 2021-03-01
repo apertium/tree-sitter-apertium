@@ -271,6 +271,23 @@
           ]
         },
         {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_ident_number"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "colon"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_ident_number"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "anonymous_lexicon"
         },
@@ -842,7 +859,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[^\\s?|()<>\\[\\]*+]+"
+      "value": "[^\\s?|()<>\\[\\]*+:]+"
     },
     "tag": {
       "type": "PATTERN",

@@ -63,6 +63,7 @@ module.exports = grammar({
             $._ident_number,
             prec(2, seq($._ident_number, $.colon)),
             seq($.colon, $._ident_number),
+			seq($._ident_number, $.colon, $._ident_number),
             $.anonymous_lexicon,
             $.anonymous_pattern
         ),
@@ -191,7 +192,7 @@ module.exports = grammar({
             $._nl
         ),
 
-        identifier: $ => /[^\s?|()<>\[\]*+]+/,
+        identifier: $ => /[^\s?|()<>\[\]*+:]+/,
         tag: $ => /[^\s?|()<>\[\]*+,^-][^\s?|()<>\[\]*+,^]*/,
 
         number: $ => /\(\d+\)/,
