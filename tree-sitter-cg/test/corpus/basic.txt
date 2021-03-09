@@ -38,5 +38,4 @@ END
       (contextpos (ntag))
       (inlineset (inlineset_single (setname))))
     (semicolon))
-  (END))
-
+  (comment (END)))

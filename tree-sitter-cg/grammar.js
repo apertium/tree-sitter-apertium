@@ -43,8 +43,7 @@ module.exports = grammar({
                 $.rule_relations,
                 $.rule_addcohort,
                 $.rule_external
-            )),
-            optional($.END)
+            ))
         ),
 
         END: $ => kwd("END"),
@@ -57,7 +56,7 @@ module.exports = grammar({
             kwd("SOFT-DELIMITERS"),
             kwd("PREFERRED-TARGETS")
         ),
-        
+
         set_special_list: $ => seq(
             $.special_list_name,
             $.eq,
@@ -256,7 +255,7 @@ module.exports = grammar({
             $._to_from,
             $.semicolon
         ),
-        
+
         rule_relations: $ => seq(
             optional($.qtag),
             $.ruletype_relations,
@@ -416,6 +415,9 @@ module.exports = grammar({
 
         qtag: $ => /[!^]?"(\\[^\n\r]|[^"\\])+"[^();\s]*/,
 
-        comment: $ => /#[^\r\n]*/
+        comment: $ => choice(
+            /#[^\r\n]*/,
+            seq($.END, /(.|\n)*/)
+        )
     }
 })
