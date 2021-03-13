@@ -1,8 +1,8 @@
 {
   "name": "tree-sitter-cg",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "tree-sitter grammar of VISL-CG",
-  "main": "index.js",
+  "main": "bindings/node",
   "directories": {
     "test": "test"
   },
@@ -24,8 +24,8 @@
   "bugs": {
     "url": "https://github.com/mr-martian/tree-sitter-apertium/issues"
   },
-    "dependencies": {
-        "nan": "^2.8.0"
-    },
+  "dependencies": {
+    "nan": "^2.8.0"
+  },
   "homepage": "https://github.com/mr-martian/tree-sitter-apertium#readme"
 }

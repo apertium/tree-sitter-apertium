@@ -91,18 +91,6 @@
               }
             ]
           }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "END"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
         }
       ]
     },
@@ -1746,8 +1734,26 @@
       "value": "[!^]?\"(\\\\[^\\n\\r]|[^\"\\\\])+\"[^();\\s]*"
     },
     "comment": {
-      "type": "PATTERN",
-      "value": "#[^\\r\\n]*"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "#[^\\r\\n]*"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "END"
+            },
+            {
+              "type": "PATTERN",
+              "value": "(.|\\n)*"
+            }
+          ]
+        }
+      ]
     }
   },
   "extras": [
@@ -1761,6 +1767,7 @@
     }
   ],
   "conflicts": [],
+  "precedences": [],
   "externals": [],
   "inline": [],
   "supertypes": []

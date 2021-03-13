@@ -39,3 +39,29 @@ END
       (inlineset (inlineset_single (setname))))
     (semicolon))
   (comment (END)))
+
+========
+comments
+========
+
+SETS
+LIST X = a b;
+
+SECTION
+SELECT X IF (1 X);
+
+END
+
+some other random text
+
+---
+
+(source_file
+  (section_header)
+  (list (LIST) (setname) (eq) (taglist (tag (ntag)) (tag (ntag))) (semicolon))
+  (section_header)
+  (rule (ruletype) (inlineset (inlineset_single (setname))) (IF)
+        (contexttest (contextpos (ntag))
+		             (inlineset (inlineset_single (setname))))
+		(semicolon))
+  (comment (END)))

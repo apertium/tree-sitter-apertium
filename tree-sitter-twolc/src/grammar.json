@@ -735,23 +735,8 @@
                 {
                   "type": "ALIAS",
                   "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "IMMEDIATE_TOKEN",
-                        "content": {
-                          "type": "PATTERN",
-                          "value": "([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)+"
-                        }
-                      },
-                      {
-                        "type": "IMMEDIATE_TOKEN",
-                        "content": {
-                          "type": "STRING",
-                          "value": "0"
-                        }
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "_imm_sym_or_0"
                   },
                   "named": true,
                   "value": "symbol"
@@ -781,6 +766,7 @@
     }
   ],
   "conflicts": [],
+  "precedences": [],
   "externals": [],
   "inline": [],
   "supertypes": []

@@ -1,5 +1,20 @@
 [
   {
+    "type": "comment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "END",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "compotag",
     "named": true,
     "fields": {},
@@ -872,10 +887,6 @@
       "required": true,
       "types": [
         {
-          "type": "END",
-          "named": true
-        },
-        {
           "type": "include",
           "named": true
         },
@@ -1213,10 +1224,6 @@
   {
     "type": "]",
     "named": false
-  },
-  {
-    "type": "comment",
-    "named": true
   },
   {
     "type": "context_modifier",
