@@ -295,6 +295,10 @@
         {
           "type": "semicolon",
           "named": true
+        },
+        {
+          "type": "subreading",
+          "named": true
         }
       ]
     }
@@ -455,6 +459,10 @@
         },
         {
           "type": "semicolon",
+          "named": true
+        },
+        {
+          "type": "subreading",
           "named": true
         }
       ]
@@ -730,6 +738,10 @@
         },
         {
           "type": "semicolon",
+          "named": true
+        },
+        {
+          "type": "subreading",
           "named": true
         }
       ]
@@ -1299,6 +1311,10 @@
   },
   {
     "type": "set_op",
+    "named": true
+  },
+  {
+    "type": "subreading",
     "named": true
   }
 ]

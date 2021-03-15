@@ -535,6 +535,18 @@
           ]
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "subreading"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "_shared_rule_end"
         }
@@ -577,6 +589,18 @@
             {
               "type": "SYMBOL",
               "name": "ruleflag"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "subreading"
             },
             {
               "type": "BLANK"
@@ -634,6 +658,18 @@
             {
               "type": "SYMBOL",
               "name": "ruleflag"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "subreading"
             },
             {
               "type": "BLANK"
@@ -1638,7 +1674,7 @@
     },
     "ruletype_substitute_etc": {
       "type": "PATTERN",
-      "value": "[Ss][Uu][Bb][Ss][Tt][Ii][Tt][Tt][Uu][Tt][Ee]|[Ss][Ee][Tt][Vv][Aa][Rr][Ii][Aa][Bb][Ll][Ee]|[Ee][Xx][Ee][Cc][Uu][Tt][Ee]"
+      "value": "[Ss][Uu][Bb][Ss][Tt][Ii][Tt][Uu][Tt][Ee]|[Ss][Ee][Tt][Vv][Aa][Rr][Ii][Aa][Bb][Ll][Ee]|[Ee][Xx][Ee][Cc][Uu][Tt][Ee]"
     },
     "ruletype_parentchild": {
       "type": "PATTERN",
@@ -1708,6 +1744,10 @@
           }
         ]
       }
+    },
+    "subreading": {
+      "type": "PATTERN",
+      "value": "[Ss][Uu][Bb]:-?[0123456789]+"
     },
     "setname": {
       "type": "PREC",

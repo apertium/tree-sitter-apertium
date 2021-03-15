@@ -168,6 +168,7 @@ module.exports = grammar({
             $.ruletype,
             optional($._rule_tag),
             optional($.ruleflag),
+			optional($.subreading),
             $._shared_rule_end
         ),
 
@@ -176,6 +177,7 @@ module.exports = grammar({
             $.ruletype_substitute_etc,
             optional($._rule_tag),
             optional($.ruleflag),
+			optional($.subreading),
             $.inlineset,
             $.inlineset,
             $._shared_rule_end
@@ -186,6 +188,7 @@ module.exports = grammar({
             $.ruletype_map_etc,
             optional($._rule_tag),
             optional($.ruleflag),
+			optional($.subreading),
             $.inlineset,
             $._shared_rule_end
         ),
@@ -377,7 +380,7 @@ module.exports = grammar({
 
         ruletype: $ => kwd("SELECT|REMOVE|IFF|DELIMIT|MATCH|REMCOHORT|UNMAP"),
 
-        ruletype_substitute_etc: $ => kwd("SUBSTITTUTE|SETVARIABLE|EXECUTE"),
+        ruletype_substitute_etc: $ => kwd("SUBSTITUTE|SETVARIABLE|EXECUTE"),
 
         ruletype_parentchild: $ => kwd("SETPARENT|SETCHILD"),
 
@@ -404,6 +407,9 @@ module.exports = grammar({
                 $.ntag
             ))
         )),
+
+		// TODO: it would be nice to give this some internal structure
+		subreading: $ => /[Ss][Uu][Bb]:-?[0123456789]+/,
 
         // cannot begin with [
         // cannot end with ] or ,
