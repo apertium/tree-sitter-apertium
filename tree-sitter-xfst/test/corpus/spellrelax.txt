@@ -1,0 +1,140 @@
+================
+basic spellrelax
+================
+
+[
+	! Unify apostrophe styles
+	[ ?* [ ' (->) [ %` | ʻ | ’ | ‘ | ʼ ] ] ?* ] .o.
+
+	! Accept input without diacritics
+	[ ?* [ á (->) a ] ?* ]
+]
+
+---
+
+(source_file
+  (expression
+    (comment)
+    (expression
+      (expression
+        (expression
+          (expression
+            (expression (expression (any)) (star))
+            (expression
+              (expression
+                (simple_replace
+                  (expression (symbol))
+                  (arrow)
+                  (expression
+                    (expression
+                      (expression
+                        (expression
+                          (expression
+                            (expression (symbol))
+                            (union)
+                            (expression (symbol)))
+                          (union)
+                          (expression (symbol)))
+                        (union)
+                        (expression (symbol)))
+                      (union)
+                      (expression (symbol))))))))
+          (expression (expression (any)) (star))))
+      (compose)
+      (comment)
+      (expression
+        (expression
+          (expression
+            (expression (expression (any)) (star))
+            (expression
+              (expression
+                (simple_replace
+                  (expression (symbol))
+                  (arrow)
+                  (expression (symbol))))))
+          (expression (expression (any)) (star)))))))
+
+==============
+simple replace
+==============
+
+a -> b
+
+---
+
+(source_file
+  (expression
+    (simple_replace
+      (expression (symbol))
+      (arrow)
+      (expression (symbol)))))
+
+
+============================
+simple replace with brackets
+============================
+
+[ a -> b ]
+
+---
+
+(source_file
+  (expression
+    (expression
+      (simple_replace
+        (expression (symbol))
+        (arrow)
+        (expression (symbol))))))
+
+==========================
+replace + bracket + concat
+==========================
+
+? [ a -> b ]
+
+---
+
+(source_file
+  (expression
+    (expression (any))
+    (expression
+      (expression
+        (simple_replace
+          (expression (symbol))
+          (arrow)
+          (expression (symbol)))))))
+
+=================================
+replace with concat on both sides
+=================================
+
+? [ a -> b ] ?
+
+---
+
+(source_file
+  (expression
+    (expression
+      (expression (any))
+      (expression
+        (expression
+          (simple_replace
+            (expression (symbol))
+            (arrow)
+            (expression (symbol))))))
+    (expression (any))))
+
+===========
+concatenate
+===========
+
+a b c
+
+---
+
+(source_file
+  (expression
+    (expression
+      (expression (symbol))
+      (expression (symbol)))
+    (expression (symbol))))
