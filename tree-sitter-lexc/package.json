@@ -1,0 +1,34 @@
+{
+  "name": "tree-sitter-xfst",
+  "version": "0.0.1",
+  "description": "tree-sitter grammar for hfst-lexc",
+  "main": "bindings/node",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tree-sitter test",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mr-martian/tree-sitter-apertium.git"
+  },
+  "keywords": [
+    "tree-sitter",
+    "apertium"
+  ],
+  "author": "Daniel Swanson",
+  "license": "GPL-3.0-or-later",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/mr-martian/tree-sitter-apertium/issues"
+  },
+  "dependencies": {
+    "nan": "^2.8.0"
+  },
+  "devDependencies": {
+    "tree-sitter-xfst": "0.0.1"
+  },
+  "homepage": "https://github.com/mr-martian/tree-sitter-apertium#readme"
+}
