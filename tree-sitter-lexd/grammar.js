@@ -181,7 +181,7 @@ module.exports = grammar({
 
     escaped_char: $ => /\\./,
 
-    comment: $ => seq("#", /.*/),
+    comment: $ => /#[^\n]*/,
 
     alias_command: $ => seq(
       $.alias,

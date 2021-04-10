@@ -49,11 +49,6 @@
     }
   },
   {
-    "type": "comment",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "lexicon_block",
     "named": true,
     "fields": {},
@@ -334,10 +329,6 @@
     "named": false
   },
   {
-    "type": "#",
-    "named": false
-  },
-  {
     "type": "(",
     "named": false
   },
@@ -383,6 +374,10 @@
   },
   {
     "type": "colon",
+    "named": true
+  },
+  {
+    "type": "comment",
     "named": true
   },
   {
