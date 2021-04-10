@@ -681,6 +681,10 @@
         }
       ]
     },
+    "colon": {
+      "type": "STRING",
+      "value": ":"
+    },
     "symbol_pair": {
       "type": "CHOICE",
       "members": [
@@ -697,11 +701,16 @@
               "value": "symbol"
             },
             {
-              "type": "IMMEDIATE_TOKEN",
+              "type": "ALIAS",
               "content": {
-                "type": "STRING",
-                "value": ":"
-              }
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": ":"
+                }
+              },
+              "named": true,
+              "value": "colon"
             },
             {
               "type": "CHOICE",
@@ -726,8 +735,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
-              "value": ":"
+              "type": "SYMBOL",
+              "name": "colon"
             },
             {
               "type": "CHOICE",

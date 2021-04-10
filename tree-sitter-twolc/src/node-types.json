@@ -309,8 +309,12 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "colon",
+          "named": true
+        },
         {
           "type": "symbol",
           "named": true
@@ -375,10 +379,6 @@
     "named": false
   },
   {
-    "type": ":",
-    "named": false
-  },
-  {
     "type": "<=",
     "named": false
   },
@@ -400,6 +400,10 @@
   },
   {
     "type": "bool_op",
+    "named": true
+  },
+  {
+    "type": "colon",
     "named": true
   },
   {

@@ -137,14 +137,15 @@ module.exports = grammar({
 	    token.immediate(SYMBOL_REGEX),
 	    token.immediate("0")
 	  ),
+    colon: $ => ":",
 	  symbol_pair: $ => choice(
 	    seq(
 		    alias($._sym_or_0, $.symbol),
-		    token.immediate(":"),
+		    alias(token.immediate(":"), $.colon),
 		    optional(alias($._imm_sym_or_0, $.symbol))
 	    ),
 	    seq(
-		    ":",
+		    $.colon,
 		    optional(alias($._imm_sym_or_0, $.symbol))
 	    )
 	  ),
