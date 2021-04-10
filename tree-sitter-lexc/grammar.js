@@ -1,7 +1,6 @@
 const XFST = require("tree-sitter-xfst/grammar");
 
-const NAME_REGEX = /[^\s;<>:]+/;
-const STRING_REGEX = /([^\s<>;%:]|%.)+/;
+const STRING_REGEX = /([^\s<>;%:!]|%.)+/;
 
 module.exports = grammar(XFST, {
   name: 'lexc',
@@ -14,53 +13,59 @@ module.exports = grammar(XFST, {
 
   rules: {
     source_file: $ => seq(
-      $.multichar_symbols,
+      optional($.multichar_symbols),
       repeat1($.lexicon)
     ),
 
+    multichar_symbols_header: $ => "Multichar_Symbols",
+    symbol: $ => STRING_REGEX,
     multichar_symbols: $ => seq(
-      "MULTICHAR_SYMBOLS",
-      ";"
+      $.multichar_symbols_header,
+      repeat1($.symbol)
     ),
 
-    lexicon_start: $ => "LEXICON",
+    lexicon_start: $ => prec(2, "LEXICON"),
     lexicon_start_wrong_case: $ => "Lexicon",
     lexicon: $ => seq(
       choice($.lexicon_start, $.lexicon_start_wrong_case),
       token.immediate(/\s+/),
-      alias(NAME_REGEX, $.lexicon_name),
-      repeat1($.lexicon_line)
+      alias(STRING_REGEX, $.lexicon_name),
+      repeat1(choice($.empty_lexicon_line, $.lexicon_line))
     ),
 
     lexicon_line: $ => seq(
-      optional(choice(
+      choice(
         $.lexicon_string,
         $.lexicon_pair,
         $.regex
-      )),
+      ),
+      $.lexicon_name,
+      $.semicolon
+    ),
+    empty_lexicon_line: $ => seq(
       $.lexicon_name,
       $.semicolon
     ),
 
-    lexicon_name: $ => NAME_REGEX,
-
-    lexicon_string: $ => STRING_REGEX,
+    _string: $ => STRING_REGEX,
+    lexicon_name: $ => $._string,
+    lexicon_string: $ => $._string,
 
     lexicon_pair: $ => choice(
       $.colon,
       seq(
         $.lexicon_string,
-        token.immediate(":")
+        alias(token.immediate(":"), $.colon)
       ),
       seq(
         $.colon,
-        token.immediate(alias(STRING_REGEX, $.lexicon_string))
+        alias(token.immediate(STRING_REGEX), $.lexicon_string)
       ),
-      seq(
+      prec(20, seq(
         $.lexicon_string,
-        token.immediate(":"),
-        token.immediate(alias(STRING_REGEX, $.lexicon_string))
-      )
+        alias(token.immediate(":"), $.colon),
+        alias(token.immediate(STRING_REGEX), $.lexicon_string)
+      ))
     ),
 
     regex: $ => seq(

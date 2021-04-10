@@ -71,6 +71,25 @@
     }
   },
   {
+    "type": "empty_lexicon_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "lexicon_name",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "end_comment",
     "named": true,
     "fields": {}
@@ -231,6 +250,10 @@
       "required": true,
       "types": [
         {
+          "type": "empty_lexicon_line",
+          "named": true
+        },
+        {
           "type": "lexicon_line",
           "named": true
         },
@@ -290,7 +313,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -303,6 +326,16 @@
         }
       ]
     }
+  },
+  {
+    "type": "lexicon_start",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "lexicon_string",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "mark",
@@ -326,7 +359,21 @@
   {
     "type": "multichar_symbols",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "multichar_symbols_header",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "optional",
@@ -412,11 +459,6 @@
     }
   },
   {
-    "type": "semicolon",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "simple_replace",
     "named": true,
     "fields": {},
@@ -493,6 +535,11 @@
     }
   },
   {
+    "type": "symbol",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -537,14 +584,6 @@
     "named": false
   },
   {
-    "type": ":",
-    "named": false
-  },
-  {
-    "type": ";",
-    "named": false
-  },
-  {
     "type": "<",
     "named": false
   },
@@ -577,7 +616,7 @@
     "named": false
   },
   {
-    "type": "MULTICHAR_SYMBOLS",
+    "type": "LEXICON",
     "named": false
   },
   {
@@ -657,19 +696,15 @@
     "named": true
   },
   {
-    "type": "lexicon_start",
-    "named": true
-  },
-  {
     "type": "lexicon_start_wrong_case",
     "named": true
   },
   {
-    "type": "lexicon_string",
+    "type": "lower",
     "named": true
   },
   {
-    "type": "lower",
+    "type": "multichar_symbols_header",
     "named": true
   },
   {
@@ -685,6 +720,10 @@
     "named": true
   },
   {
+    "type": "semicolon",
+    "named": true
+  },
+  {
     "type": "star",
     "named": true
   },
@@ -694,10 +733,6 @@
   },
   {
     "type": "subtract",
-    "named": true
-  },
-  {
-    "type": "symbol",
     "named": true
   },
   {

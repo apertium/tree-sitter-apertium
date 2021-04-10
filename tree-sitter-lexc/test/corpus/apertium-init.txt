@@ -1,0 +1,216 @@
+=======================
+apertium-init lexc file
+=======================
+
+! Morphological Transducer for {{languageName}}
+
+Multichar_Symbols
+
+! Part of speech categories
+%<n%>      ! Noun
+%<v%>      ! Verb
+%<adj%>    ! Adjective
+
+%<sent%>   ! Sentence-ending punctuation
+%<guio%>   ! Hyphen
+%<cm%>     ! Comma
+%<apos%>   ! Apostrophe
+%<quot%>   ! Quotation mark
+%<lquot%>  ! Left quotation mark
+%<rquot%>  ! Right quotation mark
+%<lpar%>   ! Left parenthesis
+%<rpar%>   ! Right parenthesis
+
+! Number morphology
+%<pl%>  ! Plural
+%<sg%>  ! Singular
+
+! Other symbols
+%>      ! Morpheme boundary
+
+! Path features
+%[%-sg%]
+%[%+sg%]
+%[%-pl%]
+%[%+pl%]
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!                       M O R P H O T A C T I C S                         !!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+LEXICON Root
+
+NounRoot ;
+Punctuation ;
+
+
+LEXICON RegNounInfl
+
+%<n%>%<sg%>: # ;
+%<n%>%<pl%>:%>s # ;
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!                          L E X I C O N                                  !!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+LEXICON NounRoot
+
+house:house RegNounInfl ; ! A noun
+
+
+LEXICON Punctuation
+
+.%<sent%>:. # ;
+..%<sent%>:.. # ;
+...%<sent%>:... # ;
+%;%<sent%>:%; # ;
+%:%<sent%>:%: # ;
+%!%<sent%>:%! # ;
+%-%<guio%>:%- # ;
+%—%<guio%>:%— # ;
+,%<cm%>:, # ;
+%?%<sent%>:%? # ;
+%'%<apos%>:%' # ;
+%"%<quot%>:%" # ;
+%«%<lquot%>:%« # ;
+%»%<rquot%>:%» # ;
+%”%<rquot%>:%” # ;
+%“%<lquot%>:%“ # ;
+%(%<lpar%>:%( # ;
+%]%<rpar%>:%] # ;
+%[%<lpar%>:%[ # ;
+%)%<rpar%>:%) # ;
+\%<sent%>:\ # ;
+/%<sent%>:/ # ;
+
+
+! Resources:
+! http://wiki.apertium.org/wiki/Starting_a_new_language_with_HFST#Lexicon
+! https://wiki.apertium.org/wiki/List_of_symbols
+! http://wiki.apertium.org/wiki/Lttoolbox_and_lexc
+! http://wiki.apertium.org/wiki/Apertium-specific_conventions_for_lexc
+! https://kitwiki.csc.fi/twiki/bin/view/KitWiki/HfstHome
+! https://github.com/hfst/
+! http://www.cis.upenn.edu/~cis639/docs/lexc.html
+! http://wiki.apertium.org/wiki/Hfst
+
+---
+
+(source_file
+  (comment)
+  (multichar_symbols
+    (multichar_symbols_header)
+    (comment)
+    (symbol) (comment)
+    (symbol) (comment)
+    (symbol) (comment)
+    (symbol) (comment)
+    (symbol) (comment)
+    (symbol) (comment)
+    (symbol) (comment)
+    (symbol) (comment)
+    (symbol) (comment)
+    (symbol) (comment)
+    (symbol) (comment)
+    (symbol) (comment)
+    (comment)
+    (symbol) (comment)
+    (symbol) (comment)
+    (comment)
+    (symbol) (comment)
+    (comment)
+    (symbol)
+    (symbol)
+    (symbol)
+    (symbol))
+  (comment) (comment) (comment)
+  (lexicon
+    (lexicon_start) (lexicon_name)
+    (empty_lexicon_line (lexicon_name) (semicolon))
+    (empty_lexicon_line (lexicon_name) (semicolon)))
+  (lexicon
+    (lexicon_start) (lexicon_name)
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon)))
+  (comment) (comment) (comment)
+  (lexicon
+    (lexicon_start) (lexicon_name)
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon)))
+  (comment)
+  (lexicon
+    (lexicon_start) (lexicon_name)
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon))
+    (lexicon_line
+      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
+      (lexicon_name) (semicolon)))
+  (comment) (comment) (comment) (comment) (comment) (comment)
+  (comment) (comment) (comment))

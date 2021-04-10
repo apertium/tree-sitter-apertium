@@ -5,8 +5,16 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "multichar_symbols"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "multichar_symbols"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "REPEAT1",
@@ -325,7 +333,7 @@
     },
     "symbol": {
       "type": "PATTERN",
-      "value": "([^\\s%:~\\\\$+*^\\.\\/|&\\-=<>0?\\\"#\\[\\](){}\\x60,]|%.)+"
+      "value": "([^\\s<>;%:!]|%.)+"
     },
     "string": {
       "type": "PATTERN",
@@ -849,22 +857,33 @@
       "type": "PATTERN",
       "value": "![^\\n]*"
     },
+    "multichar_symbols_header": {
+      "type": "STRING",
+      "value": "Multichar_Symbols"
+    },
     "multichar_symbols": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "MULTICHAR_SYMBOLS"
+          "type": "SYMBOL",
+          "name": "multichar_symbols_header"
         },
         {
-          "type": "STRING",
-          "value": ";"
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "symbol"
+          }
         }
       ]
     },
     "lexicon_start": {
-      "type": "STRING",
-      "value": "LEXICON"
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "STRING",
+        "value": "LEXICON"
+      }
     },
     "lexicon_start_wrong_case": {
       "type": "STRING",
@@ -897,7 +916,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "[^\\s;<>:]+"
+            "value": "([^\\s<>;%:!]|%.)+"
           },
           "named": true,
           "value": "lexicon_name"
@@ -905,8 +924,17 @@
         {
           "type": "REPEAT1",
           "content": {
-            "type": "SYMBOL",
-            "name": "lexicon_line"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "empty_lexicon_line"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "lexicon_line"
+              }
+            ]
           }
         }
       ]
@@ -918,24 +946,16 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "lexicon_string"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "lexicon_pair"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "regex"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "lexicon_string"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "lexicon_pair"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "regex"
             }
           ]
         },
@@ -949,13 +969,30 @@
         }
       ]
     },
-    "lexicon_name": {
+    "empty_lexicon_line": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "lexicon_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "semicolon"
+        }
+      ]
+    },
+    "_string": {
       "type": "PATTERN",
-      "value": "[^\\s;<>:]+"
+      "value": "([^\\s<>;%:!]|%.)+"
+    },
+    "lexicon_name": {
+      "type": "SYMBOL",
+      "name": "_string"
     },
     "lexicon_string": {
-      "type": "PATTERN",
-      "value": "([^\\s<>;%:]|%.)+"
+      "type": "SYMBOL",
+      "name": "_string"
     },
     "lexicon_pair": {
       "type": "CHOICE",
@@ -972,11 +1009,16 @@
               "name": "lexicon_string"
             },
             {
-              "type": "IMMEDIATE_TOKEN",
+              "type": "ALIAS",
               "content": {
-                "type": "STRING",
-                "value": ":"
-              }
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": ":"
+                }
+              },
+              "named": true,
+              "value": "colon"
             }
           ]
         },
@@ -988,46 +1030,55 @@
               "name": "colon"
             },
             {
-              "type": "IMMEDIATE_TOKEN",
+              "type": "ALIAS",
               "content": {
-                "type": "ALIAS",
+                "type": "IMMEDIATE_TOKEN",
                 "content": {
                   "type": "PATTERN",
-                  "value": "([^\\s<>;%:]|%.)+"
-                },
-                "named": true,
-                "value": "lexicon_string"
-              }
+                  "value": "([^\\s<>;%:!]|%.)+"
+                }
+              },
+              "named": true,
+              "value": "lexicon_string"
             }
           ]
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "lexicon_string"
-            },
-            {
-              "type": "IMMEDIATE_TOKEN",
-              "content": {
-                "type": "STRING",
-                "value": ":"
-              }
-            },
-            {
-              "type": "IMMEDIATE_TOKEN",
-              "content": {
+          "type": "PREC",
+          "value": 20,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "lexicon_string"
+              },
+              {
                 "type": "ALIAS",
                 "content": {
-                  "type": "PATTERN",
-                  "value": "([^\\s<>;%:]|%.)+"
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": ":"
+                  }
+                },
+                "named": true,
+                "value": "colon"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "([^\\s<>;%:!]|%.)+"
+                  }
                 },
                 "named": true,
                 "value": "lexicon_string"
               }
-            }
-          ]
+            ]
+          }
         }
       ]
     },
