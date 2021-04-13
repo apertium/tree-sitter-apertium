@@ -1,20 +1,24 @@
-(pattern_start) @keyword.control
-(named_pattern_start) @keyword.control
-(lexicon_start) @keyword.control
-(alias) @keyword.control
+[
+  (pattern_start)
+  (named_pattern_start)
+  (lexicon_start)
+  (alias)
+] @keyword.control
 
-(left_sieve) @keyword.operator
-(right_sieve) @keyword.operator
-(pattern_or) @keyword.operator
-(colon) @keyword.operator
-(pattern_operator) @keyword.operator
-"(" @keyword.operator
-")" @keyword.operator
-"[" @keyword.operator
-"]" @keyword.operator
-"-" @keyword.operator
-"," @keyword.operator
-(tag_distribution_operator) @keyword.operator
+[
+  (left_sieve)
+  (right_sieve)
+  (pattern_or)
+  (colon)
+  (pattern_operator)
+  "("
+  ")"
+  "["
+  "]"
+  "-"
+  ","
+  (tag_distribution_operator)
+] @keyword.operator
 
 (tag) @entity.name.function
 

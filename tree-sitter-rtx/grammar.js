@@ -266,7 +266,9 @@ module.exports = grammar({
       listof(
         choice(
           $.ident,
+          seq("$", $.ident),
           seq("[", $.clip, "]"),
+          seq("{", $.clip, "}")
         ),
         "."
       )
