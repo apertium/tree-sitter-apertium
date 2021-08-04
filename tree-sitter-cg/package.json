@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-cg",
-  "version": "0.0.5",
+  "version": "0.9.0",
   "description": "tree-sitter grammar of VISL-CG",
   "main": "bindings/node",
   "directories": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/mr-martian/tree-sitter-apertium.git"
+    "url": "git+ssh://git@github.com/apertium/tree-sitter-apertium.git"
   },
   "keywords": [
     "tree-sitter",
@@ -22,10 +22,10 @@
   "license": "GPL-3.0-or-later",
   "gypfile": true,
   "bugs": {
-    "url": "https://github.com/mr-martian/tree-sitter-apertium/issues"
+    "url": "https://github.com/apertium/tree-sitter-apertium/issues"
   },
   "dependencies": {
     "nan": "^2.8.0"
   },
-  "homepage": "https://github.com/mr-martian/tree-sitter-apertium#readme"
+  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme"
 }
