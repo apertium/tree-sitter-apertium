@@ -32,10 +32,10 @@ END
   (section_header)
   (rule
     (ruletype)
-    (inlineset (inlineset_single (setname)))
+    (rule_target (inlineset (inlineset_single (setname))))
     (IF)
     (contexttest
-      (contextpos (ntag))
+      (contextpos)
       (inlineset (inlineset_single (setname))))
     (semicolon))
   (comment (END)))
@@ -60,8 +60,8 @@ some other random text
   (section_header)
   (list (LIST) (setname) (eq) (taglist (tag (ntag)) (tag (ntag))) (semicolon))
   (section_header)
-  (rule (ruletype) (inlineset (inlineset_single (setname))) (IF)
-        (contexttest (contextpos (ntag))
+  (rule (ruletype) (rule_target (inlineset (inlineset_single (setname)))) (IF)
+        (contexttest (contextpos)
 		             (inlineset (inlineset_single (setname))))
 		(semicolon))
   (comment (END)))

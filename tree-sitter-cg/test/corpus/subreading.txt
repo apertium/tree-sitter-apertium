@@ -9,13 +9,12 @@ SUBSTITUTE SUB:1 P3 P1 TARGET Cop IF (1 Pers) ;
 (source_file
   (rule_substitute_etc
     (ruletype_substitute_etc)
-	(subreading)
+	(ruleflag (subreading))
 	(inlineset (inlineset_single (setname)))
 	(inlineset (inlineset_single (setname)))
-	(TARGET)
-	(inlineset (inlineset_single (setname)))
+	(rule_target (TARGET) (inlineset (inlineset_single (setname))))
 	(IF)
 	(contexttest
-	  (contextpos (ntag))
+	  (contextpos)
 	  (inlineset (inlineset_single (setname))))
     (semicolon)))
