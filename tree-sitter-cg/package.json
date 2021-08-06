@@ -27,5 +27,11 @@
   "dependencies": {
     "nan": "^2.8.0"
   },
-  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme"
+  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme",
+  "tree-sitter": [
+    {
+      "scope": "source.cg",
+      "file-types": ["cg3", "rlx"]
+    }
+  ]
 }
