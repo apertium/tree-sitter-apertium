@@ -766,7 +766,214 @@
         }
       ]
     },
-    "_lexicon_side": {
+    "regex_char_class": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "lexicon_string"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "escaped_char"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "regex_string": {
+      "type": "PATTERN",
+      "value": "[^\\s\\n\\\\#:\\[\\]\\/()?*+]+"
+    },
+    "_plain_regex_string": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "regex_string"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "escaped_char"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "regex_char_class"
+          }
+        ]
+      }
+    },
+    "regex_line": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_plain_regex_string"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_plain_regex_string"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "colon"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_plain_regex_string"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "regex_group": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "regex_group"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "regex_line"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "pattern_or"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "pattern_operator"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "regex": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "/"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "regex_line"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "regex_group"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "pattern_or"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "/"
+        }
+      ]
+    },
+    "_lexicon_side_left": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "lexicon_string"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "escaped_char"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_lexicon_side_right"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "_lexicon_side_right": {
       "type": "REPEAT1",
       "content": {
         "type": "CHOICE",
@@ -778,6 +985,10 @@
           {
             "type": "SYMBOL",
             "name": "escaped_char"
+          },
+          {
+            "type": "STRING",
+            "value": "/"
           }
         ]
       }
@@ -789,8 +1000,16 @@
           "type": "CHOICE",
           "members": [
             {
+              "type": "PREC",
+              "value": 2,
+              "content": {
+                "type": "SYMBOL",
+                "name": "regex"
+              }
+            },
+            {
               "type": "SYMBOL",
-              "name": "_lexicon_side"
+              "name": "_lexicon_side_left"
             },
             {
               "type": "SEQ",
@@ -800,7 +1019,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "_lexicon_side"
+                      "name": "_lexicon_side_left"
                     },
                     {
                       "type": "BLANK"
@@ -816,7 +1035,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "_lexicon_side"
+                      "name": "_lexicon_side_right"
                     },
                     {
                       "type": "BLANK"
@@ -843,7 +1062,7 @@
     },
     "lexicon_string": {
       "type": "PATTERN",
-      "value": "[^\\s\\n\\\\#:\\[\\]]+"
+      "value": "[^\\s\\n\\\\#:\\[\\]\\/]+"
     },
     "escaped_char": {
       "type": "PATTERN",

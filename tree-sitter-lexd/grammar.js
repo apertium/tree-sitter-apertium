@@ -161,23 +161,73 @@ module.exports = grammar({
       $._nl
     ),
 
-    _lexicon_side: $ => repeat1(
-      choice($.lexicon_string, $.escaped_char)
+    regex_char_class: $ => seq(
+      "[",
+      repeat(choice($.lexicon_string, $.escaped_char)),
+      "]"
+    ),
+
+    regex_string: $ => /[^\s\n\\#:\[\]\/()?*+]+/,
+
+    _plain_regex_string: $ => repeat1(choice(
+      $.regex_string,
+      $.escaped_char,
+      $.regex_char_class
+    )),
+
+    regex_line: $ => prec.right(choice(
+      $._plain_regex_string,
+      seq(
+        optional($._plain_regex_string),
+        $.colon,
+        optional($._plain_regex_string)
+      )
+    )),
+
+    regex_group: $ => seq(
+      "(",
+      repeat(choice(
+        $.regex_group,
+        $.regex_line,
+        $.pattern_or
+      )),
+      ")",
+      optional($.pattern_operator)
+    ),
+
+    regex: $ => seq(
+      "/",
+      repeat(choice(
+        $.regex_line,
+        $.regex_group,
+        $.pattern_or
+      )),
+      "/",
+    ),
+
+    _lexicon_side_left: $ => seq(
+      choice($.lexicon_string, $.escaped_char),
+      optional($._lexicon_side_right)
+    ),
+
+    _lexicon_side_right: $ => repeat1(
+      choice($.lexicon_string, $.escaped_char, "/")
     ),
 
     lexicon_segment: $ => seq(
       choice(
-        $._lexicon_side,
+        prec(2, $.regex),
+        $._lexicon_side_left,
         seq(
-          optional($._lexicon_side),
+          optional($._lexicon_side_left),
           $.colon,
-          optional($._lexicon_side)
+          optional($._lexicon_side_right)
         )
       ),
       optional($.tag_setting)
     ),
 
-    lexicon_string: $ => /[^\s\n\\#:\[\]]+/,
+    lexicon_string: $ => /[^\s\n\\#:\[\]\/]+/,
 
     escaped_char: $ => /\\./,
 

@@ -1,0 +1,26 @@
+============
+simple regex
+============
+
+PATTERNS
+X
+
+LEXICON X
+/abc:def(def)?a:b/
+
+---
+
+(source_file
+  (pattern_block
+    (pattern_start)
+    (pattern_line
+      (pattern_token (lexicon_reference (identifier)))))
+  (lexicon_block
+    (lexicon_start)
+    (identifier)
+    (lexicon_line
+      (lexicon_segment
+        (regex
+          (regex_line (regex_string) (colon) (regex_string))
+          (regex_group (regex_line (regex_string)) (pattern_operator))
+          (regex_line (regex_string) (colon) (regex_string)))))))

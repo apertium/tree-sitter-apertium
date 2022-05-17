@@ -138,6 +138,10 @@
           "named": true
         },
         {
+          "type": "regex",
+          "named": true
+        },
+        {
           "type": "tag_setting",
           "named": true
         }
@@ -238,6 +242,102 @@
         },
         {
           "type": "tag_filter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "regex",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "pattern_or",
+          "named": true
+        },
+        {
+          "type": "regex_group",
+          "named": true
+        },
+        {
+          "type": "regex_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "regex_char_class",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escaped_char",
+          "named": true
+        },
+        {
+          "type": "lexicon_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "regex_group",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "pattern_operator",
+          "named": true
+        },
+        {
+          "type": "pattern_or",
+          "named": true
+        },
+        {
+          "type": "regex_group",
+          "named": true
+        },
+        {
+          "type": "regex_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "regex_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "colon",
+          "named": true
+        },
+        {
+          "type": "escaped_char",
+          "named": true
+        },
+        {
+          "type": "regex_char_class",
+          "named": true
+        },
+        {
+          "type": "regex_string",
           "named": true
         }
       ]
@@ -353,6 +453,10 @@
     "named": false
   },
   {
+    "type": "/",
+    "named": false
+  },
+  {
     "type": "?",
     "named": false
   },
@@ -410,6 +514,10 @@
   },
   {
     "type": "pattern_start",
+    "named": true
+  },
+  {
+    "type": "regex_string",
     "named": true
   },
   {
