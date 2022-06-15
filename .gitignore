@@ -1,2 +1,8 @@
 *~
 */node_modules/*
+/python/build/
+/python/dist
+/python/MANIFEST
+/python/tree_sitter_apertium.egg-info/
+/python/tree_sitter_apertium/langs.so
+/python/tree_sitter_apertium/__pycache__/

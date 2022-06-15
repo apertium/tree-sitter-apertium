@@ -1,0 +1,3 @@
+recursive-include tree_sitter_apertium/grammars/*/src *
+include tree_sitter_apertium/__init__.py
+include tree_sitter_apertium/langs.so
