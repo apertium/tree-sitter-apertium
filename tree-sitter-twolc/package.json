@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-twolc",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "tree-sitter grammar of hfst-twolc",
   "main": "bindings/node",
   "directories": {
@@ -27,5 +27,11 @@
   "dependencies": {
     "nan": "^2.8.0"
   },
-  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme"
+  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme",
+  "tree-sitter": [
+    {
+      "scope": "source.twolc",
+      "file-types": ["twolc", "twol", "twoc"]
+    }
+  ]
 }

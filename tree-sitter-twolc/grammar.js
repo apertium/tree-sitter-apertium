@@ -1,5 +1,5 @@
-// special chars: \s%:\[\]~\\$*+^\./|&-=?()
-SYMBOL_REGEX = /([^\s%:\[\]~\\$*+^\./|&-=?()]|%.)+/;
+// special chars: \s%:\[\]~\\$*+^\./|&-=?()"_
+SYMBOL_REGEX = /([^\s%:\[\]~\\$*+^\./|&-=?()"_]|[0-9]|%.)+/;
 
 module.exports = grammar({
   name: "twolc",
@@ -132,24 +132,20 @@ module.exports = grammar({
 	  ),
 
 	  symbol: $ => SYMBOL_REGEX,
-	  _sym_or_0: $ => choice(SYMBOL_REGEX, "0"),
-	  _imm_sym_or_0: $ => choice(
-	    token.immediate(SYMBOL_REGEX),
-	    token.immediate("0")
-	  ),
+    _imm_sym: $ => token.immediate(SYMBOL_REGEX),
     colon: $ => ":",
 	  symbol_pair: $ => choice(
 	    seq(
-		    alias($._sym_or_0, $.symbol),
-		    alias(token.immediate(":"), $.colon),
-		    optional(alias($._imm_sym_or_0, $.symbol))
+        $.symbol,
+        alias(token.immediate(":"), $.colon),
+        optional(alias($._imm_sym, $.symbol))
 	    ),
 	    seq(
 		    $.colon,
-		    optional(alias($._imm_sym_or_0, $.symbol))
+        optional(alias($._imm_sym, $.symbol))
 	    )
 	  ),
 
-	  comment: $ => /![^\n]*/
+	  comment: $ => /![^\n]*\n/
   }
 })

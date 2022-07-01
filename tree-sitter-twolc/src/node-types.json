@@ -299,11 +299,6 @@
     }
   },
   {
-    "type": "symbol",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "symbol_pair",
     "named": true,
     "fields": {},
@@ -372,10 +367,6 @@
   },
   {
     "type": "/<=",
-    "named": false
-  },
-  {
-    "type": "0",
     "named": false
   },
   {
@@ -488,6 +479,10 @@
   },
   {
     "type": "suffix_op",
+    "named": true
+  },
+  {
+    "type": "symbol",
     "named": true
   },
   {

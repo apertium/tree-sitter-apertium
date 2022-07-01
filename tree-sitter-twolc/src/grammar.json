@@ -647,39 +647,14 @@
     },
     "symbol": {
       "type": "PATTERN",
-      "value": "([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)+"
+      "value": "([^\\s%:\\[\\]~\\\\$*+^\\./|&-=?()\"_]|[0-9]|%.)+"
     },
-    "_sym_or_0": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)+"
-        },
-        {
-          "type": "STRING",
-          "value": "0"
-        }
-      ]
-    },
-    "_imm_sym_or_0": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "PATTERN",
-            "value": "([^\\s%:\\[\\]~\\\\$*+^\\.\\/|&-=?()]|%.)+"
-          }
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "0"
-          }
-        }
-      ]
+    "_imm_sym": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "([^\\s%:\\[\\]~\\\\$*+^\\./|&-=?()\"_]|[0-9]|%.)+"
+      }
     },
     "colon": {
       "type": "STRING",
@@ -692,13 +667,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_sym_or_0"
-              },
-              "named": true,
-              "value": "symbol"
+              "type": "SYMBOL",
+              "name": "symbol"
             },
             {
               "type": "ALIAS",
@@ -719,7 +689,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "_imm_sym_or_0"
+                    "name": "_imm_sym"
                   },
                   "named": true,
                   "value": "symbol"
@@ -745,7 +715,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "_imm_sym_or_0"
+                    "name": "_imm_sym"
                   },
                   "named": true,
                   "value": "symbol"
@@ -761,7 +731,7 @@
     },
     "comment": {
       "type": "PATTERN",
-      "value": "![^\\n]*"
+      "value": "![^\\n]*\\n"
     }
   },
   "extras": [
