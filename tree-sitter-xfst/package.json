@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-xfst",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "tree-sitter grammar for hfst-xfst",
   "main": "bindings/node",
   "directories": {
@@ -27,5 +27,11 @@
   "dependencies": {
     "nan": "^2.8.0"
   },
-  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme"
+  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme",
+  "tree-sitter": [
+    {
+      "scope": "source.xfst",
+      "file-types": ["xfst", "spellrelax"]
+    }
+  ]
 }

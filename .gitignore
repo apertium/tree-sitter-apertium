@@ -6,3 +6,4 @@
 /python/tree_sitter_apertium.egg-info/
 /python/tree_sitter_apertium/langs.so
 /python/tree_sitter_apertium/__pycache__/
+*.tgz
