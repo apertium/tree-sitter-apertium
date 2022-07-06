@@ -34,7 +34,9 @@
   "tree-sitter": [
     {
       "scope": "source.lexc",
-      "file-types": ["lexc"]
+      "file-types": [
+        "lexc"
+      ]
     }
   ]
 }

@@ -31,7 +31,10 @@
   "tree-sitter": [
     {
       "scope": "source.xfst",
-      "file-types": ["xfst", "spellrelax"]
+      "file-types": [
+        "xfst",
+        "spellrelax"
+      ]
     }
   ]
 }

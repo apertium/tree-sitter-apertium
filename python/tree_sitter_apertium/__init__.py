@@ -9,4 +9,5 @@ with get_path('tree_sitter_apertium', 'langs.so') as path:
     LEXD = Language(path, 'lexd')
     RTX = Language(path, 'rtx')
     TWOLC = Language(path, 'twolc')
-    __all__ = ['CG', 'LEXC', 'LEXD', 'RTX', 'TWOLC']
+    XFST = Language(path, 'xfst')
+    __all__ = ['CG', 'LEXC', 'LEXD', 'RTX', 'TWOLC', 'XFST']

@@ -3,21 +3,16 @@
 from distutils.core import setup, Extension
 from distutils.command.build import build
 from tree_sitter import Language, Parser
+import os
 
-def build_langs():
-    import os
-    from tree_sitter import Language
-    TOP_PATH = os.path.join(os.path.dirname(__file__), 'tree_sitter_apertium')
-    SO_PATH = os.path.join(TOP_PATH, 'langs.so')
-    SRC_PATHS = [os.path.join(TOP_PATH, 'grammars', name)
-                 for name in ['cg', 'lexc', 'lexd', 'rtx', 'twolc']]
-    Language.build_library(SO_PATH, SRC_PATHS)
-
-TSA_ext = Extension('tree_sitter_apertium_builder', [])
+TOP_PATH = os.path.join(os.path.dirname(__file__), 'tree_sitter_apertium')
+SO_PATH = os.path.join(TOP_PATH, 'langs.so')
+SRC_PATHS = [os.path.join(TOP_PATH, 'grammars', name)
+             for name in ['cg', 'lexc', 'lexd', 'rtx', 'twolc', 'xfst']]
 
 class TSA_build(build):
     def run(self):
-        build_langs()
+        Language.build_library(SO_PATH, SRC_PATHS)
         super().run()
 
 setup(
