@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-xfst",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "tree-sitter grammar for hfst-lexc",
   "main": "bindings/node",
   "directories": {
@@ -30,5 +30,11 @@
   "devDependencies": {
     "tree-sitter-xfst": "0.0.1"
   },
-  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme"
+  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme",
+  "tree-sitter": [
+    {
+      "scope": "source.lexc",
+      "file-types": ["lexc"]
+    }
+  ]
 }

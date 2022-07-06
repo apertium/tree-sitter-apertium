@@ -964,6 +964,18 @@
           "name": "lexicon_name"
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "weight"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "semicolon"
         }
@@ -993,6 +1005,33 @@
     "lexicon_string": {
       "type": "SYMBOL",
       "name": "_string"
+    },
+    "weight": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\""
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "weight:"
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\d+(\\.\\d+)?"
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "\""
+          }
+        }
+      ]
     },
     "lexicon_pair": {
       "type": "CHOICE",

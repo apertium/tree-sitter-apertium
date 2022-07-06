@@ -40,6 +40,7 @@ module.exports = grammar(XFST, {
         $.regex
       ),
       $.lexicon_name,
+      optional($.weight),
       $.semicolon
     ),
     empty_lexicon_line: $ => seq(
@@ -50,6 +51,13 @@ module.exports = grammar(XFST, {
     _string: $ => STRING_REGEX,
     lexicon_name: $ => $._string,
     lexicon_string: $ => $._string,
+
+    weight: $ => seq(
+      /"/,
+      token.immediate("weight:"),
+      /\d+(\.\d+)?/,
+      token.immediate(/"/)
+    ),
 
     lexicon_pair: $ => choice(
       $.colon,

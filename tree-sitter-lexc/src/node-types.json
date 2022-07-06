@@ -299,6 +299,10 @@
         {
           "type": "semicolon",
           "named": true
+        },
+        {
+          "type": "weight",
+          "named": true
         }
       ]
     }
@@ -540,6 +544,11 @@
     "fields": {}
   },
   {
+    "type": "weight",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -750,6 +759,10 @@
   {
     "type": "upper",
     "named": true
+  },
+  {
+    "type": "weight:",
+    "named": false
   },
   {
     "type": "zero",
