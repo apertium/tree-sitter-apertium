@@ -26,11 +26,12 @@ pip3 install tree_sitter
 
 #### Build dependencies
 
-* `auditwheel`
 * `setuptools`
+* on Linux, `auditwheel` and `patchelf`
 
 ```bash
 pip3 install auditwheel setuptools
+apt install patchelf
 ```
 
 ## Compiling
