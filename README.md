@@ -16,10 +16,21 @@ npm install tree-sitter-cli
 
 ### Python bindings
 
+#### Runtime dependencies
+
 * [tree-sitter Python bindings](https://github.com/tree-sitter/py-tree-sitter)
 
 ```bash
 pip3 install tree_sitter
+```
+
+#### Build dependencies
+
+* `auditwheel`
+* `setuptools`
+
+```bash
+pip3 install auditwheel setuptools
 ```
 
 ## Compiling

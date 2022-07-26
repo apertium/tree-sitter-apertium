@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-from distutils.core import setup, Extension
-from distutils.command.build import build
+from setuptools import setup
+from setuptools.command.build import build
+from setuptools.dist import Distribution
 from tree_sitter import Language, Parser
 import os
 
@@ -14,6 +15,10 @@ class TSA_build(build):
     def run(self):
         Language.build_library(SO_PATH, SRC_PATHS)
         super().run()
+
+class BD(Distribution):
+    def has_ext_modules(self):
+        return True
 
 setup(
     name='tree-sitter-apertium',
@@ -32,4 +37,5 @@ setup(
     packages=['tree_sitter_apertium'],
     package_data={'tree_sitter_apertium': ['langs.so']},
     cmdclass={'build': TSA_build},
+    distclass=BD,
 )
