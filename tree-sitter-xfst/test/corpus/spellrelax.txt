@@ -138,3 +138,17 @@ a b c
       (expression (symbol))
       (expression (symbol)))
     (expression (symbol))))
+
+===============
+variant comment
+===============
+
+a b # c
+
+---
+
+(source_file
+  (expression
+    (expression (symbol))
+    (expression (symbol)))
+  (comment))

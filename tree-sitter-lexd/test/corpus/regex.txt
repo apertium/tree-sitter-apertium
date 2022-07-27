@@ -22,5 +22,7 @@ LEXICON X
       (lexicon_segment
         (regex
           (regex_line (regex_string) (colon) (regex_string))
-          (regex_group (regex_line (regex_string)) (pattern_operator))
+          (regex_group
+            (regex_line (regex_string))
+            (pattern_operator (question_op)))
           (regex_line (regex_string) (colon) (regex_string)))))))

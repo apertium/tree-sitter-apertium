@@ -1,0 +1,13 @@
+PATTERNS
+# <- keyword.control
+( X(1) | [ab:cd]+ )
+# <- keyword.operator
+#   ^ constant.number
+#      ^ keyword.operator
+#        ^ keyword.operator
+#         ^ string.quoted
+#           ^ keyword.operator
+#            ^ string.quoted
+#              ^ keyword.operator
+#               ^ keyword.operator
+#                 ^ keyword.operator

@@ -203,6 +203,8 @@ module.exports = grammar({
     compose: $ => ".o.",
 
     // comments
-    comment: $ => /![^\n]*/
+    // documentation only mentions !
+    // but hfst-regexp2fst accepts #, so we shall too
+    comment: $ => /[!#][^\n]*/
   }
 });

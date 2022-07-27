@@ -82,7 +82,7 @@ LEXICON CaseEnding[Decl1]
   (lexicon_line
    (lexicon_segment
     (lexicon_string) (colon) (lexicon_string)
-    (tag_setting (tag)))
+    (tag_setting (neg_tag (tag))))
    (comment)))
  (lexicon_block
   (lexicon_start)

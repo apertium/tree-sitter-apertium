@@ -35,6 +35,7 @@ module.exports = grammar({
         $.subreadings,
         $.options,
         $.list_tags,
+        $.strict_tags,
         $.list,
         $.set,
         $.template,
@@ -113,6 +114,14 @@ module.exports = grammar({
     LIST_TAGS: $ => kwd('LIST-TAGS'),
     list_tags: $ => seq(
       $.LIST_TAGS,
+      $.pluseq,
+      repeat1($.ntag),
+      $.semicolon,
+    ),
+
+    STRICT_TAGS: $ => kwd('STRICT-TAGS'),
+    strict_tags: $ => seq(
+      $.STRICT_TAGS,
       $.pluseq,
       repeat1($.ntag),
       $.semicolon,

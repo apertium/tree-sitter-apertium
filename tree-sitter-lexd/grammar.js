@@ -1,13 +1,15 @@
 module.exports = grammar({
   name: "lexd",
 
-  extras: $ => [
-    $.comment,
+  conflicts: $ => [
+    [$.lexicon_reference],
+    [$.pattern_token],
   ],
 
   rules: {
     source_file: $ => seq(
-      optional($._nl),
+      optional($._real_nl),
+      optional($.block_comment),
       repeat(choice(
         $.pattern_block,
         $.lexicon_block,
@@ -22,6 +24,7 @@ module.exports = grammar({
             $._ws,
             $.identifier)
       ),
+      optional($._end_com),
       $._nl,
       repeat1($.pattern_line)
     ),
@@ -34,54 +37,84 @@ module.exports = grammar({
     right_sieve: $ => ">",
     pattern_or: $ => "|",
     colon: $ => ":",
+    question_op: $ => "?",
+    star_op: $ => "*",
+    plus_op: $ => "+",
 
     pattern_line: $ => seq(
-      $.pattern_token,
-      repeat(seq($._ws, $.pattern_token)),
+      optional($._ws),
+      repeat1(seq(
+        choice(
+          $.pattern_token,
+          $.pattern_option,
+          $.left_sieve,
+          $.right_sieve
+        ),
+        optional($._ws)
+      )),
+      optional($.comment),
       $._nl
     ),
 
-    pattern_operator: $ => choice(
-      "*",
-      "+",
-      "?"
-    ),
-
-    anonymous_pattern: $ => seq(
+    anonymous_pattern: $ => prec.dynamic(20, prec(20, seq(
       "(",
+      optional($._ws),
+      repeat1(seq(
+        choice(
+          $.pattern_token,
+          $.pattern_option,
+          $.left_sieve,
+          $.right_sieve
+        ),
+        optional($._ws),
+      )),
+      choice(")", seq($._ws, ")")),
+    ))),
+
+    pattern_option: $ => prec.dynamic(30, prec.right(30, seq(
       $.pattern_token,
-      repeat(seq($._ws, $.pattern_token)),
-      ")"
-    ),
+      optional($._ws),
+      $.pattern_or,
+      optional($._ws),
+      choice($.pattern_token, alias($.pattern_option, 'flattened_operator')),
+      optional($._ws)
+    ))),
+
+    pattern_operator: $ => prec.dynamic(3, choice(
+      $.star_op,
+      $.plus_op,
+      $.question_op
+    )),
 
     lexicon_reference: $ => seq(
       $.identifier,
-      optional($.number),
+      optional(seq(
+        optional(prec.dynamic(2, $.question_op)),
+        $.number,
+      )),
       optional($.tag_filter)
     ),
 
-    _modifiable_pat_tok: $ => choice(
-      $.lexicon_reference,
-      prec(2, seq($.lexicon_reference, $.colon)),
-      seq($.colon, $.lexicon_reference),
-      seq($.lexicon_reference, $.colon, $.lexicon_reference),
-      seq($.anonymous_lexicon, optional($.tag_filter)),
-      seq($.anonymous_pattern, optional($.tag_filter))
+    pattern_token: $ => seq(
+      choice(
+        $.lexicon_reference,
+        prec(2, seq($.lexicon_reference, $.colon)),
+        seq($.colon, $.lexicon_reference),
+        seq($.lexicon_reference, $.colon, $.lexicon_reference),
+        seq($.anonymous_lexicon, optional($.tag_filter)),
+        seq($.anonymous_pattern, optional($.tag_filter))
+      ),
+      optional($.pattern_operator)
     ),
 
-    pattern_token: $ => choice(
-      $.left_sieve,
-      $.right_sieve,
-      $.pattern_or,
-      prec.left(2, seq(
-        $._modifiable_pat_tok,
-        optional($.pattern_operator)
-      ))
-    ),
-
-    _tag_or_neg: $ => seq(
-      optional("-"),
+    neg_tag: $ => seq(
+      "-",
       $.tag
+    ),
+
+    _tag_or_neg: $ => choice(
+      $.tag,
+      $.neg_tag
     ),
 
     _tag_list: $ => seq(
@@ -148,6 +181,7 @@ module.exports = grammar({
       $.identifier,
       optional($.number),
       optional($.tag_setting),
+      optional($._end_com),
       $._nl,
       repeat1($.lexicon_line)
     )),
@@ -158,6 +192,7 @@ module.exports = grammar({
         $._ws,
         $.lexicon_segment
       )),
+      optional($._end_com),
       $._nl
     ),
 
@@ -215,6 +250,7 @@ module.exports = grammar({
     ),
 
     lexicon_segment: $ => seq(
+      optional($.tag_setting),
       choice(
         prec(2, $.regex),
         $._lexicon_side_left,
@@ -232,6 +268,7 @@ module.exports = grammar({
     escaped_char: $ => /\\./,
 
     comment: $ => /#[^\n]*/,
+    _end_com: $ => seq(optional($._ws), $.comment),
 
     alias_command: $ => seq(
       $.alias,
@@ -239,6 +276,7 @@ module.exports = grammar({
       $.identifier,
       $._ws,
       $.identifier,
+      optional(seq($._ws, $.comment)),
       $._nl
     ),
 
@@ -247,10 +285,19 @@ module.exports = grammar({
 
     number: $ => /\(\d+\)/,
 
+    // really this should be \n or EOF
+    // but there isn't a way to match EOF
+    // (see https://github.com/tree-sitter/tree-sitter/issues/160 )
+    // so we'll just put up with having issues
+    // on files missing trailing newline
+    _real_nl: $ => /[ \t]*\n[ \t\n]*/,
+    block_comment: $ => repeat1(seq(
+      $.comment,
+      $._real_nl
+    )),
     _nl: $ => seq(
-      optional($._ws),
-      "\n",
-      repeat(choice($._ws, "\n"))
+      $._real_nl,
+      optional($.block_comment)
     ),
     _ws: $ => /[ \t]+/
   }

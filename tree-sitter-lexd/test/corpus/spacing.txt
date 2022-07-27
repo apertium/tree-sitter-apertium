@@ -1,0 +1,209 @@
+================
+patterns with just lexicons
+================
+
+PATTERNS
+X
+X Y
+X Y Z
+X: Y :X
+:X Y X:
+:X :X
+
+---
+
+(source_file
+  (pattern_block
+    (pattern_start)
+    (pattern_line (pattern_token (lexicon_reference (identifier))))
+    (pattern_line
+      (pattern_token (lexicon_reference (identifier)))
+      (pattern_token (lexicon_reference (identifier))))
+    (pattern_line
+      (pattern_token (lexicon_reference (identifier)))
+      (pattern_token (lexicon_reference (identifier)))
+      (pattern_token (lexicon_reference (identifier))))
+    (pattern_line
+      (pattern_token (lexicon_reference (identifier)) (colon))
+      (pattern_token (lexicon_reference (identifier)))
+      (pattern_token (colon) (lexicon_reference (identifier))))
+    (pattern_line
+      (pattern_token (colon) (lexicon_reference (identifier)))
+      (pattern_token (lexicon_reference (identifier)))
+      (pattern_token (lexicon_reference (identifier)) (colon)))
+    (pattern_line
+      (pattern_token (colon) (lexicon_reference (identifier)))
+      (pattern_token (colon) (lexicon_reference (identifier))))))
+
+================
+options
+================
+
+PATTERNS
+X | Y
+X | Y | Z
+X|Y
+X|Y|Z
+X |Y
+X| Y
+
+---
+
+(source_file
+  (pattern_block
+    (pattern_start)
+    (pattern_line
+      (pattern_option
+        (pattern_token (lexicon_reference (identifier)))
+        (pattern_or)
+        (pattern_token (lexicon_reference (identifier)))))
+    (pattern_line
+      (pattern_option
+        (pattern_token (lexicon_reference (identifier)))
+        (pattern_or)
+        (pattern_token (lexicon_reference (identifier)))
+        (pattern_or)
+        (pattern_token (lexicon_reference (identifier)))))
+    (pattern_line
+      (pattern_option
+        (pattern_token (lexicon_reference (identifier)))
+        (pattern_or)
+        (pattern_token (lexicon_reference (identifier)))))
+    (pattern_line
+      (pattern_option
+        (pattern_token (lexicon_reference (identifier)))
+        (pattern_or)
+        (pattern_token (lexicon_reference (identifier)))
+        (pattern_or)
+        (pattern_token (lexicon_reference (identifier)))))
+    (pattern_line
+      (pattern_option
+        (pattern_token (lexicon_reference (identifier)))
+        (pattern_or)
+        (pattern_token (lexicon_reference (identifier)))))
+    (pattern_line
+      (pattern_option
+        (pattern_token (lexicon_reference (identifier)))
+        (pattern_or)
+        (pattern_token (lexicon_reference (identifier)))))))
+
+================
+anonymous patterns
+================
+
+PATTERNS
+(X)
+( X)
+(X )
+( X )
+(X) (Y)
+( X (Y (Z)))
+
+---
+
+(source_file
+  (pattern_block
+    (pattern_start)
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_token (lexicon_reference (identifier))))))
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_token (lexicon_reference (identifier))))))
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_token (lexicon_reference (identifier))))))
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_token (lexicon_reference (identifier))))))
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_token (lexicon_reference (identifier)))))
+      (pattern_token
+        (anonymous_pattern
+          (pattern_token (lexicon_reference (identifier))))))
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_token (lexicon_reference (identifier)))
+          (pattern_token
+            (anonymous_pattern
+              (pattern_token (lexicon_reference (identifier)))
+              (pattern_token
+                (anonymous_pattern
+                  (pattern_token (lexicon_reference (identifier))))))))))))
+
+================
+options and anonymous
+================
+
+PATTERNS
+(X|Y)
+(X|Y|Z)
+(X|Y )
+( X|Y)
+( X|Y )
+( X | Y )
+(X | Y)
+
+---
+
+(source_file
+  (pattern_block
+    (pattern_start)
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_option
+            (pattern_token (lexicon_reference (identifier)))
+            (pattern_or)
+            (pattern_token (lexicon_reference (identifier)))))))
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_option
+            (pattern_token (lexicon_reference (identifier)))
+            (pattern_or)
+            (pattern_token (lexicon_reference (identifier)))
+            (pattern_or)
+            (pattern_token (lexicon_reference (identifier)))))))
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_option
+            (pattern_token (lexicon_reference (identifier)))
+            (pattern_or)
+            (pattern_token (lexicon_reference (identifier)))))))
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_option
+            (pattern_token (lexicon_reference (identifier)))
+            (pattern_or)
+            (pattern_token (lexicon_reference (identifier)))))))
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_option
+            (pattern_token (lexicon_reference (identifier)))
+            (pattern_or)
+            (pattern_token (lexicon_reference (identifier)))))))
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_option
+            (pattern_token (lexicon_reference (identifier)))
+            (pattern_or)
+            (pattern_token (lexicon_reference (identifier)))))))
+    (pattern_line
+      (pattern_token
+        (anonymous_pattern
+          (pattern_option
+            (pattern_token (lexicon_reference (identifier)))
+            (pattern_or)
+            (pattern_token (lexicon_reference (identifier)))))))))

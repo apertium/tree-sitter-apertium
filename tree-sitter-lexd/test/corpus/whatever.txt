@@ -26,7 +26,7 @@ a\ b
 	    (lexicon_reference
           (identifier)
           (number)))
-      (pattern_token (left_sieve))
+      (left_sieve)
       (pattern_token (lexicon_reference (identifier)))
       (comment)))
   (pattern_block

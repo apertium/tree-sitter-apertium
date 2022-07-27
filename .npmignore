@@ -1,0 +1,5 @@
+/build
+*.tgz
+Cargo.toml
+binding.gyp
+*~
