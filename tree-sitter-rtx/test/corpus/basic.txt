@@ -15,34 +15,35 @@ NP -> adj n {2 _ 1[number=2.number]};
 
 (source_file
   (output_rule
-    (ident)
+    pos: (ident)
     (ident) (ident) (ident))
   (output_rule
-    (ident)
+    pos: (ident)
     (ident) (ident) (ident))
   (output_rule
-    (ident)
+    pos: (ident)
     (ident))
   (attr_rule
-    (ident)
+    name: (ident)
     (ident) (ident) (ident))
   (attr_rule
-    (ident)
+    name: (ident)
     (ident) (ident) (ident))
   (reduce_rule_group
     (ident)
     (arrow)
     (reduce_rule
       (pattern_element (ident)) (pattern_element (ident))
-      (output_element (num))
-      (blank)
-      (output_element
-        (num)
-	(output_var_set (ident) (clip (num) (ident)))))))
+      (reduce_output
+        (output_element (num))
+        (blank)
+        (output_element
+          (num)
+          (output_var_set (ident) (clip (num) (ident))))))))
 
-=========
+========
 negation
-=========
+========
 
 a: (if (not ( 1.b = "hi" ) ) 1(c));
 
@@ -62,3 +63,36 @@ a: (if (not ( 1.b = "hi" ) ) 1(c));
         (num)
         (macro_name
           (ident))))))
+
+==================
+empty attr default
+==================
+
+x = (y "") z q ;
+
+---
+
+(source_file
+  (attr_rule
+    (ident)
+    (attr_default (ident) (string))
+    (ident)
+    (ident)))
+
+===========
+quoted tags
+===========
+
+X -> xyz@abc."a→b" { 1 } ;
+
+---
+
+(source_file
+  (reduce_rule_group
+    (ident)
+    (arrow)
+    (reduce_rule
+      (pattern_element
+        lemma: (ident)
+        (ident) (string))
+      (reduce_output (output_element (num))))))

@@ -81,7 +81,7 @@ module.exports = grammar({
     weight: $ => /\d+(\.\d+)?/,
 
     output_rule: $ => seq(
-      $.ident,
+      field('pos', $.ident),
       ":",
       optional(":"),
       choice(
@@ -99,14 +99,18 @@ module.exports = grammar({
     ),
 
     retag_rule: $ => seq(
-      $.ident,
+      field('src_attr', $.ident),
       ">",
-      $.ident,
+      field('trg_attr', $.ident),
       ":",
       listof(
-        choice(
-          $.ident,
-          seq("[", $.ident, "]")
+        seq(
+          choice(
+            $.ident,
+            $.string,
+            seq("[", $.ident, "]")
+          ),
+          choice($.ident, $.string)
         ),
         ","
       ),
@@ -115,13 +119,13 @@ module.exports = grammar({
 
     attr_default: $ => seq(
       "(",
-      $.ident,
-      $.ident,
+      field('src', $.ident),
+      field('trg', choice($.ident, $.string)),
       ")"
     ),
 
     attr_rule: $ => seq(
-      $.ident,
+      field('name', $.ident),
       "=",
       optional($.attr_default),
       repeat1(choice(
@@ -132,6 +136,8 @@ module.exports = grammar({
       )),
       ";"
     ),
+
+    clip_side: $ => token(seq("/", choice("sl", "tl", "ref"))),
 
     clip: $ => choice(
       seq(
@@ -149,7 +155,7 @@ module.exports = grammar({
           )
         ),
         $.ident,
-        optional(seq("/", choice("sl", "tl", "ref"))),
+        optional($.clip_side),
         optional(seq(">", $.ident))
       ),
       seq(
@@ -225,11 +231,14 @@ module.exports = grammar({
     pattern_element: $ => seq(
       optional("%"),
       optional(seq(
-        choice(
-          seq("$", $.ident),
-          seq("[", $.ident, "]"),
-          $.ident,
-          $.string
+        field(
+          'lemma',
+          choice(
+            seq("$", $.ident),
+            seq("[", $.ident, "]"),
+            $.ident,
+            $.string
+          ),
         ),
         "@"
       )),
@@ -237,8 +246,10 @@ module.exports = grammar({
       repeat(seq(
         ".",
         choice(
-          seq(optional("$"), $.ident),
-          seq("[", $.ident, "]")
+          $.ident,
+          seq("$", $.ident, optional($.clip_side)),
+          seq("[", $.ident, "]"),
+          $.string
         )
       ))
     ),
@@ -267,11 +278,12 @@ module.exports = grammar({
         choice(
           $.ident,
           seq("$", $.ident),
-          seq("[", $.clip, "]"),
+          seq("[", choice($.clip, $.string_cond), "]"),
           seq("{", $.clip, "}")
         ),
         "."
-      )
+      ),
+      optional($.output_var_set)
     ),
 
     output_element: $ => seq(
@@ -312,6 +324,18 @@ module.exports = grammar({
     chunk_cond: condtype("_chunk_val"),
     lu_cond: condtype("_lu_val"),
 
+    reduce_output: $ => choice(
+      seq(
+        "{",
+        repeat(choice(
+          $._lu_val,
+          $._chunk_val
+        )),
+        "}"
+      ),
+      $.chunk_cond
+    ),
+
     _chunk_val: $ => choice(
       seq(
         "{",
@@ -336,7 +360,7 @@ module.exports = grammar({
     ),
 
     reduce_rule: $ => seq(
-      optional($.string),
+      field('rule_name', optional($.string)),
       optional(seq($.weight, ":")),
       repeat1(choice($.unknown, $.pattern_element)),
       optional(seq("?", $.condition)),
@@ -360,14 +384,7 @@ module.exports = grammar({
         ),
         "]"
       )),
-      choice(
-        $._chunk_val,
-        seq(
-          "{",
-          listof($._chunk_val, "_"),
-          "}"
-        )
-      )
+      $.reduce_output
     )
   }
 })
