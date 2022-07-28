@@ -1,0 +1,19 @@
+=================
+pathological qtag
+=================
+
+SET MARK =  COMMA | ("\") | ("\;") ; #"
+
+---
+
+(source_file
+  (set
+    (SET)
+    (setname)
+    (eq)
+    (inlineset
+      (inlineset_single (setname))
+      (set_op)
+      (inlineset_single (taglist (tag (qtag)))))
+    (semicolon))
+  (comment))

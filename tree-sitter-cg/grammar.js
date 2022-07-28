@@ -484,7 +484,7 @@ module.exports = grammar({
     )),
 
     // TODO: it would be nice to give this some internal structure
-    subreading: $ => /[Ss][Uu][Bb]:-?[0123456789]+/,
+    subreading: $ => /[Ss][Uu][Bb]:(-?[0123456789]+|\*)/,
 
     // cannot begin with [
     // cannot end with ] or ,
@@ -492,9 +492,10 @@ module.exports = grammar({
     setname: $ => prec(1, /[^\[\],();\s]|[^\[();\s][^();\s]*[^();\s,\]]/),
     setname_t: $ => prec(2, /T:([^();\s"]*[^();\s",\]])?/),
 
-    ntag: $ => /(\\[^\n\r]|[^"#();\s])+(\\[^\n\r]|[^#);\s])*/,
+    ntag: $ => /(\\[^\n\r]|[^\"#();\s])+(\\[^\n\r]|[^#();\s])*/,
 
-    qtag: $ => /[!^]?"(\\[^\n\r]|[^"\\])*"[^();\s]*/,
+    //
+    qtag: $ => /[!^]?\"(\\[^\n\r]|[^\"\\])*\"(\\[^\r\n]|[^();\s])*/,
 
     comment: $ => choice(
       /#[^\r\n]*/,

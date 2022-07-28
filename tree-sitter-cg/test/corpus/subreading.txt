@@ -18,3 +18,20 @@ SUBSTITUTE SUB:1 P3 P1 TARGET Cop IF (1 Pers) ;
 	  (contextpos)
 	  (inlineset (inlineset_single (setname))))
     (semicolon)))
+
+===============
+all subreadings
+===============
+
+REMOVE SUB:* X IF (1 Y) ;
+
+---
+
+(source_file
+  (rule
+    (ruletype)
+    (ruleflag (subreading))
+    (rule_target (inlineset (inlineset_single (setname))))
+    (IF)
+    (contexttest (contextpos) (inlineset (inlineset_single (setname))))
+    (semicolon)))
