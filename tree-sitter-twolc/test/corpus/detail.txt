@@ -1,0 +1,48 @@
+===========
+odd symbols
+===========
+
+Alphabet
+%{'%} . 0:. ,
+;
+
+Rules
+"x"
+0:. <=> _ . ;
+
+---
+
+(source_file
+  (alphabet
+    (alphabet_header)
+    (symbol) (symbol) (symbol_pair (symbol) (colon) (symbol)) (symbol)
+    (semicolon))
+  (rules
+    (rules_header)
+    (rule
+      (rule_name)
+      (symbol_pair (symbol) (colon) (symbol))
+      (arrow)
+      (context
+        (locus)
+        (pattern (symbol))
+        (semicolon)))))
+
+=============
+implicit pair
+=============
+
+Alphabet
+x ;
+
+Rules
+"x"
+x <=> _ ;
+
+---
+
+(source_file
+  (alphabet (alphabet_header) (symbol) (semicolon))
+  (rules
+    (rules_header)
+    (rule (rule_name) (symbol) (arrow) (context (locus) (semicolon)))))

@@ -1,5 +1,5 @@
 // special chars: \s%:\[\]~\\$*+^\./|&-=?()"_
-SYMBOL_REGEX = /([^\s%:\[\]~\\$*+^\./|&-=?()"_]|[0-9]|%.)+/;
+SYMBOL_REGEX = /(%.|[^\s%:\[\]~\\$*+^/|&-=?()"_]|[0-9'\.,])+/;
 
 module.exports = grammar({
   name: "twolc",
@@ -37,7 +37,7 @@ module.exports = grammar({
 	    $.symbol,
 	    $.eq,
 	    repeat1(choice($.symbol, $.symbol_pair)),
-	    $.semicolon
+	    repeat1($.semicolon)
 	  ),
 
 	  definitions_header: $ => "Definitions",
@@ -50,7 +50,7 @@ module.exports = grammar({
 	    $.symbol,
 	    $.eq,
 	    $.pattern,
-	    $.semicolon
+	    repeat1($.semicolon)
 	  ),
 
 	  rules_header: $ => "Rules",
@@ -62,7 +62,7 @@ module.exports = grammar({
 	  arrow: $ => choice("=>", "<=", "<=>", "/<="),
 	  rule: $ => seq(
 	    $.rule_name,
-	    $.symbol_pair,
+	    choice($.symbol, $.symbol_pair),
 	    $.arrow,
 	    repeat1($.context),
 	    optional($.variables)
@@ -76,7 +76,7 @@ module.exports = grammar({
 	    optional($.pattern),
 	    $.locus,
 	    optional($.pattern),
-	    $.semicolon
+	    repeat1($.semicolon)
 	  ),
 
 	  except: $ => "except",
@@ -146,6 +146,8 @@ module.exports = grammar({
 	    )
 	  ),
 
+    // TODO: this fails if the comment ends in EOF
+    // see https://github.com/tree-sitter/tree-sitter/issues/160
 	  comment: $ => /![^\n]*\n/
   }
 })
