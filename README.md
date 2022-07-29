@@ -34,14 +34,6 @@ pip3 install auditwheel setuptools
 apt install patchelf
 ```
 
-The lexc grammar depends on the xfst grammar. Run
-
-```bash
-./setup.sh
-```
-
-to locally install the xfst grammar. (Note: this currently uses `sudo` - if anyone knows how to do it without `sudo`, PRs very welcome.)
-
 ## Compiling
 
 To compile everything, run

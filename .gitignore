@@ -1,5 +1,6 @@
 *~
 */node_modules/*
+!/tree-sitter-lexc/node_modules/tree-sitter-xfst
 /python/build/
 /python/dist
 /python/MANIFEST
