@@ -1,5 +1,5 @@
 // special chars: \s%:\[\]~\\$*+^\./|&-=?()"_
-SYMBOL_REGEX = /(%.|[^\s%:\[\]~\\$*+^/|&-=?()"_]|[0-9'\.,])+/;
+SYMBOL_REGEX = /(%.|[^\s%:\[\]~\\$*+^/|&-=?()"_!]|[0-9'\.,])+/;
 
 module.exports = grammar({
   name: "twolc",
@@ -146,8 +146,6 @@ module.exports = grammar({
 	    )
 	  ),
 
-    // TODO: this fails if the comment ends in EOF
-    // see https://github.com/tree-sitter/tree-sitter/issues/160
-	  comment: $ => /![^\n]*\n/
+	  comment: $ => /![^\n]*/
   }
 })

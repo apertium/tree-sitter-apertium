@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-twolc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "tree-sitter grammar of hfst-twolc",
   "main": "bindings/node",
   "directories": {
