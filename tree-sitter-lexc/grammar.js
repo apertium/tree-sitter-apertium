@@ -1,6 +1,6 @@
 const XFST = require("tree-sitter-xfst/grammar");
 
-const STRING_REGEX = /([^\s<>;%:!]|%.)+/;
+const STRING_REGEX = /([^\s<>;%:!"]|%.)+/;
 
 module.exports = grammar(XFST, {
   name: 'lexc',
@@ -11,6 +11,11 @@ module.exports = grammar(XFST, {
     $.end_comment
   ],
 
+  conflicts: $ => [
+    [$.lexicon_line],
+    [$.regex, $.expression]
+  ],
+
   rules: {
     source_file: $ => seq(
       optional($.multichar_symbols),
@@ -18,10 +23,10 @@ module.exports = grammar(XFST, {
     ),
 
     multichar_symbols_header: $ => "Multichar_Symbols",
-    symbol: $ => STRING_REGEX,
+    alphabet_symbol: $ => STRING_REGEX,
     multichar_symbols: $ => seq(
       $.multichar_symbols_header,
-      repeat1($.symbol)
+      repeat1($.alphabet_symbol)
     ),
 
     lexicon_start: $ => prec(2, "LEXICON"),
@@ -30,57 +35,37 @@ module.exports = grammar(XFST, {
       choice($.lexicon_start, $.lexicon_start_wrong_case),
       token.immediate(/\s+/),
       alias(STRING_REGEX, $.lexicon_name),
-      repeat1(choice($.empty_lexicon_line, $.lexicon_line))
+      repeat1($.lexicon_line)
     ),
 
     lexicon_line: $ => seq(
-      choice(
-        $.lexicon_string,
-        $.lexicon_pair,
-        $.regex
-      ),
-      $.lexicon_name,
-      optional($.weight),
+      optional(prec.dynamic(10, choice(
+        field('whole', $.lexicon_string),
+        seq(
+          field('left', optional($.lexicon_string)),
+          $.colon,
+          field('right', optional($.lexicon_string))
+        ),
+        field('whole', $.regex)
+      ))),
+      field('continuation', $.lexicon_name),
+      field('gloss', optional($.gloss)),
       $.semicolon
     ),
-    empty_lexicon_line: $ => seq(
-      $.lexicon_name,
-      $.semicolon
-    ),
 
-    _string: $ => STRING_REGEX,
-    lexicon_name: $ => $._string,
-    lexicon_string: $ => $._string,
+    lexicon_name: $ => STRING_REGEX,
+    lexicon_string: $ => STRING_REGEX,
 
-    weight: $ => seq(
-      /"/,
-      token.immediate("weight:"),
-      /\d+(\.\d+)?/,
-      token.immediate(/"/)
-    ),
+    gloss: $ => /"([^\"]+)"/,
 
-    lexicon_pair: $ => choice(
-      $.colon,
-      seq(
-        $.lexicon_string,
-        alias(token.immediate(":"), $.colon)
-      ),
-      seq(
-        $.colon,
-        alias(token.immediate(STRING_REGEX), $.lexicon_string)
-      ),
-      prec(20, seq(
-        $.lexicon_string,
-        alias(token.immediate(":"), $.colon),
-        alias(token.immediate(STRING_REGEX), $.lexicon_string)
-      ))
-    ),
-
-    regex: $ => seq(
+    regex: $ => prec.dynamic(10, seq(
       "<",
-      $.expression,
+      repeat1($.expression),
       ">"
-    ),
+    )),
+
+    // override xfst comments, since they allow #
+    comment: $ => /![^\n]*/,
 
     end_comment: $ => seq(
       "END",

@@ -1,0 +1,40 @@
+Multichar_Symbols
+! <- keyword.control
+
+%<x%>
+
+;
+! <- punctuation.delimiter
+
+LEXICON Root
+! <- keyword.control
+!       ^ keyword.control
+X ;
+! <- entity.name.function
+! ^ punctuation.delimiter
+
+LEXICON X
+! <- keyword.control
+!       ^ entity.name.function
+x:y Z "weight: 3" ;
+!   ^ entity.name.function
+!     ^ number
+!                 ^ punctuation.delimiter
+a:b C "hi" ;
+!   ^ entity.name.function
+!     ^ string.quoted
+<[ 1 | 2 | 3 ]+> # ;
+! <- punctuation.bracket
+!              ^ punctuation.bracket
+!                ^ keyword.control
+!                  ^ punctuation.delimiter
+
+LEXICON Punct
+! <- keyword.control
+!       ^ entity.name.function
+<[ %& | %= ]+> PUNCT ; ! Use/MT
+! <- punctuation.bracket
+!            ^ punctuation.bracket
+!              ^ entity.name.function
+!                    ^ punctuation.delimiter
+!                      ^ comment

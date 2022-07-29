@@ -1,0 +1,202 @@
+=================
+space after colon
+=================
+
+LEXICON Root
+
+x: y # ;
+
+---
+
+(source_file
+  (lexicon
+    (lexicon_start) (lexicon_name)
+    (lexicon_line
+      left: (lexicon_string) (colon) right: (lexicon_string)
+      continuation: (lexicon_name) (semicolon))))
+
+===============
+negative weight
+===============
+
+LEXICON Root
+
+x:y # "weight: -0.1" ;
+
+---
+
+(source_file
+  (lexicon
+    (lexicon_start) (lexicon_name)
+    (lexicon_line
+      left: (lexicon_string) (colon) right: (lexicon_string)
+      continuation: (lexicon_name) gloss: (gloss) (semicolon))))
+
+===================
+weighted empty line
+===================
+
+LEXICON Root
+X "weight: 1.0" ;
+
+LEXICON X
+x:y # ;
+
+---
+
+(source_file
+  (lexicon
+    (lexicon_start) (lexicon_name)
+    (lexicon_line
+      continuation: (lexicon_name) gloss: (gloss) (semicolon)))
+  (lexicon
+    (lexicon_start) (lexicon_name)
+    (lexicon_line
+      left: (lexicon_string) (colon) right: (lexicon_string)
+      continuation: (lexicon_name) (semicolon))))
+
+=============
+digit regexes
+=============
+
+LEXICON Digits
+
+<[ %0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 ]+> NUM ;
+<[ %0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 ]+ [ %, | %. ] [ %0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 ]+> NUM ;
+
+---
+
+(source_file
+  (lexicon
+    (lexicon_start) (lexicon_name)
+    (lexicon_line
+      whole: (regex
+  (expression
+    (expression
+      (expression
+        (expression
+          (expression
+            (expression
+              (expression
+                (expression
+                  (expression
+                    (expression
+                      (expression
+                        (expression (symbol))
+                        (union)
+                        (expression (symbol)))
+                      (union)
+                      (expression (symbol)))
+                    (union)
+                    (expression (symbol)))
+                  (union)
+                  (expression (symbol)))
+                (union)
+                (expression (symbol)))
+              (union)
+              (expression (symbol)))
+            (union)
+            (expression (symbol)))
+          (union)
+          (expression (symbol)))
+        (union)
+        (expression (symbol))))
+    (plus)))
+      continuation: (lexicon_name) (semicolon))
+    (lexicon_line
+      whole: (regex
+  (expression
+    (expression
+      (expression
+        (expression
+          (expression
+            (expression
+              (expression
+                (expression
+                  (expression
+                    (expression
+                      (expression
+                        (expression
+                          (expression
+                            (expression (symbol))
+                            (union)
+                            (expression (symbol)))
+                          (union)
+                          (expression (symbol)))
+                        (union)
+                        (expression (symbol)))
+                      (union)
+                      (expression (symbol)))
+                    (union)
+                    (expression (symbol)))
+                  (union)
+                  (expression (symbol)))
+                (union)
+                (expression (symbol)))
+              (union)
+              (expression (symbol)))
+            (union)
+            (expression (symbol))))
+        (plus))
+      (expression
+        (expression
+          (expression (symbol))
+          (union)
+          (expression (symbol)))))
+    (expression
+      (expression
+        (expression
+          (expression
+            (expression
+              (expression
+                (expression
+                  (expression
+                    (expression
+                      (expression
+                        (expression
+                          (expression (symbol))
+                          (union)
+                          (expression (symbol)))
+                        (union)
+                        (expression (symbol)))
+                      (union)
+                      (expression (symbol)))
+                    (union)
+                    (expression (symbol)))
+                  (union)
+                  (expression (symbol)))
+                (union)
+                (expression (symbol)))
+              (union)
+              (expression (symbol)))
+            (union)
+            (expression (symbol)))
+          (union)
+          (expression (symbol))))
+      (plus))))
+      continuation: (lexicon_name) (semicolon))))
+
+===============
+eq as regex sym
+===============
+
+LEXICON Punct
+
+<[ %& | = ]+> PUNCT ; ! Use/MT
+
+---
+
+(source_file
+  (lexicon
+    (lexicon_start) (lexicon_name)
+    (lexicon_line
+      whole: (regex
+               (expression
+                 (expression
+                   (expression
+                     (expression (symbol))
+                     (union)
+                     (expression (symbol))))
+                 (plus)))
+      continuation: (lexicon_name) (semicolon)))
+  (comment))

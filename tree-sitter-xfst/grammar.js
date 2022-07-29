@@ -78,7 +78,7 @@ module.exports = grammar({
 
     // atomic symbols
     // \x60 because ` really screws up highlighting and indentation
-    symbol: $ => /([^\s%:~\\$+*^\./|&\-=<>0?\"#\[\](){}\x60,]|%.)+/,
+    symbol: $ => /([^\s%:~\\$+*^\./|&\-<>0?\"#\[\](){}\x60,]|%.|=)+/,
     string: $ => /"[^\"]+"/,
     any: $ => "?",
     zero: $ => "0",

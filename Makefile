@@ -18,11 +18,11 @@ logs/%: tree-sitter-%/package.json tree-sitter-%/grammar.js logs/.log
 logs/lexc: logs/xfst tree-sitter-lexc/package.json tree-sitter-lexc/grammar.js
 	(cd tree-sitter-lexc && tree-sitter generate) > $@
 
-logs/xfst: tree-sitter-xfst/package.json tree-sitter-xfst/grammar.js logs/.log
-	(cd tree-sitter-xfst && tree-sitter generate && npm install --save .) > $@
-
 logs/py: $(PYDEPS) $(LOGS)
 	(cd python && ./build.sh) > $@
 
 logs/%.test: logs/%
-	(cd "tree-sitter-$*" && tree-sitter test)
+	(cd "tree-sitter-$*" && rm -f test/*/*~ && tree-sitter test)
+
+clean:
+	rm -rf logs

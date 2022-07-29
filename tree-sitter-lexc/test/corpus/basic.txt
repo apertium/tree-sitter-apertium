@@ -15,9 +15,9 @@ a:b # ;
 (source_file
   (lexicon
     (lexicon_start) (lexicon_name)
-    (empty_lexicon_line (lexicon_name) (semicolon)))
+    (lexicon_line continuation: (lexicon_name) (semicolon)))
   (lexicon
     (lexicon_start) (lexicon_name)
     (lexicon_line
-      (lexicon_pair (lexicon_string) (colon) (lexicon_string))
-      (lexicon_name) (semicolon))))
+      left: (lexicon_string) (colon) right: (lexicon_string)
+      continuation: (lexicon_name) (semicolon))))
