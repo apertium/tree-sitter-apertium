@@ -41,22 +41,22 @@
   (ruleflag_name)
 ] @keyword.operator
 
-[
-  (eq)
-  (semicolon)
-] @keyword.operator
+(eq) @operator
+
+(semicolon) @punctuation.delimiter
 
 (comment) @comment
 
-(qtag) @string
+(qtag) @string.quoted
 
 (contextpos) @constant.number
 
-(inlineset_single ["(" ")"] @constant.other.symbol)
+(inlineset_single ["(" ")"] @punctuation.bracket)
+(compotag ["(" ")"] @punctuation.bracket)
 
 (taglist) @constant.other.symbol
 
-((setname) @variable (#match? @variable "\$\$.*"))
+((setname) @variable.parameter (#match? @variable.parameter "\$\$.*"))
 
 (list (setname) @variable)
 (set (setname) @variable)
