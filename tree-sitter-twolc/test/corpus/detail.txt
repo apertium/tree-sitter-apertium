@@ -15,18 +15,20 @@ Rules
 (source_file
   (alphabet
     (alphabet_header)
-    (symbol) (symbol) (symbol_pair (symbol) (colon) (symbol)) (symbol)
+    (symbol) (symbol)
+    (symbol_pair left: (symbol) (colon) right: (symbol)) (symbol)
     (semicolon))
   (rules
     (rules_header)
     (rule
-      (rule_name)
-      (symbol_pair (symbol) (colon) (symbol))
-      (arrow)
-      (context
-        (locus)
-        (pattern (symbol))
-        (semicolon)))))
+      name: (rule_name)
+      target: (symbol_pair left: (symbol) (colon) right: (symbol))
+      arrow: (arrow)
+      contexts: (positive_contexts
+        (context
+          locus: (locus)
+          right: (pattern (symbol))
+          (semicolon))))))
 
 =============
 implicit pair
@@ -45,4 +47,97 @@ x <=> _ ;
   (alphabet (alphabet_header) (symbol) (semicolon))
   (rules
     (rules_header)
-    (rule (rule_name) (symbol) (arrow) (context (locus) (semicolon)))))
+    (rule
+      name: (rule_name)
+      target: (symbol)
+      arrow: (arrow)
+      contexts: (positive_contexts (context locus: (locus) (semicolon))))))
+
+============
+regex center
+============
+
+Alphabet
+
+%<VERB1%>:0 %<NOUN1%>:0 %<VERB2%>:0 %<NOUN2%>:0
+%<V%>:e %<V%>:y %<V%>:u %<V%>:u %<V%>:i %<V%>:o %<V%>:a
+%<V%>:0
+
+q w r t p s d f g h j k l z x c v b n m
+
+a e i o u y
+;
+
+Sets
+
+cns = q w r t p s d f g h j k l z x c v b n m;
+
+Rules
+
+"VERB 1 rule"
+<[ cns %<V%>:a %<V%>:0 cns %<C%>:0 %<V%>:a cns %<V%>:a ]> <==> _ %<VERB1%>:0 ;
+
+---
+
+(source_file
+  (alphabet
+    (alphabet_header)
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol) (symbol) (symbol) (symbol) (symbol)
+    (symbol) (symbol) (symbol) (symbol) (symbol)
+    (symbol) (symbol) (symbol) (symbol) (symbol)
+    (symbol) (symbol) (symbol) (symbol) (symbol)
+    (symbol) (symbol) (symbol) (symbol) (symbol) (symbol)
+    (semicolon))
+  (sets
+    (sets_header)
+    (set
+      name: (symbol) (eq)
+      (symbol) (symbol) (symbol) (symbol) (symbol)
+      (symbol) (symbol) (symbol) (symbol) (symbol)
+      (symbol) (symbol) (symbol) (symbol) (symbol)
+      (symbol) (symbol) (symbol) (symbol) (symbol)
+      (semicolon)))
+  (rules
+    (rules_header)
+    (rule
+      name: (rule_name)
+      target: (regex_target
+        (pattern
+          (pattern
+            (pattern
+              (pattern
+                (pattern
+                  (pattern
+                    (pattern
+                      (pattern (symbol))
+                      (pattern
+                        (symbol_pair left: (symbol) (colon) right: (symbol))))
+                    (pattern
+                      (symbol_pair left: (symbol) (colon) right: (symbol))))
+                  (pattern (symbol)))
+                (pattern
+                  (symbol_pair left: (symbol) (colon) right: (symbol))))
+              (pattern
+                (symbol_pair left: (symbol) (colon) right: (symbol))))
+            (pattern (symbol)))
+          (pattern
+            (symbol_pair left: (symbol) (colon) right: (symbol)))))
+      arrow: (regex_arrow)
+      contexts: (positive_contexts
+        (context
+          locus: (locus)
+          right: (pattern
+            (symbol_pair left: (symbol) (colon) right: (symbol)))
+          (semicolon))))))

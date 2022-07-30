@@ -31,28 +31,30 @@ i:0 <=> Vowel %{VSUF%}:0 _ [ m | n ] ;
     (alphabet_header)
     (symbol) (symbol) (symbol)
     (symbol) (symbol) (symbol)
-    (symbol_pair (symbol) (colon) (symbol))
-    (symbol_pair (symbol) (colon) (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
+    (symbol_pair left: (symbol) (colon) right: (symbol))
     (semicolon))
   (sets
     (sets_header)
     (set
-      (symbol) (eq) (symbol) (symbol) (semicolon)))
+      name: (symbol) (eq) (symbol) (symbol) (semicolon)))
   (rules
     (rules_header)
     (rule
-      (rule_name)
-      (symbol_pair (symbol) (colon) (symbol))
-      (arrow)
-      (context
-        (pattern (pattern (symbol))
-        (pattern (symbol_pair (symbol) (colon) (symbol))))
-	(locus)
-	(pattern
-	  (lpar)
-	  (pattern (pattern (symbol)) (bool_op) (pattern (symbol)))
-	  (rpar))
-	(semicolon))))
+      name: (rule_name)
+      target: (symbol_pair left: (symbol) (colon) right: (symbol))
+      arrow: (arrow)
+      contexts: (positive_contexts
+        (context
+          left: (pattern
+            (pattern (symbol))
+            (pattern (symbol_pair left: (symbol) (colon) right: (symbol))))
+          locus: (locus)
+          right: (pattern
+            (lpar)
+            (pattern (pattern (symbol)) (bool_op) (pattern (symbol)))
+            (rpar))
+          (semicolon)))))
   (comment)
   (comment)
   (comment)
