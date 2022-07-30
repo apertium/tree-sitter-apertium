@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-lexc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "tree-sitter grammar for hfst-lexc",
   "main": "bindings/node",
   "directories": {

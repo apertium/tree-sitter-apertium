@@ -21,23 +21,23 @@ c
   (pattern_block
     (pattern_start)
     (pattern_line
-      (pattern_token (lexicon_reference (identifier)))
-      (pattern_token (lexicon_reference (identifier)))))
+      (pattern_token whole: (lexicon_reference name: (identifier)))
+      (pattern_token whole: (lexicon_reference name: (identifier)))))
   (lexicon_block
     (lexicon_start)
-    (identifier)
+    name: (identifier)
     (lexicon_line
-      (lexicon_segment (lexicon_string)))
+      (lexicon_segment whole: (lexicon_string)))
     (lexicon_line
-      (lexicon_segment (lexicon_string)))
+      (lexicon_segment whole: (lexicon_string)))
     (lexicon_line
-      (lexicon_segment (lexicon_string))))
+      (lexicon_segment whole: (lexicon_string))))
   (lexicon_block
     (lexicon_start)
-    (identifier)
+    name: (identifier)
     (lexicon_line
-      (lexicon_segment (lexicon_string)))
+      (lexicon_segment whole: (lexicon_string)))
     (lexicon_line
-      (lexicon_segment (lexicon_string)))
+      (lexicon_segment whole: (lexicon_string)))
     (lexicon_line
-      (lexicon_segment (lexicon_string)))))
+      (lexicon_segment whole: (lexicon_string)))))

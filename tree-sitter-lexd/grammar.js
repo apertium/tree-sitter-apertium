@@ -20,9 +20,11 @@ module.exports = grammar({
     pattern_block: $ => seq(
       choice(
         $.pattern_start,
-        seq($.named_pattern_start,
-            $._ws,
-            $.identifier)
+        seq(
+          $.named_pattern_start,
+          $._ws,
+          field('name', $.identifier)
+        )
       ),
       optional($._end_com),
       $._nl,
@@ -52,7 +54,7 @@ module.exports = grammar({
         ),
         optional($._ws)
       )),
-      optional($.comment),
+      field('comment', optional($.comment)),
       $._nl
     ),
 
@@ -87,29 +89,35 @@ module.exports = grammar({
     )),
 
     lexicon_reference: $ => seq(
-      $.identifier,
+      field('name', $.identifier),
       optional(seq(
-        optional(prec.dynamic(2, $.question_op)),
-        $.number,
+        optional(prec.dynamic(2, field('disjoint', $.question_op))),
+        field('column', $.number),
       )),
-      optional($.tag_filter)
+      field('filter', optional($.tag_filter))
     ),
 
     pattern_token: $ => seq(
       choice(
-        $.lexicon_reference,
-        prec(2, seq($.lexicon_reference, $.colon)),
-        seq($.colon, $.lexicon_reference),
-        seq($.lexicon_reference, $.colon, $.lexicon_reference),
-        seq($.anonymous_lexicon, optional($.tag_filter)),
-        seq($.anonymous_pattern, optional($.tag_filter))
+        field('whole', $.lexicon_reference),
+        prec(2, seq(field('left', $.lexicon_reference), $.colon)),
+        seq($.colon, field('right', $.lexicon_reference)),
+        seq(
+          field('left', $.lexicon_reference),
+          $.colon,
+          field('right', $.lexicon_reference),
+        ),
+        seq(
+          field('whole', choice($.anonymous_lexicon, $.anonymous_pattern)),
+          field('filter', optional($.tag_filter))
+        )
       ),
-      optional($.pattern_operator)
+      field('operator', optional($.pattern_operator))
     ),
 
     neg_tag: $ => seq(
       "-",
-      $.tag
+      field('tag', $.tag)
     ),
 
     _tag_or_neg: $ => choice(
@@ -141,7 +149,7 @@ module.exports = grammar({
     ),
 
     tag_distribution: $ => seq(
-      $.tag_distribution_operator,
+      field('op', $.tag_distribution_operator),
       "[",
       optional($._ws),
       $._tag_list,
@@ -178,9 +186,9 @@ module.exports = grammar({
     lexicon_block: $ => prec(2, seq(
       $.lexicon_start,
       $._ws,
-      $.identifier,
-      optional($.number),
-      optional($.tag_setting),
+      field('name', $.identifier),
+      field('columns', optional($.number)),
+      field('defaults', optional($.tag_setting)),
       optional($._end_com),
       $._nl,
       repeat1($.lexicon_line)
@@ -250,17 +258,17 @@ module.exports = grammar({
     ),
 
     lexicon_segment: $ => seq(
-      optional($.tag_setting),
+      field('tags', optional($.tag_setting)),
       choice(
-        prec(2, $.regex),
-        $._lexicon_side_left,
+        field('whole', prec(2, $.regex)),
+        field('whole', $._lexicon_side_left),
         seq(
-          optional($._lexicon_side_left),
+          field('left', optional($._lexicon_side_left)),
           $.colon,
-          optional($._lexicon_side_right)
+          field('right', optional($._lexicon_side_right))
         )
       ),
-      optional($.tag_setting)
+      field('tags', optional($.tag_setting))
     ),
 
     lexicon_string: $ => /[^\s\n\\#:\[\]\/]+/,
@@ -268,15 +276,15 @@ module.exports = grammar({
     escaped_char: $ => /\\./,
 
     comment: $ => /#[^\n]*/,
-    _end_com: $ => seq(optional($._ws), $.comment),
+    _end_com: $ => seq(optional($._ws), field('comment', $.comment)),
 
     alias_command: $ => seq(
       $.alias,
       $._ws,
-      $.identifier,
+      field('src', $.identifier),
       $._ws,
-      $.identifier,
-      optional(seq($._ws, $.comment)),
+      field('trg', $.identifier),
+      optional($._end_com),
       $._nl
     ),
 

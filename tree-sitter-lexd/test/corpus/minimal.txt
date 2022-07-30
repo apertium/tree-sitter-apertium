@@ -14,13 +14,13 @@ a
   (pattern_block
     (pattern_start)
     (pattern_line
-      (pattern_token (lexicon_reference (identifier)))))
+      (pattern_token whole: (lexicon_reference name: (identifier)))))
   (lexicon_block
     (lexicon_start)
-    (identifier)
+    name: (identifier)
     (lexicon_line
       (lexicon_segment
-        (lexicon_string)))))
+        whole: (lexicon_string)))))
 
 =========
 Colons
@@ -35,5 +35,5 @@ X: :X
   (pattern_block
     (pattern_start)
 	(pattern_line
-	  (pattern_token (lexicon_reference (identifier)) (colon))
-	  (pattern_token (colon) (lexicon_reference (identifier))))))
+	  (pattern_token left: (lexicon_reference name: (identifier)) (colon))
+	  (pattern_token (colon) right: (lexicon_reference name: (identifier))))))

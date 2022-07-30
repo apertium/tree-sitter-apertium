@@ -8,15 +8,16 @@ SUBSTITUTE SUB:1 P3 P1 TARGET Cop IF (1 Pers) ;
 
 (source_file
   (rule_substitute_etc
-    (ruletype_substitute_etc)
-	(ruleflag (subreading))
-	(inlineset (inlineset_single (setname)))
-	(inlineset (inlineset_single (setname)))
-	(rule_target (TARGET) (inlineset (inlineset_single (setname))))
-	(IF)
-	(contexttest
-	  (contextpos)
-	  (inlineset (inlineset_single (setname))))
+    type: (ruletype_substitute_etc)
+    flag: (ruleflag (subreading))
+    src: (inlineset (inlineset_single (setname)))
+    trg: (inlineset (inlineset_single (setname)))
+    target: (rule_target
+      (TARGET) target: (inlineset (inlineset_single (setname))))
+    (IF)
+    context: (contexttest
+      pos: (contextpos)
+      set: (inlineset (inlineset_single (setname))))
     (semicolon)))
 
 ===============
@@ -29,9 +30,10 @@ REMOVE SUB:* X IF (1 Y) ;
 
 (source_file
   (rule
-    (ruletype)
-    (ruleflag (subreading))
-    (rule_target (inlineset (inlineset_single (setname))))
+    type: (ruletype)
+    flag: (ruleflag (subreading))
+    target: (rule_target target: (inlineset (inlineset_single (setname))))
     (IF)
-    (contexttest (contextpos) (inlineset (inlineset_single (setname))))
+    context: (contexttest
+      pos: (contextpos) set: (inlineset (inlineset_single (setname))))
     (semicolon)))

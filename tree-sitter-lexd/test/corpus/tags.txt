@@ -27,75 +27,75 @@ LEXICON CaseEnding[Decl1]
   (pattern_start)
   (pattern_line
    (pattern_token
-    (anonymous_pattern
-     (pattern_token (lexicon_reference (identifier)))
-     (pattern_token (lexicon_reference (identifier))))
-    (tag_filter
+    whole: (anonymous_pattern
+     (pattern_token whole: (lexicon_reference name: (identifier)))
+     (pattern_token whole: (lexicon_reference name: (identifier))))
+    filter: (tag_filter
      (tag_distribution
-      (tag_distribution_operator)
+      op: (tag_distribution_operator)
       (tag)
       (tag))
      (tag_distribution
-      (tag_distribution_operator)
+      op: (tag_distribution_operator)
       (tag)
       (tag)
       (tag))))))
  (lexicon_block
   (lexicon_start)
-  (identifier)
+  name: (identifier)
   (lexicon_line
    (lexicon_segment
-    (lexicon_string)
+    left: (lexicon_string)
     (colon)
-    (lexicon_string)
-    (tag_setting (tag) (tag)))
-   (comment))
+    right: (lexicon_string)
+    tags: (tag_setting (tag) (tag)))
+   comment: (comment))
   (lexicon_line
    (lexicon_segment
-    (lexicon_string)
+    left: (lexicon_string)
     (colon)
-    (lexicon_string)
-    (tag_setting (tag) (tag)))
-   (comment))
+    right: (lexicon_string)
+    tags: (tag_setting (tag) (tag)))
+   comment: (comment))
   (lexicon_line
    (lexicon_segment
-    (lexicon_string) (colon) (lexicon_string)
-    (tag_setting (tag) (tag)))
-   (comment))
+    left: (lexicon_string) (colon) right: (lexicon_string)
+    tags: (tag_setting (tag) (tag)))
+   comment: (comment))
   (lexicon_line
    (lexicon_segment
-    (lexicon_string) (colon) (lexicon_string)
-    (tag_setting (tag) (tag)))
-   (comment)))
+    left: (lexicon_string) (colon) right: (lexicon_string)
+    tags: (tag_setting (tag) (tag)))
+   comment: (comment)))
  (lexicon_block
   (lexicon_start)
-  (identifier)
-  (tag_setting (tag))
+  name: (identifier)
+  defaults: (tag_setting (tag))
   (lexicon_line
    (lexicon_segment
-    (lexicon_string) (colon) (lexicon_string)
-    (tag_setting (tag))))
+    left: (lexicon_string) (colon) right: (lexicon_string)
+    tags: (tag_setting (tag))))
   (lexicon_line
    (lexicon_segment
-    (lexicon_string) (colon) (lexicon_string)
-    (tag_setting (tag))))
+    left: (lexicon_string) (colon) right: (lexicon_string)
+    tags: (tag_setting (tag))))
   (lexicon_line
    (lexicon_segment
-    (lexicon_string) (colon) (lexicon_string)
-    (tag_setting (neg_tag (tag))))
-   (comment)))
+    left: (lexicon_string) (colon) right: (lexicon_string)
+    tags: (tag_setting (neg_tag tag: (tag))))
+   comment: (comment)))
  (lexicon_block
   (lexicon_start)
-  (identifier)
-  (tag_setting (tag))
+  name: (identifier)
+  defaults: (tag_setting (tag))
   (lexicon_line
    (lexicon_segment
-    (lexicon_string) (colon) (lexicon_string))
-   (comment))
+    left: (lexicon_string) (colon) right: (lexicon_string))
+   comment: (comment))
   (lexicon_line
    (lexicon_segment
-    (lexicon_string) (colon) (lexicon_string))
-   (comment))))
+    left: (lexicon_string) (colon) right: (lexicon_string))
+   comment: (comment))))
 
 ===========================
 Sided and filtered lexicons
@@ -111,16 +111,16 @@ X[y]: Z[q,j] :X[y]
     (pattern_start)
 	(pattern_line
 	  (pattern_token
-	    (lexicon_reference
-	      (identifier)
-		  (tag_filter (tag)))
-		(colon))
+      left: (lexicon_reference
+        name: (identifier)
+        filter: (tag_filter (tag)))
+      (colon))
 	  (pattern_token
-		(lexicon_reference
-   	      (identifier)
-		  (tag_filter (tag) (tag))))
+      whole: (lexicon_reference
+        name: (identifier)
+		    filter: (tag_filter (tag) (tag))))
 	  (pattern_token
 	    (colon)
-		(lexicon_reference
-		  (identifier)
-		  (tag_filter (tag)))))))
+      right: (lexicon_reference
+        name: (identifier)
+        filter: (tag_filter (tag)))))))

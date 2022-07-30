@@ -14,13 +14,13 @@ LEXICON X
   (pattern_block
     (pattern_start)
     (pattern_line
-      (pattern_token (lexicon_reference (identifier)))))
+      (pattern_token whole: (lexicon_reference name: (identifier)))))
   (lexicon_block
     (lexicon_start)
-    (identifier)
+    name: (identifier)
     (lexicon_line
       (lexicon_segment
-        (regex
+        whole: (regex
           (regex_line (regex_string) (colon) (regex_string))
           (regex_group
             (regex_line (regex_string))

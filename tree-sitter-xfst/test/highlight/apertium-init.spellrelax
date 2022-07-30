@@ -1,0 +1,17 @@
+[
+! <- punctuation.delimiter
+	! Unify apostrophe styles
+  [ ?* [ ' (->) [ %` | ʻ | ’ | ‘ | ʼ ] ] ?* ]
+! ^ punctuation.delimiter
+!   ^ constant.builtin
+!    ^ operator
+!          ^ operator
+!                    ^ operator
+
+  .o.
+! ^ operator
+  ! Example rule: Accept input without diacritics
+  [ ?* [ á (->) a ] ?* ]
+! ^ punctuation.delimiter
+]
+! <- punctuation.delimiter

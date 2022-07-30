@@ -34,7 +34,7 @@ module.exports = grammar(XFST, {
     lexicon: $ => seq(
       choice($.lexicon_start, $.lexicon_start_wrong_case),
       token.immediate(/\s+/),
-      alias(STRING_REGEX, $.lexicon_name),
+      field('name', alias(STRING_REGEX, $.lexicon_name)),
       repeat1($.lexicon_line)
     ),
 

@@ -1,6 +1,8 @@
 // this covers everything in the FSM book
 // it does not yet cover everything listed at
 // https://github.com/hfst/hfst/wiki/Regular-Expression-Operators
+// but that page does not explain them or specify precidence
+// so we'll ignore them for now
 
 module.exports = grammar({
   name: "xfst",

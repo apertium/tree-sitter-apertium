@@ -10,7 +10,7 @@ x: y # ;
 
 (source_file
   (lexicon
-    (lexicon_start) (lexicon_name)
+    (lexicon_start) name: (lexicon_name)
     (lexicon_line
       left: (lexicon_string) (colon) right: (lexicon_string)
       continuation: (lexicon_name) (semicolon))))
@@ -27,7 +27,7 @@ x:y # "weight: -0.1" ;
 
 (source_file
   (lexicon
-    (lexicon_start) (lexicon_name)
+    (lexicon_start) name: (lexicon_name)
     (lexicon_line
       left: (lexicon_string) (colon) right: (lexicon_string)
       continuation: (lexicon_name) gloss: (gloss) (semicolon))))
@@ -46,11 +46,11 @@ x:y # ;
 
 (source_file
   (lexicon
-    (lexicon_start) (lexicon_name)
+    (lexicon_start) name: (lexicon_name)
     (lexicon_line
       continuation: (lexicon_name) gloss: (gloss) (semicolon)))
   (lexicon
-    (lexicon_start) (lexicon_name)
+    (lexicon_start) name: (lexicon_name)
     (lexicon_line
       left: (lexicon_string) (colon) right: (lexicon_string)
       continuation: (lexicon_name) (semicolon))))
@@ -68,7 +68,7 @@ LEXICON Digits
 
 (source_file
   (lexicon
-    (lexicon_start) (lexicon_name)
+    (lexicon_start) name: (lexicon_name)
     (lexicon_line
       whole: (regex
   (expression
@@ -188,7 +188,7 @@ LEXICON Punct
 
 (source_file
   (lexicon
-    (lexicon_start) (lexicon_name)
+    (lexicon_start) name: (lexicon_name)
     (lexicon_line
       whole: (regex
                (expression

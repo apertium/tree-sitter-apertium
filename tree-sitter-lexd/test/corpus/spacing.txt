@@ -15,25 +15,25 @@ X: Y :X
 (source_file
   (pattern_block
     (pattern_start)
-    (pattern_line (pattern_token (lexicon_reference (identifier))))
+    (pattern_line (pattern_token whole: (lexicon_reference name: (identifier))))
     (pattern_line
-      (pattern_token (lexicon_reference (identifier)))
-      (pattern_token (lexicon_reference (identifier))))
+      (pattern_token whole: (lexicon_reference name: (identifier)))
+      (pattern_token whole: (lexicon_reference name: (identifier))))
     (pattern_line
-      (pattern_token (lexicon_reference (identifier)))
-      (pattern_token (lexicon_reference (identifier)))
-      (pattern_token (lexicon_reference (identifier))))
+      (pattern_token whole: (lexicon_reference name: (identifier)))
+      (pattern_token whole: (lexicon_reference name: (identifier)))
+      (pattern_token whole: (lexicon_reference name: (identifier))))
     (pattern_line
-      (pattern_token (lexicon_reference (identifier)) (colon))
-      (pattern_token (lexicon_reference (identifier)))
-      (pattern_token (colon) (lexicon_reference (identifier))))
+      (pattern_token left: (lexicon_reference name: (identifier)) (colon))
+      (pattern_token whole: (lexicon_reference name: (identifier)))
+      (pattern_token (colon) right: (lexicon_reference name: (identifier))))
     (pattern_line
-      (pattern_token (colon) (lexicon_reference (identifier)))
-      (pattern_token (lexicon_reference (identifier)))
-      (pattern_token (lexicon_reference (identifier)) (colon)))
+      (pattern_token (colon) right: (lexicon_reference name: (identifier)))
+      (pattern_token whole: (lexicon_reference name: (identifier)))
+      (pattern_token left: (lexicon_reference name: (identifier)) (colon)))
     (pattern_line
-      (pattern_token (colon) (lexicon_reference (identifier)))
-      (pattern_token (colon) (lexicon_reference (identifier))))))
+      (pattern_token (colon) right: (lexicon_reference name: (identifier)))
+      (pattern_token (colon) right: (lexicon_reference name: (identifier))))))
 
 ================
 options
@@ -54,38 +54,38 @@ X| Y
     (pattern_start)
     (pattern_line
       (pattern_option
-        (pattern_token (lexicon_reference (identifier)))
+        (pattern_token whole: (lexicon_reference name: (identifier)))
         (pattern_or)
-        (pattern_token (lexicon_reference (identifier)))))
+        (pattern_token whole: (lexicon_reference name: (identifier)))))
     (pattern_line
       (pattern_option
-        (pattern_token (lexicon_reference (identifier)))
+        (pattern_token whole: (lexicon_reference name: (identifier)))
         (pattern_or)
-        (pattern_token (lexicon_reference (identifier)))
+        (pattern_token whole: (lexicon_reference name: (identifier)))
         (pattern_or)
-        (pattern_token (lexicon_reference (identifier)))))
+        (pattern_token whole: (lexicon_reference name: (identifier)))))
     (pattern_line
       (pattern_option
-        (pattern_token (lexicon_reference (identifier)))
+        (pattern_token whole: (lexicon_reference name: (identifier)))
         (pattern_or)
-        (pattern_token (lexicon_reference (identifier)))))
+        (pattern_token whole: (lexicon_reference name: (identifier)))))
     (pattern_line
       (pattern_option
-        (pattern_token (lexicon_reference (identifier)))
+        (pattern_token whole: (lexicon_reference name: (identifier)))
         (pattern_or)
-        (pattern_token (lexicon_reference (identifier)))
+        (pattern_token whole: (lexicon_reference name: (identifier)))
         (pattern_or)
-        (pattern_token (lexicon_reference (identifier)))))
+        (pattern_token whole: (lexicon_reference name: (identifier)))))
     (pattern_line
       (pattern_option
-        (pattern_token (lexicon_reference (identifier)))
+        (pattern_token whole: (lexicon_reference name: (identifier)))
         (pattern_or)
-        (pattern_token (lexicon_reference (identifier)))))
+        (pattern_token whole: (lexicon_reference name: (identifier)))))
     (pattern_line
       (pattern_option
-        (pattern_token (lexicon_reference (identifier)))
+        (pattern_token whole: (lexicon_reference name: (identifier)))
         (pattern_or)
-        (pattern_token (lexicon_reference (identifier)))))))
+        (pattern_token whole: (lexicon_reference name: (identifier)))))))
 
 ================
 anonymous patterns
@@ -106,37 +106,37 @@ PATTERNS
     (pattern_start)
     (pattern_line
       (pattern_token
-        (anonymous_pattern
-          (pattern_token (lexicon_reference (identifier))))))
+        whole: (anonymous_pattern
+          (pattern_token whole: (lexicon_reference name: (identifier))))))
     (pattern_line
       (pattern_token
-        (anonymous_pattern
-          (pattern_token (lexicon_reference (identifier))))))
+        whole: (anonymous_pattern
+          (pattern_token whole: (lexicon_reference name: (identifier))))))
     (pattern_line
       (pattern_token
-        (anonymous_pattern
-          (pattern_token (lexicon_reference (identifier))))))
+        whole: (anonymous_pattern
+          (pattern_token whole: (lexicon_reference name: (identifier))))))
     (pattern_line
       (pattern_token
-        (anonymous_pattern
-          (pattern_token (lexicon_reference (identifier))))))
+        whole: (anonymous_pattern
+          (pattern_token whole: (lexicon_reference name: (identifier))))))
     (pattern_line
       (pattern_token
-        (anonymous_pattern
-          (pattern_token (lexicon_reference (identifier)))))
+        whole: (anonymous_pattern
+          (pattern_token whole: (lexicon_reference name: (identifier)))))
       (pattern_token
-        (anonymous_pattern
-          (pattern_token (lexicon_reference (identifier))))))
+        whole: (anonymous_pattern
+          (pattern_token whole: (lexicon_reference name: (identifier))))))
     (pattern_line
       (pattern_token
-        (anonymous_pattern
-          (pattern_token (lexicon_reference (identifier)))
+        whole: (anonymous_pattern
+          (pattern_token whole: (lexicon_reference name: (identifier)))
           (pattern_token
-            (anonymous_pattern
-              (pattern_token (lexicon_reference (identifier)))
+            whole: (anonymous_pattern
+              (pattern_token whole: (lexicon_reference name: (identifier)))
               (pattern_token
-                (anonymous_pattern
-                  (pattern_token (lexicon_reference (identifier))))))))))))
+                whole: (anonymous_pattern
+                  (pattern_token whole: (lexicon_reference name: (identifier))))))))))))
 
 ================
 options and anonymous
@@ -158,52 +158,52 @@ PATTERNS
     (pattern_start)
     (pattern_line
       (pattern_token
-        (anonymous_pattern
+        whole: (anonymous_pattern
           (pattern_option
-            (pattern_token (lexicon_reference (identifier)))
+            (pattern_token whole: (lexicon_reference name: (identifier)))
             (pattern_or)
-            (pattern_token (lexicon_reference (identifier)))))))
+            (pattern_token whole: (lexicon_reference name: (identifier)))))))
     (pattern_line
       (pattern_token
-        (anonymous_pattern
+        whole: (anonymous_pattern
           (pattern_option
-            (pattern_token (lexicon_reference (identifier)))
+            (pattern_token whole: (lexicon_reference name: (identifier)))
             (pattern_or)
-            (pattern_token (lexicon_reference (identifier)))
+            (pattern_token whole: (lexicon_reference name: (identifier)))
             (pattern_or)
-            (pattern_token (lexicon_reference (identifier)))))))
+            (pattern_token whole: (lexicon_reference name: (identifier)))))))
     (pattern_line
       (pattern_token
-        (anonymous_pattern
+        whole: (anonymous_pattern
           (pattern_option
-            (pattern_token (lexicon_reference (identifier)))
+            (pattern_token whole: (lexicon_reference name: (identifier)))
             (pattern_or)
-            (pattern_token (lexicon_reference (identifier)))))))
+            (pattern_token whole: (lexicon_reference name: (identifier)))))))
     (pattern_line
       (pattern_token
-        (anonymous_pattern
+        whole: (anonymous_pattern
           (pattern_option
-            (pattern_token (lexicon_reference (identifier)))
+            (pattern_token whole: (lexicon_reference name: (identifier)))
             (pattern_or)
-            (pattern_token (lexicon_reference (identifier)))))))
+            (pattern_token whole: (lexicon_reference name: (identifier)))))))
     (pattern_line
       (pattern_token
-        (anonymous_pattern
+        whole: (anonymous_pattern
           (pattern_option
-            (pattern_token (lexicon_reference (identifier)))
+            (pattern_token whole: (lexicon_reference name: (identifier)))
             (pattern_or)
-            (pattern_token (lexicon_reference (identifier)))))))
+            (pattern_token whole: (lexicon_reference name: (identifier)))))))
     (pattern_line
       (pattern_token
-        (anonymous_pattern
+        whole: (anonymous_pattern
           (pattern_option
-            (pattern_token (lexicon_reference (identifier)))
+            (pattern_token whole: (lexicon_reference name: (identifier)))
             (pattern_or)
-            (pattern_token (lexicon_reference (identifier)))))))
+            (pattern_token whole: (lexicon_reference name: (identifier)))))))
     (pattern_line
       (pattern_token
-        (anonymous_pattern
+        whole: (anonymous_pattern
           (pattern_option
-            (pattern_token (lexicon_reference (identifier)))
+            (pattern_token whole: (lexicon_reference name: (identifier)))
             (pattern_or)
-            (pattern_token (lexicon_reference (identifier)))))))))
+            (pattern_token whole: (lexicon_reference name: (identifier)))))))))

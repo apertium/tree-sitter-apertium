@@ -9,9 +9,9 @@ SET MARK =  COMMA | ("\") | ("\;") ; #"
 (source_file
   (set
     (SET)
-    (setname)
+    name: (setname)
     (eq)
-    (inlineset
+    value: (inlineset
       (inlineset_single (setname))
       (set_op)
       (inlineset_single (taglist (tag (qtag)))))

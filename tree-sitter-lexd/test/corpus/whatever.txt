@@ -21,49 +21,49 @@ a\ b
   (pattern_block
     (pattern_start)
     (pattern_line
-      (pattern_token (lexicon_reference (identifier)))
+      (pattern_token whole: (lexicon_reference name: (identifier)))
       (pattern_token
-	    (lexicon_reference
-          (identifier)
-          (number)))
+        whole: (lexicon_reference
+          name: (identifier)
+          column: (number)))
       (left_sieve)
-      (pattern_token (lexicon_reference (identifier)))
-      (comment)))
+      (pattern_token whole: (lexicon_reference name: (identifier)))
+      comment: (comment)))
   (pattern_block
     (named_pattern_start)
-    (identifier)
+    name: (identifier)
     (pattern_line
       (pattern_token
-        (anonymous_lexicon
-          (lexicon_segment (lexicon_string))))
-      (pattern_token (lexicon_reference (identifier)))))
+        whole: (anonymous_lexicon
+          (lexicon_segment whole: (lexicon_string))))
+      (pattern_token whole: (lexicon_reference name: (identifier)))))
   (lexicon_block
     (lexicon_start)
-    (identifier)
-    (number)
+    name: (identifier)
+    columns: (number)
     (lexicon_line
       (lexicon_segment
-        (lexicon_string)
+        left: (lexicon_string)
         (colon)
-        (lexicon_string))
+        right: (lexicon_string))
       (lexicon_segment
-        (lexicon_string))
+        whole: (lexicon_string))
       (lexicon_segment
         (colon)
-        (lexicon_string)))
+        right: (lexicon_string)))
     (lexicon_line
       (lexicon_segment
-        (lexicon_string)
+        left: (lexicon_string)
         (colon))
       (lexicon_segment
-        (lexicon_string))
+        whole: (lexicon_string))
       (lexicon_segment
-        (lexicon_string))))
+        whole: (lexicon_string))))
   (lexicon_block
     (lexicon_start)
-    (identifier)
+    name: (identifier)
     (lexicon_line
       (lexicon_segment
-        (lexicon_string)
-        (escaped_char)
-        (lexicon_string)))))
+        whole: (lexicon_string)
+        whole: (escaped_char)
+        whole: (lexicon_string)))))
