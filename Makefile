@@ -6,7 +6,8 @@ TESTS = logs/cg.test logs/lexc.test logs/lexd.test \
 PYDEPS = python/setup.py python/MANIFEST.in python/README python/build.sh
 
 langs: $(LOGS)
-test: $(TESTS)
+test: $(TESTS) logs/py.test
+test-langs: $(TESTS)
 
 logs/.log:
 	mkdir -p logs
@@ -23,6 +24,9 @@ logs/py: $(PYDEPS) $(LOGS)
 
 logs/%.test: logs/%
 	(cd "tree-sitter-$*" && rm -f test/*/*~ && tree-sitter test)
+
+logs/py.test: logs/py
+	(cd python && python3 setup.py test)
 
 clean:
 	rm -rf logs

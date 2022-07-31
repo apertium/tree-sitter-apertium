@@ -3,7 +3,7 @@
 from setuptools import setup
 from setuptools.command.build import build
 from setuptools.dist import Distribution
-from tree_sitter import Language, Parser
+from tree_sitter import Language
 import os
 
 TOP_PATH = os.path.join(os.path.dirname(__file__), 'tree_sitter_apertium')
@@ -22,7 +22,7 @@ class BD(Distribution):
 
 setup(
     name='tree-sitter-apertium',
-    version='0.0.1',
+    version='0.1.0',
     description='tree-sitter grammars for Apertium formats',
     url='https://github.com/apertium/tree-sitter-apertium',
     author='Daniel Swanson',
