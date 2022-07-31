@@ -80,17 +80,27 @@ module.exports = grammar({
 
     weight: $ => /\d+(\.\d+)?/,
 
+    attr_prefix: $ => "$",
+    global_var_prefix: $ => "$$",
+    global_str_prefix: $ => "$%",
+
+    magic: $ => "%",
+
+    colon: $ => ":",
+
+    lit_tag: $ => seq("<", $.ident, ">"),
+
     output_rule: $ => seq(
       field('pos', $.ident),
-      ":",
-      optional(":"),
+      $.colon,
+      optional($.colon),
       choice(
         $.lu_cond,
-        "%",
+        $.magic,
         listof(
           choice(
             $.ident,
-            seq("<", $.ident, ">")
+            $.lit_tag,
           ),
           "."
         )
@@ -98,22 +108,19 @@ module.exports = grammar({
       ";"
     ),
 
+    attr_set_insert: $ => seq("[", $.ident, "]"),
+
+    attr_pair: $ => seq(
+      field('src', choice($.ident, $.string, $.attr_set_insert)),
+      field('trg', choice($.ident, $.string))
+    ),
+
     retag_rule: $ => seq(
       field('src_attr', $.ident),
       ">",
       field('trg_attr', $.ident),
       ":",
-      listof(
-        seq(
-          choice(
-            $.ident,
-            $.string,
-            seq("[", $.ident, "]")
-          ),
-          choice($.ident, $.string)
-        ),
-        ","
-      ),
+      listof($.attr_pair, ","),
       ";"
     ),
 
@@ -132,37 +139,40 @@ module.exports = grammar({
         $.ident,
         $.string,
         seq("@", $.ident),
-        seq("[", $.ident, "]")
+        $.attr_set_insert,
       )),
       ";"
     ),
 
     clip_side: $ => token(seq("/", choice("sl", "tl", "ref"))),
 
+    insert: $ => "<",
+    inserted: $ => ">",
+
     clip: $ => choice(
       seq(
         choice(
           seq(
-            optional(">"),
-            $.num,
+            field('inserted', optional($.inserted)),
+            field('pos', $.num),
             "."
           ),
-          "$",
+          field('pos', $.attr_prefix),
           seq(
-            "$$",
-            $.ident,
+            $.global_var_prefix,
+            field('var_name', $.ident),
             "."
           )
         ),
-        $.ident,
-        optional($.clip_side),
-        optional(seq(">", $.ident))
+        field('attr', $.ident),
+        field('side', optional($.clip_side)),
+        optional(seq(">", field('convert', $.ident)))
       ),
       seq(
-        "$%",
-        $.ident
+        $.global_str_prefix,
+        field('var_name', $.ident)
       ),
-      $.ident
+      field('val', $.ident)
     ),
 
     str_op: $ => choice(
@@ -188,9 +198,12 @@ module.exports = grammar({
       operator("contains", false)
     ),
 
-    bool_op: $ => choice(
+    and: $ => choice(
       operator("and", false),
-      operator("&", false),
+      operator("&", false)
+    ),
+
+    or: $ => choice(
       operator("or", false),
       /[-_]*\|[-_]*/
     ),
@@ -218,7 +231,7 @@ module.exports = grammar({
       $._cond_base_bool,
       prec(3, seq("(", $._cond_bool, ")")),
       prec(2, seq($.not, $._cond_bool)),
-      prec.left(1, seq($._cond_bool, $.bool_op, $._cond_bool))
+      prec.left(1, seq($._cond_bool, choice($.and, $.or), $._cond_bool))
     ),
 
     condition: $ => seq(
@@ -229,13 +242,13 @@ module.exports = grammar({
     ),
 
     pattern_element: $ => seq(
-      optional("%"),
+      optional($.magic),
       optional(seq(
         field(
           'lemma',
           choice(
-            seq("$", $.ident),
-            seq("[", $.ident, "]"),
+            seq($.attr_prefix, $.ident),
+            $.attr_set_insert,
             $.ident,
             $.string
           ),
@@ -248,7 +261,7 @@ module.exports = grammar({
         choice(
           $.ident,
           seq("$", $.ident, optional($.clip_side)),
-          seq("[", $.ident, "]"),
+          $.attr_set_insert,
           $.string
         )
       ))
@@ -256,12 +269,15 @@ module.exports = grammar({
 
     unknown: $ => "*",
 
+    set_var: $ => seq(
+      field('name', $.ident),
+      "=",
+      field('value', $._string_val)
+    ),
+
     output_var_set: $ => seq(
       token.immediate("["),
-      listof(
-        seq($.ident, "=", $._string_val),
-        ","
-      ),
+      listof($.set_var, ","),
       "]"
     ),
 
@@ -272,41 +288,45 @@ module.exports = grammar({
     ),
 
     literal_lu: $ => seq(
-      choice($.ident, $.string),
+      field('lemma', choice($.ident, $.string)),
       token.immediate("@"),
       listof(
         choice(
-          $.ident,
-          seq("$", $.ident),
-          seq("[", choice($.clip, $.string_cond), "]"),
-          seq("{", $.clip, "}")
+          field('lit_tag', $.ident),
+          field('parent_tag', seq("$", $.ident)),
+          field('complex_tag', seq("[", choice($.clip, $.string_cond), "]")),
+          field('lemcase', seq("{", $.clip, "}"))
         ),
         "."
       ),
-      optional($.output_var_set)
+      field('vars', optional($.output_var_set))
     ),
 
+    conjoin: $ => "+",
+    null_lu: $ => "*",
+
     output_element: $ => seq(
-      optional(choice("+", "<")),
+      optional(choice($.conjoin, $.insert)),
       choice(
         seq(
-          optional(">"),
-          optional("%"),
+          optional($.inserted),
+          optional($.magic),
           choice(
             $.num,
             $.ident,
             $.string,
-            "*"
+            $.null_lu,
           ),
           optional($.macro_name),
           optional($.output_var_set)
         ),
-        seq("$$", $.ident),
+        seq($.global_var_prefix, $.ident),
         $.literal_lu
       )
     ),
 
     blank: $ => "_",
+    numbered_blank: $ => /_\d+/,
 
     if_tok: $ => operator("if", false),
     elif_tok: $ => choice(
@@ -336,18 +356,21 @@ module.exports = grammar({
       $.chunk_cond
     ),
 
+    output_chunk: $ => seq(
+      "{",
+      repeat($._lu_val),
+      "}"
+    ),
+
     _chunk_val: $ => choice(
-      seq(
-        "{",
-        repeat($._lu_val),
-        "}"
-      ),
+      $.output_chunk,
       $.chunk_cond
     ),
 
     _lu_val: $ => choice(
       $.output_element,
       $.blank,
+      $.numbered_blank,
       $.lu_cond,
       seq("[", repeat($._lu_val), "]")
     ),
@@ -359,32 +382,54 @@ module.exports = grammar({
       ";"
     ),
 
+    set_surf: $ => seq(
+      "$",
+      $.num,
+      field('side', $.clip_side),
+      "=",
+      $._lu_val
+    ),
+
+    set_global_var: $ => seq(
+      $.global_var_prefix,
+      field('name', $.ident),
+      "=",
+      field('value', $._lu_val)
+    ),
+
+    set_global_str: $ => seq(
+      $.global_str_prefix,
+      field('name', $.ident),
+      "=",
+      field('value', $._string_val)
+    ),
+
+    set_chunk_attr: $ => seq(
+      $.attr_prefix,
+      field('name', $.ident),
+      "=",
+      field('value', $._string_val)
+    ),
+
     reduce_rule: $ => seq(
       field('rule_name', optional($.string)),
-      optional(seq($.weight, ":")),
-      repeat1(choice($.unknown, $.pattern_element)),
-      optional(seq("?", $.condition)),
+      field('weight', optional(seq($.weight, ":"))),
+      field('pattern', repeat1(choice($.unknown, $.pattern_element))),
+      field('cond', optional(seq("?", $.condition))),
       optional(seq(
         "[",
         listof(
           choice(
-            seq(
-              "$",
-              $.num,
-              "/",
-              choice("sl", "ref"),
-              "=",
-              $._lu_val
-            ),
-            seq("$$", $.ident, "=", $._lu_val),
-            seq("$%", $.ident, "=", $._string_val),
-            seq("$", $.ident, "=", $._string_val)
+            $.set_surf,
+            $.set_global_var,
+            $.set_global_str,
+            $.set_chunk_attr,
           ),
           ","
         ),
         "]"
       )),
-      $.reduce_output
+      field('output', $.reduce_output)
     )
   }
 })

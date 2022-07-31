@@ -1,7 +1,7 @@
 [
   (arrow)
   (str_op)
-  (bool_op)
+  (and) (or)
   (not)
   "="
   (blank)
@@ -19,6 +19,8 @@
 (weight) @constant.numeric
 (reduce_rule ":" @constant.numeric)
 (num) @constant.numeric
+
+(colon) @punctuation.delimiter
 
 (string) @constant.string
 
