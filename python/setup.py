@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 from setuptools import setup
-from setuptools.command.build import build
+# setuptools doesn't seem to have an overridable build command yet
+# TODO: is there a better way to do this besides mixing build systems?
+from distutils.command.build import build
 from setuptools.dist import Distribution
 from tree_sitter import Language
 import os
@@ -13,6 +15,7 @@ SRC_PATHS = [os.path.join(TOP_PATH, 'grammars', name)
 
 class TSA_build(build):
     def run(self):
+        print('Compiling grammars')
         Language.build_library(SO_PATH, SRC_PATHS)
         super().run()
 
