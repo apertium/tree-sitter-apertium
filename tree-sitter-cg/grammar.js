@@ -68,6 +68,7 @@ module.exports = grammar({
       kwd('SOFT-DELIMITERS'),
       kwd('PREFERRED-TARGETS'),
       kwd('REOPEN-MAPPINGS'),
+      kwd('UNDEF-SETS'),
     ),
 
     set_special_list: $ => seq(
