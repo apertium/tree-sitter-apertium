@@ -140,7 +140,7 @@ module.exports = grammar({
     list: $ => seq(
       $.LIST,
       field('name', $.setname),
-      $.eq,
+      choice($.eq, $.pluseq),
       field('value', $.taglist),
       $.semicolon,
     ),
