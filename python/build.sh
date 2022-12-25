@@ -1,15 +1,17 @@
 #!/bin/bash
+AUDIT_PLATFORM="${AUDIT_PLATFORM:-manylinux2014_x86_64}"
+PYTHON="${PYTHON:-python3}"
 
 set -eo pipefail
 
 rm -rf build dist *.egg-info wheelhouse
 
-python3 setup.py sdist bdist_wheel
+$PYTHON setup.py sdist bdist_wheel
 
 any_linux=no
 for whl in dist/*linux*.whl
 do
-  auditwheel repair --plat manylinux2014_x86_64 "$whl"
+  auditwheel repair --plat "$AUDIT_PLATFORM" "$whl"
   any_linux=yes
 done
 
