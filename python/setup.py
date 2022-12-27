@@ -25,7 +25,7 @@ class BD(Distribution):
 
 setup(
     name='tree-sitter-apertium',
-    version='0.1.0',
+    version='0.1.1',
     description='tree-sitter grammars for Apertium formats',
     url='https://github.com/apertium/tree-sitter-apertium',
     author='Daniel Swanson',
@@ -41,4 +41,5 @@ setup(
     package_data={'tree_sitter_apertium': ['langs.so']},
     cmdclass={'build': TSA_build},
     distclass=BD,
+    install_requires=['tree-sitter >= 0.20'],
 )
