@@ -53,6 +53,7 @@ module.exports = grammar({
         $.rule_addcohort,
         $.rule_mergecohorts,
         $.rule_external,
+        $.rule_with,
         $.semicolon,
       )),
     ),
@@ -255,7 +256,8 @@ module.exports = grammar({
       field('trg', $.rule_target),
       optional($.IF),
       field('context', optional($._context)),
-      field('to_from', $._to_from),
+      choice($.TO, $.FROM),
+      field('to_from', $._context),
       $.semicolon,
     ),
 
@@ -357,6 +359,33 @@ module.exports = grammar({
       field('path', $.filepath),
       field('flag', optional($.ruleflag)),
       $._shared_rule_end,
+    ),
+
+    rule_with: $ => seq(
+      field('word', optional($.qtag)),
+      field('type', $.ruletype_with),
+      choice(/[\s\n]+/, field('name', $.rule_name)),
+      field('flag', optional($.ruleflag)),
+      field('trg', $.rule_target),
+      optional($.IF),
+      field('context', optional($._context)),
+      '{',
+      field('children', repeat(choice(
+        $.rule,
+        $.rule_substitute_etc,
+        $.rule_map_etc,
+        $.rule_parentchild,
+        $.rule_move,
+        $.rule_switch,
+        $.rule_relation,
+        $.rule_relations,
+        $.rule_addcohort,
+        $.rule_mergecohorts,
+        $.rule_external,
+        $.rule_with,
+      ))),
+      '}',
+      $.semicolon,
     ),
 
     TEMPLATE: $ => kwd('TEMPLATE'),
@@ -477,7 +506,9 @@ module.exports = grammar({
 
     ruletype_external: $ => kwd('EXTERNAL'),
 
-    ruleflag_name: $ => kwd('NEAREST|ALLOWLOOP|DELAYED|IMMEDIATE|LOOK(DELETED|DELAYED)|(UN)?SAFE|REMEMBERX|RESETX|(KEEP|VARY)ORDER|ENCL_(INNER|OUTER|FINAL|ANY)|ALLOWCROSS|(NO)?ITERATE|UNMAPLAST|REVERSE|SUB|REPEAT'),
+    ruletype_with: $ => kwd('WITH'),
+
+    ruleflag_name: $ => kwd('NEAREST|ALLOWLOOP|DELAYED|IMMEDIATE|LOOK(DELETED|DELAYED)|(UN)?SAFE|REMEMBERX|RESETX|(KEEP|VARY)ORDER|ENCL_(INNER|OUTER|FINAL|ANY)|ALLOWCROSS|(NO)?ITERATE|UNMAPLAST|REVERSE|SUB|REPEAT|NOMAPPED|NOPARENT'),
 
     ruleflag: $ => repeat1(choice(
       $.subreading,

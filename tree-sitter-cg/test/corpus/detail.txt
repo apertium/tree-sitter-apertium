@@ -17,3 +17,49 @@ SET MARK =  COMMA | ("\") | ("\;") ; #"
       (inlineset_single (taglist (tag (qtag)))))
     (semicolon))
   (comment))
+
+=============
+WITH grouping
+=============
+
+WITH NOPARENT (n) IF (-1* (det)) {
+  SETCHILD REPEAT (*) TO (-1* (adj) LINK -1* _C1_) ;
+  SETCHILD (*) TO (jC1 (*)) ;
+} ;
+
+---
+
+(source_file
+  (rule_with
+    type: (ruletype_with)
+    flag: (ruleflag (ruleflag_name))
+    trg: (rule_target
+      target: (inlineset (inlineset_single (taglist (tag (ntag))))))
+    (IF)
+    context: (contexttest
+      pos: (contextpos)
+      set: (inlineset (inlineset_single (taglist (tag (ntag))))))
+    children: (rule_parentchild
+      type: (ruletype_parentchild)
+      flag: (ruleflag (ruleflag_name))
+      trg: (rule_target
+        target: (inlineset (inlineset_single (taglist (tag (ntag))))))
+      (TO)
+      to_from: (contexttest
+        pos: (contextpos)
+        set: (inlineset (inlineset_single (taglist (tag (ntag)))))
+        (LINK)
+        link: (contexttest
+          pos: (contextpos)
+          set: (inlineset (inlineset_single (setname)))))
+      (semicolon))
+    children: (rule_parentchild
+      type: (ruletype_parentchild)
+      trg: (rule_target
+        target: (inlineset (inlineset_single (taglist (tag (ntag))))))
+      (TO)
+      to_from: (contexttest
+        pos: (contextpos)
+        set: (inlineset (inlineset_single (taglist (tag (ntag))))))
+      (semicolon))
+    (semicolon)))
