@@ -17,6 +17,13 @@ function kwd(in_str) {
   return new RegExp(out_str);
 }
 
+function make_contextpos(ops) {
+  return prec.left(10, seq(
+    choice(...(ops.map(o => alias(o[1], sym(o[0]))))),
+    repeat(choice(...(ops.map(o => alias(token.immediate(o[1]), sym(o[0])))))),
+  ));
+}
+
 module.exports = grammar({
   name: 'cg',
 
@@ -480,7 +487,54 @@ module.exports = grammar({
 
     tag: $ => choice($.ntag, $.qtag),
 
-    contextpos: $ => /[^\[\]()\s\n]+/,
+    contextpos: $ => seq(
+      make_contextpos([
+        ['ctx_scan_all', '**'],
+        ['ctx_scan_first', '*'],
+        ['ctx_careful', 'C'],
+        ['ctx_child', 'c'],
+        ['ctx_parent', 'p'], // pp can be separated
+        ['ctx_sibling', 's'],
+        ['ctx_self', 'S'],
+        ['ctx_no_barrier', 'N'],
+        ['ctx_span_left', '<'],
+        ['ctx_span_right', '>'],
+        ['ctx_span_both', 'W'],
+        ['ctx_absolute', '@'],
+        ['ctx_no_pass_origin', 'O'],
+        ['ctx_pass_origin', 'o'],
+        ['ctx_left_par', 'L'],
+        ['ctx_right_par', 'R'],
+        ['ctx_mark_set', 'X'],
+        ['ctx_jump_mark', /x|jCM/],
+        ['ctx_look_deleted', 'D'],
+        ['ctx_look_delayed', 'd'],
+        ['ctx_look_ignored', 'I'],
+        ['ctx_attach_to', 'A'],
+        ['ctx_with', 'w'],
+        ['ctx_unknown', '?'],
+        ['ctx_numeric_branch', 'f'],
+        ['ctx_active', 'T'],
+        ['ctx_inactive', 't'],
+        ['ctx_back_of_tags', 'B'],
+        ['ctx_negative', '-'],
+        ['ctx_number', /[0-9]+/],
+        ['ctx_relation', /r:([^\s(]+)/],
+        ['ctx_right', 'r'], // rr can be separated
+        ['ctx_left', 'l'], // ll can be separated
+        ['ctx_jump_attach', 'jA'],
+        ['ctx_jump_target', 'jT'],
+        ['ctx_jump_context', /jC[1-9]/],
+      ]),
+      optional(seq(
+        token.immediate('/'),
+        choice(
+          alias(token.immediate(/-?[0-9]+/), sym('ctx_subreading')),
+          alias(token.immediate(/\*\*?/), sym('ctx_subreading_any')),
+        ),
+      )),
+      token.immediate(/[\s\n]/),
+    ),
 
     prefix: $ => /[^\s#]/,
 

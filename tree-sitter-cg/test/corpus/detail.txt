@@ -37,7 +37,7 @@ WITH NOPARENT (n) IF (-1* (det)) {
       target: (inlineset (inlineset_single (taglist (tag (ntag))))))
     (IF)
     context: (contexttest
-      pos: (contextpos)
+      pos: (contextpos (ctx_negative) (ctx_number) (ctx_scan_first))
       set: (inlineset (inlineset_single (taglist (tag (ntag))))))
     children: (rule_parentchild
       type: (ruletype_parentchild)
@@ -46,11 +46,11 @@ WITH NOPARENT (n) IF (-1* (det)) {
         target: (inlineset (inlineset_single (taglist (tag (ntag))))))
       (TO)
       to_from: (contexttest
-        pos: (contextpos)
+        pos: (contextpos (ctx_negative) (ctx_number) (ctx_scan_first))
         set: (inlineset (inlineset_single (taglist (tag (ntag)))))
         (LINK)
         link: (contexttest
-          pos: (contextpos)
+          pos: (contextpos (ctx_negative) (ctx_number) (ctx_scan_first))
           set: (inlineset (inlineset_single (setname)))))
       (semicolon))
     children: (rule_parentchild
@@ -59,7 +59,7 @@ WITH NOPARENT (n) IF (-1* (det)) {
         target: (inlineset (inlineset_single (taglist (tag (ntag))))))
       (TO)
       to_from: (contexttest
-        pos: (contextpos)
+        pos: (contextpos (ctx_jump_context))
         set: (inlineset (inlineset_single (taglist (tag (ntag))))))
       (semicolon))
     (semicolon)))

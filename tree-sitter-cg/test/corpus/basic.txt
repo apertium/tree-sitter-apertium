@@ -35,7 +35,7 @@ END
     target: (rule_target target: (inlineset (inlineset_single (setname))))
     (IF)
     context: (contexttest
-      pos: (contextpos)
+      pos: (contextpos (ctx_number))
       set: (inlineset (inlineset_single (setname))))
     (semicolon))
   (comment (END)))
@@ -66,7 +66,7 @@ some other random text
     type: (ruletype)
     target: (rule_target target: (inlineset (inlineset_single (setname))))
     (IF)
-    context: (contexttest pos: (contextpos)
+    context: (contexttest pos: (contextpos (ctx_number))
       set: (inlineset (inlineset_single (setname))))
 		(semicolon))
   (comment (END)))
