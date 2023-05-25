@@ -1,0 +1,778 @@
+[
+  {
+    "type": "alphabet_symbol",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "arrow",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "condition_operators",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "conditional_replace",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "condition_operators",
+          "named": true
+        },
+        {
+          "type": "context_list",
+          "named": true
+        },
+        {
+          "type": "parallel_replace",
+          "named": true
+        },
+        {
+          "type": "simple_replace",
+          "named": true
+        },
+        {
+          "type": "single_replace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "context",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "context_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "context",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "end_comment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        },
+        {
+          "type": "boundary",
+          "named": true
+        },
+        {
+          "type": "colon",
+          "named": true
+        },
+        {
+          "type": "complement",
+          "named": true
+        },
+        {
+          "type": "compose",
+          "named": true
+        },
+        {
+          "type": "conditional_replace",
+          "named": true
+        },
+        {
+          "type": "contains",
+          "named": true
+        },
+        {
+          "type": "crossproduct",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "ignore",
+          "named": true
+        },
+        {
+          "type": "ignore_inside",
+          "named": true
+        },
+        {
+          "type": "intersect",
+          "named": true
+        },
+        {
+          "type": "inverse",
+          "named": true
+        },
+        {
+          "type": "lower",
+          "named": true
+        },
+        {
+          "type": "mark",
+          "named": true
+        },
+        {
+          "type": "optional",
+          "named": true
+        },
+        {
+          "type": "parallel_conditional_replace",
+          "named": true
+        },
+        {
+          "type": "parallel_replace",
+          "named": true
+        },
+        {
+          "type": "plus",
+          "named": true
+        },
+        {
+          "type": "repeat",
+          "named": true
+        },
+        {
+          "type": "restrict",
+          "named": true
+        },
+        {
+          "type": "reverse",
+          "named": true
+        },
+        {
+          "type": "simple_replace",
+          "named": true
+        },
+        {
+          "type": "single_replace",
+          "named": true
+        },
+        {
+          "type": "star",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "substitute",
+          "named": true
+        },
+        {
+          "type": "subtract",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "symbol_group",
+          "named": true
+        },
+        {
+          "type": "term_complement",
+          "named": true
+        },
+        {
+          "type": "union",
+          "named": true
+        },
+        {
+          "type": "upper",
+          "named": true
+        },
+        {
+          "type": "zero",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lexicon",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "lexicon_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "lexicon_line",
+          "named": true
+        },
+        {
+          "type": "lexicon_start",
+          "named": true
+        },
+        {
+          "type": "lexicon_start_wrong_case",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lexicon_line",
+    "named": true,
+    "fields": {
+      "continuation": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "lexicon_name",
+            "named": true
+          }
+        ]
+      },
+      "gloss": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "gloss",
+            "named": true
+          }
+        ]
+      },
+      "left": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "lexicon_string",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "lexicon_string",
+            "named": true
+          }
+        ]
+      },
+      "whole": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "lexicon_string",
+            "named": true
+          },
+          {
+            "type": "regex",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "colon",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lexicon_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "lexicon_start",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "lexicon_string",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mark",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arrow",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "multichar_symbols",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alphabet_symbol",
+          "named": true
+        },
+        {
+          "type": "multichar_symbols_header",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "optional",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parallel_conditional_replace",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "conditional_replace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parallel_replace",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "simple_replace",
+          "named": true
+        },
+        {
+          "type": "single_replace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "regex",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "restrict",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "context_list",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "simple_replace",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arrow",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "single_replace",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arrow",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "lexicon",
+          "named": true
+        },
+        {
+          "type": "multichar_symbols",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "substitute",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": "(->)",
+    "named": false
+  },
+  {
+    "type": "(<-)",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": ",,",
+    "named": false
+  },
+  {
+    "type": "->",
+    "named": false
+  },
+  {
+    "type": "->@",
+    "named": false
+  },
+  {
+    "type": "...",
+    "named": false
+  },
+  {
+    "type": ".]",
+    "named": false
+  },
+  {
+    "type": "//",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<-",
+    "named": false
+  },
+  {
+    "type": "=>",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">@",
+    "named": false
+  },
+  {
+    "type": "@->",
+    "named": false
+  },
+  {
+    "type": "@>",
+    "named": false
+  },
+  {
+    "type": "END",
+    "named": false
+  },
+  {
+    "type": "LEXICON",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "[.",
+    "named": false
+  },
+  {
+    "type": "\\/",
+    "named": false
+  },
+  {
+    "type": "\\\\",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "_",
+    "named": false
+  },
+  {
+    "type": "`",
+    "named": false
+  },
+  {
+    "type": "any",
+    "named": true
+  },
+  {
+    "type": "boundary",
+    "named": true
+  },
+  {
+    "type": "colon",
+    "named": true
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "complement",
+    "named": true
+  },
+  {
+    "type": "compose",
+    "named": true
+  },
+  {
+    "type": "contains",
+    "named": true
+  },
+  {
+    "type": "crossproduct",
+    "named": true
+  },
+  {
+    "type": "gloss",
+    "named": true
+  },
+  {
+    "type": "ignore",
+    "named": true
+  },
+  {
+    "type": "ignore_inside",
+    "named": true
+  },
+  {
+    "type": "intersect",
+    "named": true
+  },
+  {
+    "type": "inverse",
+    "named": true
+  },
+  {
+    "type": "lexicon_start_wrong_case",
+    "named": true
+  },
+  {
+    "type": "lower",
+    "named": true
+  },
+  {
+    "type": "multichar_symbols_header",
+    "named": true
+  },
+  {
+    "type": "plus",
+    "named": true
+  },
+  {
+    "type": "repeat",
+    "named": true
+  },
+  {
+    "type": "reverse",
+    "named": true
+  },
+  {
+    "type": "semicolon",
+    "named": true
+  },
+  {
+    "type": "star",
+    "named": true
+  },
+  {
+    "type": "string",
+    "named": true
+  },
+  {
+    "type": "subtract",
+    "named": true
+  },
+  {
+    "type": "symbol",
+    "named": true
+  },
+  {
+    "type": "symbol_group",
+    "named": true
+  },
+  {
+    "type": "term_complement",
+    "named": true
+  },
+  {
+    "type": "union",
+    "named": true
+  },
+  {
+    "type": "upper",
+    "named": true
+  },
+  {
+    "type": "zero",
+    "named": true
+  },
+  {
+    "type": "||",
+    "named": false
+  }
+]

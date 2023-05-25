@@ -1,0 +1,4 @@
+*.c -diff
+grammar.json -diff
+node-types.json -diff
+*.h -diff

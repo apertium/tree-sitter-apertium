@@ -1,0 +1,883 @@
+[
+  {
+    "type": "alias_command",
+    "named": true,
+    "fields": {
+      "comment": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          }
+        ]
+      },
+      "src": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "trg": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alias",
+          "named": true
+        },
+        {
+          "type": "block_comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "anonymous_lexicon",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "lexicon_segment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "anonymous_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "left_sieve",
+          "named": true
+        },
+        {
+          "type": "pattern_option",
+          "named": true
+        },
+        {
+          "type": "pattern_token",
+          "named": true
+        },
+        {
+          "type": "right_sieve",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block_comment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "flattened_operator",
+    "named": false,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "pattern_or",
+          "named": true
+        },
+        {
+          "type": "pattern_token",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lexicon_block",
+    "named": true,
+    "fields": {
+      "columns": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      },
+      "comment": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          }
+        ]
+      },
+      "defaults": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "tag_setting",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block_comment",
+          "named": true
+        },
+        {
+          "type": "lexicon_line",
+          "named": true
+        },
+        {
+          "type": "lexicon_start",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lexicon_line",
+    "named": true,
+    "fields": {
+      "comment": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block_comment",
+          "named": true
+        },
+        {
+          "type": "lexicon_segment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lexicon_reference",
+    "named": true,
+    "fields": {
+      "column": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      },
+      "disjoint": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "question_op",
+            "named": true
+          }
+        ]
+      },
+      "filter": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "tag_filter",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "lexicon_segment",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "/",
+            "named": false
+          },
+          {
+            "type": "escaped_char",
+            "named": true
+          },
+          {
+            "type": "lexicon_string",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "/",
+            "named": false
+          },
+          {
+            "type": "escaped_char",
+            "named": true
+          },
+          {
+            "type": "lexicon_string",
+            "named": true
+          }
+        ]
+      },
+      "tags": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "tag_setting",
+            "named": true
+          }
+        ]
+      },
+      "whole": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "/",
+            "named": false
+          },
+          {
+            "type": "escaped_char",
+            "named": true
+          },
+          {
+            "type": "lexicon_string",
+            "named": true
+          },
+          {
+            "type": "regex",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "colon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "neg_tag",
+    "named": true,
+    "fields": {
+      "tag": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tag",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "pattern_block",
+    "named": true,
+    "fields": {
+      "comment": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block_comment",
+          "named": true
+        },
+        {
+          "type": "named_pattern_start",
+          "named": true
+        },
+        {
+          "type": "pattern_line",
+          "named": true
+        },
+        {
+          "type": "pattern_start",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pattern_line",
+    "named": true,
+    "fields": {
+      "comment": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block_comment",
+          "named": true
+        },
+        {
+          "type": "left_sieve",
+          "named": true
+        },
+        {
+          "type": "pattern_option",
+          "named": true
+        },
+        {
+          "type": "pattern_token",
+          "named": true
+        },
+        {
+          "type": "right_sieve",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pattern_operator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "plus_op",
+          "named": true
+        },
+        {
+          "type": "question_op",
+          "named": true
+        },
+        {
+          "type": "star_op",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pattern_option",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "pattern_or",
+          "named": true
+        },
+        {
+          "type": "pattern_token",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pattern_or",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "pattern_token",
+    "named": true,
+    "fields": {
+      "filter": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "tag_filter",
+            "named": true
+          }
+        ]
+      },
+      "left": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "lexicon_reference",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "pattern_operator",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "lexicon_reference",
+            "named": true
+          }
+        ]
+      },
+      "whole": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "anonymous_lexicon",
+            "named": true
+          },
+          {
+            "type": "anonymous_pattern",
+            "named": true
+          },
+          {
+            "type": "lexicon_reference",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "colon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "regex",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "pattern_or",
+          "named": true
+        },
+        {
+          "type": "regex_group",
+          "named": true
+        },
+        {
+          "type": "regex_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "regex_char_class",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escaped_char",
+          "named": true
+        },
+        {
+          "type": "lexicon_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "regex_group",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "pattern_operator",
+          "named": true
+        },
+        {
+          "type": "pattern_or",
+          "named": true
+        },
+        {
+          "type": "regex_group",
+          "named": true
+        },
+        {
+          "type": "regex_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "regex_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "colon",
+          "named": true
+        },
+        {
+          "type": "escaped_char",
+          "named": true
+        },
+        {
+          "type": "regex_char_class",
+          "named": true
+        },
+        {
+          "type": "regex_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "alias_command",
+          "named": true
+        },
+        {
+          "type": "block_comment",
+          "named": true
+        },
+        {
+          "type": "lexicon_block",
+          "named": true
+        },
+        {
+          "type": "pattern_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag_distribution",
+    "named": true,
+    "fields": {
+      "op": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tag_distribution_operator",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "neg_tag",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag_distribution_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "tag_filter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "neg_tag",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        },
+        {
+          "type": "tag_distribution",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag_setting",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "neg_tag",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "alias",
+    "named": true
+  },
+  {
+    "type": "colon",
+    "named": true
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "escaped_char",
+    "named": true
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "left_sieve",
+    "named": true
+  },
+  {
+    "type": "lexicon_start",
+    "named": true
+  },
+  {
+    "type": "lexicon_string",
+    "named": true
+  },
+  {
+    "type": "named_pattern_start",
+    "named": true
+  },
+  {
+    "type": "number",
+    "named": true
+  },
+  {
+    "type": "pattern_start",
+    "named": true
+  },
+  {
+    "type": "plus_op",
+    "named": true
+  },
+  {
+    "type": "question_op",
+    "named": true
+  },
+  {
+    "type": "regex_string",
+    "named": true
+  },
+  {
+    "type": "right_sieve",
+    "named": true
+  },
+  {
+    "type": "star_op",
+    "named": true
+  },
+  {
+    "type": "tag",
+    "named": true
+  },
+  {
+    "type": "|",
+    "named": false
+  }
+]

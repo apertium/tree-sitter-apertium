@@ -13,6 +13,6 @@
 /logs
 Cargo.toml
 binding.gyp
-*/src/
 */bindings/
 package-lock.json
+*.wasm
