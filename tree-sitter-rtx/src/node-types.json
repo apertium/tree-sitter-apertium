@@ -136,6 +136,86 @@
     }
   },
   {
+    "type": "choice",
+    "named": true,
+    "fields": {
+      "cond": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "condition",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "always_tok",
+            "named": true
+          },
+          {
+            "type": "else_tok",
+            "named": true
+          },
+          {
+            "type": "if_tok",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "blank",
+            "named": true
+          },
+          {
+            "type": "chunk_cond",
+            "named": true
+          },
+          {
+            "type": "clip",
+            "named": true
+          },
+          {
+            "type": "lu_cond",
+            "named": true
+          },
+          {
+            "type": "lu_sequence",
+            "named": true
+          },
+          {
+            "type": "numbered_blank",
+            "named": true
+          },
+          {
+            "type": "output_chunk",
+            "named": true
+          },
+          {
+            "type": "output_element",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "string_cond",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "chunk_cond",
     "named": true,
     "fields": {},
@@ -144,31 +224,7 @@
       "required": true,
       "types": [
         {
-          "type": "always_tok",
-          "named": true
-        },
-        {
-          "type": "chunk_cond",
-          "named": true
-        },
-        {
-          "type": "condition",
-          "named": true
-        },
-        {
-          "type": "elif_tok",
-          "named": true
-        },
-        {
-          "type": "else_tok",
-          "named": true
-        },
-        {
-          "type": "if_tok",
-          "named": true
-        },
-        {
-          "type": "output_chunk",
+          "type": "choice",
           "named": true
         }
       ]
@@ -455,31 +511,30 @@
       "required": true,
       "types": [
         {
-          "type": "always_tok",
+          "type": "choice",
           "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "lu_sequence",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
         {
           "type": "blank",
           "named": true
         },
         {
-          "type": "condition",
-          "named": true
-        },
-        {
-          "type": "elif_tok",
-          "named": true
-        },
-        {
-          "type": "else_tok",
-          "named": true
-        },
-        {
-          "type": "if_tok",
-          "named": true
-        },
-        {
           "type": "lu_cond",
+          "named": true
+        },
+        {
+          "type": "lu_sequence",
           "named": true
         },
         {
@@ -542,6 +597,10 @@
         },
         {
           "type": "lu_cond",
+          "named": true
+        },
+        {
+          "type": "lu_sequence",
           "named": true
         },
         {
@@ -743,6 +802,10 @@
         },
         {
           "type": "lu_cond",
+          "named": true
+        },
+        {
+          "type": "lu_sequence",
           "named": true
         },
         {
@@ -1012,23 +1075,19 @@
         ]
       },
       "value": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "[",
-            "named": false
-          },
-          {
-            "type": "]",
-            "named": false
-          },
           {
             "type": "blank",
             "named": true
           },
           {
             "type": "lu_cond",
+            "named": true
+          },
+          {
+            "type": "lu_sequence",
             "named": true
           },
           {
@@ -1057,6 +1116,16 @@
     "type": "set_surf",
     "named": true,
     "fields": {
+      "pos": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "num",
+            "named": true
+          }
+        ]
+      },
       "side": {
         "multiple": false,
         "required": true,
@@ -1069,7 +1138,7 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -1081,7 +1150,7 @@
           "named": true
         },
         {
-          "type": "num",
+          "type": "lu_sequence",
           "named": true
         },
         {
@@ -1170,35 +1239,7 @@
       "required": true,
       "types": [
         {
-          "type": "always_tok",
-          "named": true
-        },
-        {
-          "type": "clip",
-          "named": true
-        },
-        {
-          "type": "condition",
-          "named": true
-        },
-        {
-          "type": "elif_tok",
-          "named": true
-        },
-        {
-          "type": "else_tok",
-          "named": true
-        },
-        {
-          "type": "if_tok",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "string_cond",
+          "type": "choice",
           "named": true
         }
       ]

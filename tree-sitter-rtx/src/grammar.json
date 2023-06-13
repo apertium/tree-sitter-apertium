@@ -1498,6 +1498,106 @@
       "type": "PATTERN",
       "value": "[-_]*[Aa][-_]*[Ll][-_]*[Ww][-_]*[Aa][-_]*[Yy][-_]*[Ss][-_]*"
     },
+    "string_always_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "always_tok"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_string_val"
+          }
+        }
+      ]
+    },
+    "string_if_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "if_tok"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "cond",
+          "content": {
+            "type": "SYMBOL",
+            "name": "condition"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_string_val"
+          }
+        }
+      ]
+    },
+    "string_elif_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "elif_tok"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "cond",
+          "content": {
+            "type": "SYMBOL",
+            "name": "condition"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_string_val"
+          }
+        }
+      ]
+    },
+    "string_else_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "else_tok"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_string_val"
+          }
+        }
+      ]
+    },
     "string_cond": {
       "type": "SEQ",
       "members": [
@@ -1509,68 +1609,49 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "always_tok"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_string_val"
-                }
-              ]
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "string_always_choice"
+              },
+              "named": true,
+              "value": "choice"
             },
             {
               "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "if_tok"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "condition"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_string_val"
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "string_if_choice"
+                  },
+                  "named": true,
+                  "value": "choice"
                 },
                 {
                   "type": "REPEAT",
                   "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "elif_tok"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "condition"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "_string_val"
-                      }
-                    ]
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "string_if_choice"
+                    },
+                    "named": true,
+                    "value": "choice"
                   }
                 },
                 {
                   "type": "CHOICE",
                   "members": [
                     {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "SYMBOL",
-                          "name": "else_tok"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "_string_val"
-                        }
-                      ]
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "string_else_choice"
+                      },
+                      "named": true,
+                      "value": "choice"
                     },
                     {
                       "type": "BLANK"
@@ -1584,6 +1665,106 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "chunk_always_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "always_tok"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_chunk_val"
+          }
+        }
+      ]
+    },
+    "chunk_if_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "if_tok"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "cond",
+          "content": {
+            "type": "SYMBOL",
+            "name": "condition"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_chunk_val"
+          }
+        }
+      ]
+    },
+    "chunk_elif_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "elif_tok"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "cond",
+          "content": {
+            "type": "SYMBOL",
+            "name": "condition"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_chunk_val"
+          }
+        }
+      ]
+    },
+    "chunk_else_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "else_tok"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_chunk_val"
+          }
         }
       ]
     },
@@ -1598,68 +1779,49 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "always_tok"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_chunk_val"
-                }
-              ]
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "chunk_always_choice"
+              },
+              "named": true,
+              "value": "choice"
             },
             {
               "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "if_tok"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "condition"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_chunk_val"
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "chunk_if_choice"
+                  },
+                  "named": true,
+                  "value": "choice"
                 },
                 {
                   "type": "REPEAT",
                   "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "elif_tok"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "condition"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "_chunk_val"
-                      }
-                    ]
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "chunk_if_choice"
+                    },
+                    "named": true,
+                    "value": "choice"
                   }
                 },
                 {
                   "type": "CHOICE",
                   "members": [
                     {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "SYMBOL",
-                          "name": "else_tok"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "_chunk_val"
-                        }
-                      ]
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "chunk_else_choice"
+                      },
+                      "named": true,
+                      "value": "choice"
                     },
                     {
                       "type": "BLANK"
@@ -1676,6 +1838,106 @@
         }
       ]
     },
+    "lu_always_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "always_tok"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_lu_val"
+          }
+        }
+      ]
+    },
+    "lu_if_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "if_tok"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "cond",
+          "content": {
+            "type": "SYMBOL",
+            "name": "condition"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_lu_val"
+          }
+        }
+      ]
+    },
+    "lu_elif_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "elif_tok"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "cond",
+          "content": {
+            "type": "SYMBOL",
+            "name": "condition"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_lu_val"
+          }
+        }
+      ]
+    },
+    "lu_else_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "else_tok"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_lu_val"
+          }
+        }
+      ]
+    },
     "lu_cond": {
       "type": "SEQ",
       "members": [
@@ -1687,68 +1949,49 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "always_tok"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_lu_val"
-                }
-              ]
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "lu_always_choice"
+              },
+              "named": true,
+              "value": "choice"
             },
             {
               "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "if_tok"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "condition"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_lu_val"
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "lu_if_choice"
+                  },
+                  "named": true,
+                  "value": "choice"
                 },
                 {
                   "type": "REPEAT",
                   "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "elif_tok"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "condition"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "_lu_val"
-                      }
-                    ]
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "lu_if_choice"
+                    },
+                    "named": true,
+                    "value": "choice"
                   }
                 },
                 {
                   "type": "CHOICE",
                   "members": [
                     {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "SYMBOL",
-                          "name": "else_tok"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "_lu_val"
-                        }
-                      ]
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "lu_else_choice"
+                      },
+                      "named": true,
+                      "value": "choice"
                     },
                     {
                       "type": "BLANK"
@@ -1856,24 +2099,28 @@
           "name": "lu_cond"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "["
-            },
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_lu_val"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "]"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "lu_sequence"
+        }
+      ]
+    },
+    "lu_sequence": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_lu_val"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     },
@@ -1930,8 +2177,12 @@
           "value": "$"
         },
         {
-          "type": "SYMBOL",
-          "name": "num"
+          "type": "FIELD",
+          "name": "pos",
+          "content": {
+            "type": "SYMBOL",
+            "name": "num"
+          }
         },
         {
           "type": "FIELD",

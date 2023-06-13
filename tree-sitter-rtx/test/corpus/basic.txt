@@ -55,18 +55,19 @@ a: (if (not ( 1.b = "hi" ) ) 1(c));
 
 (source_file
   (output_rule
-    (ident) (colon)
+    pos: (ident) (colon)
     (lu_cond
-      (if_tok)
-      (condition
-        (not)
-        (clip (num) (ident))
-        (str_op)
-        (string))
-      (output_element
-        (num)
-        (macro_name
-          (ident))))))
+      (choice
+        type: (if_tok)
+        cond: (condition
+          (not)
+          (clip pos: (num) attr: (ident))
+          (str_op)
+          (string))
+        value: (output_element
+          (num)
+          (macro_name
+            (ident)))))))
 
 ==================
 empty attr default

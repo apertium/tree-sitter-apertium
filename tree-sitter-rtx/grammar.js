@@ -26,27 +26,45 @@ function operator(s, fold) {
   }
 }
 
-function condtype(key) {
+function choice_always(key) {
+  return $ => seq(
+    field('type', $.always_tok),
+    field('value', $[key])
+  );
+}
+
+function choice_if(key) {
+  return $ => seq(
+    field('type', $.if_tok),
+    field('cond', $.condition),
+    field('value', $[key])
+  );
+}
+
+function choice_elif(key) {
+  return $ => seq(
+    field('type', $.elif_tok),
+    field('cond', $.condition),
+    field('value', $[key])
+  );
+}
+
+function choice_else(key) {
+  return $ => seq(
+    field('type', $.else_tok),
+    field('value', $[key])
+  );
+}
+
+function condtype(prefix) {
   return $ => seq(
     "(",
     choice(
+      alias($[prefix+'_always_choice'], sym('choice')),
       seq(
-        $.always_tok,
-        $[key]
-      ),
-      seq(
-        $.if_tok,
-        $.condition,
-        $[key],
-        repeat(seq(
-          $.elif_tok,
-          $.condition,
-          $[key]
-        )),
-        optional(seq(
-          $.else_tok,
-          $[key]
-        ))
+        alias($[prefix+'_if_choice'], sym('choice')),
+        repeat(alias($[prefix+'_if_choice'], sym('choice'))),
+        optional(alias($[prefix+'_else_choice'], sym('choice')))
       )
     ),
     ")"
@@ -340,9 +358,23 @@ module.exports = grammar({
     ),
     always_tok: $ => operator("always", false),
 
-    string_cond: condtype("_string_val"),
-    chunk_cond: condtype("_chunk_val"),
-    lu_cond: condtype("_lu_val"),
+    string_always_choice: choice_always("_string_val"),
+    string_if_choice: choice_if("_string_val"),
+    string_elif_choice: choice_elif("_string_val"),
+    string_else_choice: choice_else("_string_val"),
+    string_cond: condtype("string"),
+
+    chunk_always_choice: choice_always("_chunk_val"),
+    chunk_if_choice: choice_if("_chunk_val"),
+    chunk_elif_choice: choice_elif("_chunk_val"),
+    chunk_else_choice: choice_else("_chunk_val"),
+    chunk_cond: condtype("chunk"),
+
+    lu_always_choice: choice_always("_lu_val"),
+    lu_if_choice: choice_if("_lu_val"),
+    lu_elif_choice: choice_elif("_lu_val"),
+    lu_else_choice: choice_else("_lu_val"),
+    lu_cond: condtype("lu"),
 
     reduce_output: $ => choice(
       seq(
@@ -372,8 +404,10 @@ module.exports = grammar({
       $.blank,
       $.numbered_blank,
       $.lu_cond,
-      seq("[", repeat($._lu_val), "]")
+      $.lu_sequence,
     ),
+
+    lu_sequence: $ => seq("[", repeat($._lu_val), "]"),
 
     reduce_rule_group: $ => seq(
       repeat1($.ident),
@@ -384,7 +418,7 @@ module.exports = grammar({
 
     set_surf: $ => seq(
       "$",
-      $.num,
+      field('pos', $.num),
       field('side', $.clip_side),
       "=",
       $._lu_val
