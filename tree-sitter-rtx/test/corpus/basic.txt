@@ -36,7 +36,8 @@ NP -> adj n {2 _ 1[number=2.number]};
     (ident)
     (arrow)
     (reduce_rule
-      pattern: (pattern_element (ident)) pattern: (pattern_element (ident))
+      pattern: (pattern_element pos: (ident))
+      pattern: (pattern_element pos: (ident))
       output: (reduce_output
         (output_element (num))
         (blank)
@@ -62,7 +63,7 @@ a: (if (not ( 1.b = "hi" ) ) 1(c));
         cond: (condition
           (not)
           (clip pos: (num) attr: (ident))
-          (str_op)
+          (str_op (str_op_eq))
           (string))
         value: (output_element
           (num)
@@ -99,5 +100,5 @@ X -> xyz@abc."a→b" { 1 } ;
     (reduce_rule
       pattern: (pattern_element
         lemma: (ident)
-        (ident) (string))
+        pos: (ident) (string))
       output: (reduce_output (output_element (num))))))

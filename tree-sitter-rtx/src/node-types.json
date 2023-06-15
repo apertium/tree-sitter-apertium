@@ -731,6 +731,25 @@
     }
   },
   {
+    "type": "pattern_clip",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "clip_side",
+          "named": true
+        },
+        {
+          "type": "ident",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "pattern_element",
     "named": true,
     "fields": {
@@ -755,18 +774,24 @@
             "named": true
           }
         ]
+      },
+      "pos": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ident",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "attr_set_insert",
-          "named": true
-        },
-        {
-          "type": "clip_side",
           "named": true
         },
         {
@@ -775,6 +800,10 @@
         },
         {
           "type": "magic",
+          "named": true
+        },
+        {
+          "type": "pattern_clip",
           "named": true
         },
         {
@@ -1227,6 +1256,75 @@
   },
   {
     "type": "str_op",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "str_op_contains",
+          "named": true
+        },
+        {
+          "type": "str_op_eq",
+          "named": true
+        },
+        {
+          "type": "str_op_hasprefix",
+          "named": true
+        },
+        {
+          "type": "str_op_hassuffix",
+          "named": true
+        },
+        {
+          "type": "str_op_in",
+          "named": true
+        },
+        {
+          "type": "str_op_isprefix",
+          "named": true
+        },
+        {
+          "type": "str_op_issuffix",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "str_op_contains",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "str_op_eq",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "str_op_hasprefix",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "str_op_hassuffix",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "str_op_in",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "str_op_isprefix",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "str_op_issuffix",
     "named": true,
     "fields": {}
   },

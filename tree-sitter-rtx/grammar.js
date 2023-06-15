@@ -193,27 +193,45 @@ module.exports = grammar({
       field('val', $.ident)
     ),
 
-    str_op: $ => choice(
+    str_op_eq: $ => choice(
       operator("equal", true),
       operator("=", true),
-
+    ),
+    str_op_isprefix: $ => choice(
       operator("isprefix", true),
       operator("startswith", true),
       operator("beginswith", true),
+    ),
+    str_op_hasprefix: $ => choice(
       operator("hasprefix", true),
       operator("startswithlist", true),
       operator("beginswithlist", true),
-
+    ),
+    str_op_issuffix: $ => choice(
       operator("issuffix", true),
       operator("endswith", true),
+    ),
+    str_op_hassuffix: $ => choice(
       operator("hassuffix", true),
       operator("endswithlist", true),
-
+    ),
+    str_op_in: $ => choice(
       operator("in", true),
       operator("∈", true),
-
+    ),
+    str_op_contains: $ => choice(
       operator("issubstring", true),
-      operator("contains", false)
+      operator("contains", false),
+    ),
+
+    str_op: $ => choice(
+      $.str_op_eq,
+      $.str_op_isprefix,
+      $.str_op_hasprefix,
+      $.str_op_issuffix,
+      $.str_op_hassuffix,
+      $.str_op_in,
+      $.str_op_contains,
     ),
 
     and: $ => choice(
@@ -259,13 +277,19 @@ module.exports = grammar({
       ")"
     ),
 
+    pattern_clip: $ => seq(
+      "$",
+      $.ident,
+      optional($.clip_side),
+    ),
+
     pattern_element: $ => seq(
       optional($.magic),
       optional(seq(
         field(
           'lemma',
           choice(
-            seq($.attr_prefix, $.ident),
+            seq($.attr_prefix, $.ident), // alt form of attr_set_insert
             $.attr_set_insert,
             $.ident,
             $.string
@@ -273,12 +297,12 @@ module.exports = grammar({
         ),
         "@"
       )),
-      $.ident,
+      field('pos', $.ident),
       repeat(seq(
         ".",
         choice(
           $.ident,
-          seq("$", $.ident, optional($.clip_side)),
+          $.pattern_clip,
           $.attr_set_insert,
           $.string
         )

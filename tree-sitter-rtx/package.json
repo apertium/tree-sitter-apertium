@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-rtx",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "tree-sitter parser of Apertium-recursive rule files.",
   "main": "bindings/node",
   "scripts": {
@@ -20,13 +20,17 @@
     "url": "https://github.com/apertium/tree-sitter-apertium/issues"
   },
   "dependencies": {
-    "nan": "^2.8.0"
+    "nan": "^2.8.0",
+    "tree-sitter": "^0.20.2",
+    "tree-sitter-cli": "^0.20.8"
   },
   "homepage": "https://github.com/apertium/tree-sitter-apertium",
   "tree-sitter": [
     {
       "scope": "source.rtx",
-      "file-types": ["rtx"]
+      "file-types": [
+        "rtx"
+      ]
     }
   ]
 }
