@@ -158,6 +158,10 @@
             "named": true
           },
           {
+            "type": "elif_tok",
+            "named": true
+          },
+          {
             "type": "else_tok",
             "named": true
           },

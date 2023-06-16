@@ -63,7 +63,7 @@ function condtype(prefix) {
       alias($[prefix+'_always_choice'], sym('choice')),
       seq(
         alias($[prefix+'_if_choice'], sym('choice')),
-        repeat(alias($[prefix+'_if_choice'], sym('choice'))),
+        repeat(alias($[prefix+'_elif_choice'], sym('choice'))),
         optional(alias($[prefix+'_else_choice'], sym('choice')))
       )
     ),

@@ -102,3 +102,68 @@ X -> xyz@abc."a→b" { 1 } ;
         lemma: (ident)
         pos: (ident) (string))
       output: (reduce_output (output_element (num))))))
+
+============
+conditionals
+============
+
+adj: (always
+       1(adj_plain)[gender=(if (1.defnes = def or 1.number = pl) un
+              elif (1.gender = f or 1.gender = m) mf
+              else 1.gender),
+              number=(if (1.defnes = def) sp else 1.number)]);
+
+---
+
+(source_file
+  (output_rule
+    pos: (ident)
+    (colon)
+    (lu_cond
+      (choice
+        type: (always_tok)
+        value: (output_element
+          (num)
+          (macro_name (ident))
+          (output_var_set
+            (set_var
+              name: (ident)
+              value: (string_cond
+                (choice
+                  type: (if_tok)
+                  cond: (condition
+                    (clip pos: (num) attr: (ident))
+                    (str_op (str_op_eq))
+                    (clip val: (ident))
+                    (or)
+                    (clip pos: (num) attr: (ident))
+                    (str_op (str_op_eq))
+                    (clip val: (ident)))
+                  value: (clip val: (ident)))
+                (choice
+                  type: (elif_tok)
+                  cond: (condition
+                    (clip pos: (num) attr: (ident))
+                    (str_op (str_op_eq))
+                    (clip val: (ident))
+                    (or)
+                    (clip pos: (num) attr: (ident))
+                    (str_op (str_op_eq))
+                    (clip val: (ident)))
+                  value: (clip val: (ident)))
+                (choice
+                  type: (else_tok)
+                  value: (clip pos: (num) attr: (ident)))))
+            (set_var
+              name: (ident)
+              value: (string_cond
+                (choice
+                  type: (if_tok)
+                  cond: (condition
+                    (clip pos: (num) attr: (ident))
+                    (str_op (str_op_eq))
+                    (clip val: (ident)))
+                  value: (clip val: (ident)))
+                (choice
+                  type: (else_tok)
+                  value: (clip pos: (num) attr: (ident)))))))))))

@@ -9,7 +9,7 @@
 
 [
   (if_tok)
-  ;(elif_tok) ; TODO: this give 'Invalid node type elif_tok'
+  (elif_tok)
   (else_tok)
   (always_tok)
 ] @keyword.control

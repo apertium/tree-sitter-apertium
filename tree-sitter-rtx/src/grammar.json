@@ -1706,7 +1706,7 @@
                     "type": "ALIAS",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "string_if_choice"
+                      "name": "string_elif_choice"
                     },
                     "named": true,
                     "value": "choice"
@@ -1876,7 +1876,7 @@
                     "type": "ALIAS",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "chunk_if_choice"
+                      "name": "chunk_elif_choice"
                     },
                     "named": true,
                     "value": "choice"
@@ -2046,7 +2046,7 @@
                     "type": "ALIAS",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "lu_if_choice"
+                      "name": "lu_elif_choice"
                     },
                     "named": true,
                     "value": "choice"

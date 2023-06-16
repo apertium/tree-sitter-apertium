@@ -25,7 +25,7 @@ class BD(Distribution):
 
 setup(
     name='tree-sitter-apertium',
-    version='0.1.6',
+    version='0.1.7',
     description='tree-sitter grammars for Apertium formats',
     url='https://github.com/apertium/tree-sitter-apertium',
     author='Daniel Swanson',
