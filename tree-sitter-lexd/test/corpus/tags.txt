@@ -73,15 +73,24 @@ LEXICON CaseEnding[Decl1]
   defaults: (tag_setting (tag))
   (lexicon_line
    (lexicon_segment
-    left: (lexicon_string) (colon) right: (lexicon_string)
+    left: (tag_symbol)
+    (colon)
+    right: (morpheme_boundary)
+    right: (lexicon_string)
     tags: (tag_setting (tag))))
   (lexicon_line
    (lexicon_segment
-    left: (lexicon_string) (colon) right: (lexicon_string)
+    left: (tag_symbol)
+    (colon)
+    right: (morpheme_boundary)
+    right: (lexicon_string)
     tags: (tag_setting (tag))))
   (lexicon_line
    (lexicon_segment
-    left: (lexicon_string) (colon) right: (lexicon_string)
+    left: (tag_symbol)
+    (colon)
+    right: (morpheme_boundary)
+    right: (lexicon_string)
     tags: (tag_setting (neg_tag tag: (tag))))
    comment: (comment)))
  (lexicon_block
@@ -90,11 +99,17 @@ LEXICON CaseEnding[Decl1]
   defaults: (tag_setting (tag))
   (lexicon_line
    (lexicon_segment
-    left: (lexicon_string) (colon) right: (lexicon_string))
+    left: (tag_symbol)
+    (colon)
+    right: (morpheme_boundary)
+    right: (lexicon_string))
    comment: (comment))
   (lexicon_line
    (lexicon_segment
-    left: (lexicon_string) (colon) right: (lexicon_string))
+    left: (tag_symbol)
+    (colon)
+    right: (morpheme_boundary)
+    right: (lexicon_string))
    comment: (comment))))
 
 ===========================

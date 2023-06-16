@@ -1264,6 +1264,18 @@
             {
               "type": "SYMBOL",
               "name": "escaped_char"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "tag_symbol"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "archiphoneme_symbol"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "morpheme_boundary"
             }
           ]
         },
@@ -1295,8 +1307,25 @@
             "name": "escaped_char"
           },
           {
-            "type": "STRING",
-            "value": "/"
+            "type": "ALIAS",
+            "content": {
+              "type": "STRING",
+              "value": "/"
+            },
+            "named": true,
+            "value": "lexicon_string"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "tag_symbol"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "archiphoneme_symbol"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "morpheme_boundary"
           }
         ]
       }
@@ -1406,7 +1435,19 @@
     },
     "lexicon_string": {
       "type": "PATTERN",
-      "value": "[^\\s\\n\\\\#:\\[\\]\\/]+"
+      "value": "[^\\s\\n\\\\#:\\[\\]\\/<>{]+"
+    },
+    "morpheme_boundary": {
+      "type": "STRING",
+      "value": ">"
+    },
+    "tag_symbol": {
+      "type": "PATTERN",
+      "value": "<([^>\\n\\\\]|\\\\.)+>"
+    },
+    "archiphoneme_symbol": {
+      "type": "PATTERN",
+      "value": "{([^}\\n\\\\]|\\\\.)+}"
     },
     "escaped_char": {
       "type": "PATTERN",

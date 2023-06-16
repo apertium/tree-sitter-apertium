@@ -274,8 +274,8 @@
         "required": false,
         "types": [
           {
-            "type": "/",
-            "named": false
+            "type": "archiphoneme_symbol",
+            "named": true
           },
           {
             "type": "escaped_char",
@@ -283,6 +283,14 @@
           },
           {
             "type": "lexicon_string",
+            "named": true
+          },
+          {
+            "type": "morpheme_boundary",
+            "named": true
+          },
+          {
+            "type": "tag_symbol",
             "named": true
           }
         ]
@@ -292,8 +300,8 @@
         "required": false,
         "types": [
           {
-            "type": "/",
-            "named": false
+            "type": "archiphoneme_symbol",
+            "named": true
           },
           {
             "type": "escaped_char",
@@ -301,6 +309,14 @@
           },
           {
             "type": "lexicon_string",
+            "named": true
+          },
+          {
+            "type": "morpheme_boundary",
+            "named": true
+          },
+          {
+            "type": "tag_symbol",
             "named": true
           }
         ]
@@ -320,8 +336,8 @@
         "required": false,
         "types": [
           {
-            "type": "/",
-            "named": false
+            "type": "archiphoneme_symbol",
+            "named": true
           },
           {
             "type": "escaped_char",
@@ -332,7 +348,15 @@
             "named": true
           },
           {
+            "type": "morpheme_boundary",
+            "named": true
+          },
+          {
             "type": "regex",
+            "named": true
+          },
+          {
+            "type": "tag_symbol",
             "named": true
           }
         ]
@@ -348,6 +372,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "morpheme_boundary",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "neg_tag",
@@ -673,6 +702,11 @@
     }
   },
   {
+    "type": "right_sieve",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -797,6 +831,10 @@
     "named": false
   },
   {
+    "type": ">",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -810,6 +848,10 @@
   },
   {
     "type": "alias",
+    "named": true
+  },
+  {
+    "type": "archiphoneme_symbol",
     "named": true
   },
   {
@@ -865,15 +907,15 @@
     "named": true
   },
   {
-    "type": "right_sieve",
-    "named": true
-  },
-  {
     "type": "star_op",
     "named": true
   },
   {
     "type": "tag",
+    "named": true
+  },
+  {
+    "type": "tag_symbol",
     "named": true
   },
   {

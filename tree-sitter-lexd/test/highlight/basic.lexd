@@ -11,3 +11,14 @@ PATTERNS
 #              ^ keyword.operator
 #               ^ keyword.operator
 #                 ^ keyword.operator
+
+LEXICON X
+a<b>c:d>e{f}
+# <- string.quoted
+# ^ constant
+#   ^ string.quoted
+#    ^ keyword.operator
+#     ^ string.quoted
+#      ^ variable
+#       ^ string.quoted
+#         ^ variable

@@ -249,12 +249,25 @@ module.exports = grammar({
     ),
 
     _lexicon_side_left: $ => seq(
-      choice($.lexicon_string, $.escaped_char),
+      choice(
+        $.lexicon_string,
+        $.escaped_char,
+        $.tag_symbol,
+        $.archiphoneme_symbol,
+        $.morpheme_boundary,
+      ),
       optional($._lexicon_side_right)
     ),
 
     _lexicon_side_right: $ => repeat1(
-      choice($.lexicon_string, $.escaped_char, "/")
+      choice(
+        $.lexicon_string,
+        $.escaped_char,
+        alias("/", sym('lexicon_string')),
+        $.tag_symbol,
+        $.archiphoneme_symbol,
+        $.morpheme_boundary,
+      )
     ),
 
     lexicon_segment: $ => seq(
@@ -271,7 +284,11 @@ module.exports = grammar({
       field('tags', optional($.tag_setting))
     ),
 
-    lexicon_string: $ => /[^\s\n\\#:\[\]\/]+/,
+    lexicon_string: $ => /[^\s\n\\#:\[\]\/<>{]+/,
+
+    morpheme_boundary: $ => ">",
+    tag_symbol: $ => /<([^>\n\\]|\\.)+>/,
+    archiphoneme_symbol: $ => /{([^}\n\\]|\\.)+}/,
 
     escaped_char: $ => /\\./,
 

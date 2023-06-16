@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-lexd",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "tree-sitter parser of Apertium lexd files.",
   "main": "bindings/node",
   "scripts": {

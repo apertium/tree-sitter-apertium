@@ -27,6 +27,9 @@
 
 (lexicon_string) @string.quoted
 (escaped_char) @constant.character.escape
+(tag_symbol) @constant
+(archiphoneme_symbol) @variable
+(morpheme_boundary) @variable
 
 (comment) @comment
 
