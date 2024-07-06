@@ -70,3 +70,30 @@ some other random text
       set: (inlineset (inlineset_single (setname))))
 		(semicolon))
   (comment (END)))
+
+==========
+rule flags
+==========
+
+REMCOHORT IGNORED (punct) ;
+SETPARENT SAFE (*) TO (1 (*)) ;
+
+---
+
+(source_file
+  (rule
+    type: (ruletype)
+    flag: (ruleflag (ruleflag_name))
+    target: (rule_target
+      target: (inlineset (inlineset_single (taglist (tag (ntag))))))
+    (semicolon))
+  (rule_parentchild
+    type: (ruletype_parentchild)
+    flag: (ruleflag (ruleflag_name))
+    trg: (rule_target
+      target: (inlineset (inlineset_single (taglist (tag (ntag))))))
+    (TO)
+    to_from: (contexttest
+      pos: (contextpos (ctx_number))
+      set: (inlineset (inlineset_single (taglist (tag (ntag))))))
+    (semicolon)))
