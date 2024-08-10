@@ -823,6 +823,172 @@
     }
   },
   {
+    "type": "rule_copycohort",
+    "named": true,
+    "fields": {
+      "context": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "contexttest",
+            "named": true
+          }
+        ]
+      },
+      "context_target": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "contexttest",
+            "named": true
+          }
+        ]
+      },
+      "except": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "inlineset",
+            "named": true
+          }
+        ]
+      },
+      "flag": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "ruleflag",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "rule_name",
+            "named": true
+          }
+        ]
+      },
+      "nochild": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "NOCHILD",
+            "named": true
+          }
+        ]
+      },
+      "tags": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "inlineset",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "rule_target",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ruletype_copycohort",
+            "named": true
+          }
+        ]
+      },
+      "withchild": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "inlineset",
+            "named": true
+          }
+        ]
+      },
+      "word": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "qtag",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "AFTER",
+          "named": true
+        },
+        {
+          "type": "BEFORE",
+          "named": true
+        },
+        {
+          "type": "EXCEPT",
+          "named": true
+        },
+        {
+          "type": "FROM",
+          "named": true
+        },
+        {
+          "type": "IF",
+          "named": true
+        },
+        {
+          "type": "WITHCHILD",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "rule_external",
     "named": true,
     "fields": {
@@ -2235,6 +2401,10 @@
           "named": true
         },
         {
+          "type": "rule_copycohort",
+          "named": true
+        },
+        {
           "type": "rule_external",
           "named": true
         },
@@ -2840,6 +3010,10 @@
   },
   {
     "type": "ruletype_addcohort",
+    "named": true
+  },
+  {
+    "type": "ruletype_copycohort",
     "named": true
   },
   {

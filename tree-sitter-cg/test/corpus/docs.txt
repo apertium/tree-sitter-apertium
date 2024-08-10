@@ -1,0 +1,49 @@
+===
+ADD
+===
+
+ADD (@func £other) TARGET (target) IF (-1 KC) ;
+
+---
+
+(source_file
+  (rule_map_etc
+    type: (ruletype_map_etc)
+    tags: (inlineset (inlineset_single (taglist (tag (ntag)) (tag (ntag)))))
+    target: (rule_target
+      (TARGET)
+      target: (inlineset (inlineset_single (taglist (tag (ntag))))))
+    (IF)
+    context: (contexttest
+      pos: (contextpos (ctx_negative) (ctx_number))
+      set: (inlineset (inlineset_single (setname))))
+    (semicolon)))
+
+
+==========
+COPYCOHORT
+==========
+
+CopyCohort (copied) Except (snip) Before WithChild (*) (target) From (1* (from) - (copied)) ;
+
+---
+
+(source_file
+  (rule_copycohort
+    type: (ruletype_copycohort)
+    tags: (inlineset (inlineset_single (taglist (tag (ntag)))))
+    (EXCEPT)
+    except: (inlineset (inlineset_single (taglist (tag (ntag)))))
+    (BEFORE)
+    (WITHCHILD)
+    withchild: (inlineset (inlineset_single (taglist (tag (ntag)))))
+    target: (rule_target
+      target: (inlineset (inlineset_single (taglist (tag (ntag))))))
+    (FROM)
+    context_target: (contexttest
+      pos: (contextpos (ctx_number) (ctx_scan_first))
+      set: (inlineset
+        (inlineset_single (taglist (tag (ntag))))
+        (set_op)
+        (inlineset_single (taglist (tag (ntag))))))
+    (semicolon)))

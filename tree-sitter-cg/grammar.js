@@ -58,6 +58,7 @@ module.exports = grammar({
         $.rule_relation,
         $.rule_relations,
         $.rule_addcohort,
+        $.rule_copycohort,
         $.rule_mergecohorts,
         $.rule_external,
         $.rule_with,
@@ -356,6 +357,23 @@ module.exports = grammar({
       $.semicolon,
     ),
 
+    rule_copycohort: $ => seq(
+      field('word', optional($.qtag)),
+      field('type', $.ruletype_copycohort),
+      choice(/[\s\n]+/, field('name', $.rule_name)),
+      field('flag', optional($.ruleflag)),
+      field('tags', $.inlineset),
+      optional(seq($.EXCEPT, field('except', $.inlineset))),
+      optional(choice($.BEFORE, $.AFTER)),
+      optional($._child_specifier),
+      field('target', $.rule_target),
+      optional($.IF),
+      field('context', optional($._context)),
+      $.FROM,
+      field('context_target', $._context),
+      $.semicolon,
+    ),
+
     ONCE: $ => kwd('ONCE'),
     ALWAYS: $ => kwd('ALWAYS'),
     rule_external: $ => seq(
@@ -553,6 +571,8 @@ module.exports = grammar({
     ruletype_addcohort: $ => kwd('ADDCOHORT'),
 
     ruletype_mergecohorts: $ => kwd('MERGECOHORTS'),
+
+    ruletype_copycohort: $ => kwd('COPYCOHORT'),
 
     ruletype_move: $ => kwd('MOVE'),
 

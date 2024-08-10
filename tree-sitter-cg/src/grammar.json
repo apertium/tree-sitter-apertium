@@ -103,6 +103,10 @@
               },
               {
                 "type": "SYMBOL",
+                "name": "rule_copycohort"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "rule_mergecohorts"
               },
               {
@@ -1960,6 +1964,186 @@
         }
       ]
     },
+    "rule_copycohort": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "word",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "qtag"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "ruletype_copycohort"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "[\\s\\n]+"
+            },
+            {
+              "type": "FIELD",
+              "name": "name",
+              "content": {
+                "type": "SYMBOL",
+                "name": "rule_name"
+              }
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "flag",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "ruleflag"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "tags",
+          "content": {
+            "type": "SYMBOL",
+            "name": "inlineset"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "EXCEPT"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "except",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "inlineset"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "BEFORE"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "AFTER"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_child_specifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "target",
+          "content": {
+            "type": "SYMBOL",
+            "name": "rule_target"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "IF"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "context",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_context"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "FROM"
+        },
+        {
+          "type": "FIELD",
+          "name": "context_target",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_context"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "semicolon"
+        }
+      ]
+    },
     "ONCE": {
       "type": "PATTERN",
       "value": "[Oo][Nn][Cc][Ee]"
@@ -3540,6 +3724,10 @@
     "ruletype_mergecohorts": {
       "type": "PATTERN",
       "value": "[Mm][Ee][Rr][Gg][Ee][Cc][Oo][Hh][Oo][Rr][Tt][Ss]"
+    },
+    "ruletype_copycohort": {
+      "type": "PATTERN",
+      "value": "[Cc][Oo][Pp][Yy][Cc][Oo][Hh][Oo][Rr][Tt]"
     },
     "ruletype_move": {
       "type": "PATTERN",
