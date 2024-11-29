@@ -1,4 +1,5 @@
 {
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "lexd",
   "rules": {
     "source_file": {
@@ -1447,7 +1448,7 @@
     },
     "archiphoneme_symbol": {
       "type": "PATTERN",
-      "value": "{([^}\\n\\\\]|\\\\.)+}"
+      "value": "\\{([^}\\n\\\\]|\\\\.)+\\}"
     },
     "escaped_char": {
       "type": "PATTERN",
@@ -1608,4 +1609,3 @@
   "inline": [],
   "supertypes": []
 }
-

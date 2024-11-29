@@ -27,11 +27,5 @@
   "dependencies": {
     "nan": "^2.8.0"
   },
-  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme",
-  "tree-sitter": [
-    {
-      "scope": "source.twolc",
-      "file-types": ["twolc", "twol", "twoc"]
-    }
-  ]
+  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme"
 }

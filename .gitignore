@@ -4,12 +4,13 @@
 /python/build/
 /python/dist
 /python/MANIFEST
-/python/tree_sitter_apertium.egg-info/
-/python/tree_sitter_apertium/langs.so
-/python/tree_sitter_apertium/__pycache__/
-/python/test/__pycache__/
+/tree_sitter_apertium.egg-info/
+/tree_sitter_apertium/__pycache__/
+/tree_sitter_apertium/test/__pycache__/
 *.tgz
 */build/
+/build/
+/dist/
 /logs
 Cargo.toml
 binding.gyp

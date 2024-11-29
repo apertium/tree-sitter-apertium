@@ -288,7 +288,7 @@ module.exports = grammar({
 
     morpheme_boundary: $ => ">",
     tag_symbol: $ => /<([^>\n\\]|\\.)+>/,
-    archiphoneme_symbol: $ => /{([^}\n\\]|\\.)+}/,
+    archiphoneme_symbol: $ => /\{([^}\n\\]|\\.)+\}/,
 
     escaped_char: $ => /\\./,
 

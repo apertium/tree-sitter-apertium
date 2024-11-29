@@ -30,13 +30,5 @@
   "devDependencies": {
     "tree-sitter-xfst": "1.0.0"
   },
-  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme",
-  "tree-sitter": [
-    {
-      "scope": "source.lexc",
-      "file-types": [
-        "lexc"
-      ]
-    }
-  ]
+  "homepage": "https://github.com/apertium/tree-sitter-apertium#readme"
 }

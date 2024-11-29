@@ -9,7 +9,7 @@ DELIMITERS = "<.>" ;
 # We can define sets for common tag clusters
 LIST Case = (n s) (n p) ; # A set that matches either a Noun Singular or a Noun Plural
 # <- keyword.control
-#    ^ variable.parameter
+#    ^ variable
 #         ^ operator
 #           ^ punctuation.bracket
 #            ^ constant.other.symbol

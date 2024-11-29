@@ -1,0 +1,36 @@
+{
+  "grammars": [
+    {
+      "name": "rtx",
+      "camelcase": "Rtx",
+      "scope": "source.rtx",
+      "path": ".",
+      "file-types": [
+        "rtx"
+      ],
+      "highlights": "queries/highlights.scm",
+      "tags": "queries/tags.scm"
+    }
+  ],
+  "metadata": {
+    "version": "1.2.1",
+    "license": "GPL-3.0-or-later",
+    "description": "tree-sitter parser of Apertium-recursive rule files.",
+    "authors": [
+      {
+        "name": "Daniel Swanson"
+      }
+    ],
+    "links": {
+      "repository": "git+ssh://git@github.com/apertium/tree-sitter-apertium.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

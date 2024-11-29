@@ -24,13 +24,5 @@
     "tree-sitter": "^0.20.2",
     "tree-sitter-cli": "^0.20.8"
   },
-  "homepage": "https://github.com/apertium/tree-sitter-apertium",
-  "tree-sitter": [
-    {
-      "scope": "source.rtx",
-      "file-types": [
-        "rtx"
-      ]
-    }
-  ]
+  "homepage": "https://github.com/apertium/tree-sitter-apertium"
 }

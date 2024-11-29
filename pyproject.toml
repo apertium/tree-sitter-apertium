@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tree-sitter-apertium"
+description = "tree-sitter grammars for Apertium formats"
+version = "0.2.0"
+keywords = ["incremental", "parsing", "tree-sitter", "cg"]
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Text Processing :: Linguistic",
+]
+authors = [{ name = "Daniel Swanson", email = "awesomeevildudes@gmail.com" }]
+requires-python = ">=3.9"
+license.text = "GPL-3.0-or-later"
+readme = "README.md"
+dependencies = [
+  "tree-sitter~=0.22",
+  "tree-sitter-cg",
+  "tree-sitter-lexc",
+  "tree-sitter-lexd",
+  "tree-sitter-rtx",
+  "tree-sitter-twolc",
+  "tree-sitter-xfst",
+]
+
+[project.urls]
+Homepage = "https://github.com/apertium/tree-sitter-apertium"
+
+[tool.setuptools]
+py-modules = ['tree_sitter_apertium']

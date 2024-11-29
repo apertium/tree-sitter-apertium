@@ -1,0 +1,37 @@
+{
+  "grammars": [
+    {
+      "name": "twolc",
+      "camelcase": "Twolc",
+      "scope": "source.twolc",
+      "path": ".",
+      "file-types": [
+        "twolc",
+        "twol",
+        "twoc"
+      ],
+      "highlights": "queries/highlights.scm"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "license": "GPL-3.0-or-later",
+    "description": "tree-sitter grammar of hfst-twolc",
+    "authors": [
+      {
+        "name": "Daniel Swanson"
+      }
+    ],
+    "links": {
+      "repository": "git+ssh://git@github.com/apertium/tree-sitter-apertium.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

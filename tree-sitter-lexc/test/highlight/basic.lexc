@@ -8,7 +8,7 @@ Multichar_Symbols
 
 LEXICON Root
 ! <- keyword.control
-!       ^ keyword.control
+!       ^ entity.name.function
 X ;
 ! <- entity.name.function
 ! ^ punctuation.delimiter

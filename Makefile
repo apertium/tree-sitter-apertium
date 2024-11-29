@@ -19,14 +19,15 @@ logs/%: tree-sitter-%/package.json tree-sitter-%/grammar.js logs/.log
 logs/lexc: logs/xfst tree-sitter-lexc/package.json tree-sitter-lexc/grammar.js
 	(cd tree-sitter-lexc && tree-sitter generate) > $@
 
-logs/py: $(PYDEPS) $(LOGS)
-	(cd python && ./build.sh) > $@
+logs/py: pyproject.toml setup.py tree_sitter_apertium/__init__.py $(LOGS)
+	pip install ./tree-sitter-cg ./tree-sitter-lexc ./tree-sitter-lexd \
+		./tree-sitter-rtx ./tree-sitter-twolc ./tree-sitter-xfst . > $@
 
 logs/%.test: logs/%
 	(cd "tree-sitter-$*" && rm -f test/*/*~ && tree-sitter test)
 
 logs/py.test: logs/py
-	(cd python && python3 setup.py test)
+	python -m unittest discover
 
 clean:
 	rm -rf logs

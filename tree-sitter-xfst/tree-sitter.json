@@ -1,0 +1,36 @@
+{
+  "grammars": [
+    {
+      "name": "xfst",
+      "camelcase": "Xfst",
+      "scope": "source.xfst",
+      "path": ".",
+      "file-types": [
+        "xfst",
+        "spellrelax"
+      ],
+      "highlights": "queries/highlights.scm"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "license": "GPL-3.0-or-later",
+    "description": "tree-sitter grammar for hfst-xfst",
+    "authors": [
+      {
+        "name": "Daniel Swanson"
+      }
+    ],
+    "links": {
+      "repository": "git+ssh://git@github.com/apertium/tree-sitter-apertium.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

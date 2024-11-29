@@ -15,7 +15,7 @@ Vowel = A E Ä I O Ö U Ü Y Ý
 ! <- function
 !     ^ operator
         a e ä i o ö u ü y ý ;
-!                               ^ punctuation.delimiter
+!                           ^ punctuation.delimiter
 
 Rules
 ! <- keyword
