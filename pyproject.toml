@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tree-sitter-apertium"
 description = "tree-sitter grammars for Apertium formats"
-version = "0.2.0"
+version = "0.2.1"
 keywords = ["incremental", "parsing", "tree-sitter", "cg"]
 classifiers = [
   "Development Status :: 1 - Planning",
@@ -32,4 +32,4 @@ dependencies = [
 Homepage = "https://github.com/apertium/tree-sitter-apertium"
 
 [tool.setuptools]
-py-modules = ['tree_sitter_apertium']
+packages = ['tree_sitter_apertium']
