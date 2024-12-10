@@ -534,7 +534,7 @@ module.exports = grammar({
         ['ctx_numeric_branch', 'f'],
         ['ctx_active', 'T'],
         ['ctx_inactive', 't'],
-        ['ctx_back_of_tags', 'B'],
+        ['ctx_bag_of_tags', 'B'],
         ['ctx_negative', '-'],
         ['ctx_number', /[0-9]+/],
         ['ctx_relation', /r:([^\s(]+)/],
@@ -604,9 +604,8 @@ module.exports = grammar({
     setname: $ => prec(1, /[^\[\],();\s]|[^\[();\s][^();\s]*[^();\s,\]]/),
     setname_t: $ => prec(2, /T:([^();\s"]*[^();\s",\]])?/),
 
-    ntag: $ => /(\\[^\n\r]|[^\"#();\s])+(\\[^\n\r]|[^#();\s])*/,
+    ntag: $ => /(\\[^\n\r]|[^\"#();\s])+(\\[^\n\r]|[^#();\s])*|\/(\\[^\n\r]|[^/\s;#])*\/\w*/,
 
-    //
     qtag: $ => /[!^]?\"(\\[^\n\r]|[^\"\\])*\"(\\[^\r\n]|[^();\s])*/,
 
     comment: $ => choice(

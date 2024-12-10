@@ -63,3 +63,40 @@ WITH NOPARENT (n) IF (-1* (det)) {
         set: (inlineset (inlineset_single (taglist (tag (ntag))))))
       (semicolon))
     (semicolon)))
+
+==========
+regex ntag
+==========
+
+LIST FinCL = /((S|V|O2?|PP?|ADV)-)+(S|V|O2?|PP?|ADV)/r ;
+LIST FinCLPP = /((S|V|O2?|PP?|ADV)-)+PP/r ;
+LIST EllpCL = /^((S|O2?|PP|ADV)-)+(S|O2?|PP|ADV)$/r ;
+LIST VerbCL = /^V-|-V-|-V$/r ;
+
+---
+
+(source_file
+  (list
+    (LIST)
+    name: (setname)
+    (eq)
+    value: (taglist (tag (ntag)))
+    (semicolon))
+  (list
+    (LIST)
+    name: (setname)
+    (eq)
+    value: (taglist (tag (ntag)))
+    (semicolon))
+  (list
+    (LIST)
+    name: (setname)
+    (eq)
+    value: (taglist (tag (ntag)))
+    (semicolon))
+  (list
+    (LIST)
+    name: (setname)
+    (eq)
+    value: (taglist (tag (ntag)))
+    (semicolon)))
