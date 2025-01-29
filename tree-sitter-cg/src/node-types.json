@@ -85,7 +85,7 @@
           "named": true
         },
         {
-          "type": "ctx_back_of_tags",
+          "type": "ctx_bag_of_tags",
           "named": true
         },
         {
@@ -2838,7 +2838,7 @@
     "named": true
   },
   {
-    "type": "ctx_back_of_tags",
+    "type": "ctx_bag_of_tags",
     "named": true
   },
   {

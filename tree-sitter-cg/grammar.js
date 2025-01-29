@@ -556,7 +556,7 @@ module.exports = grammar({
 
     prefix: $ => /[^\s#]/,
 
-    ruletype: $ => kwd('SELECT|REMOVE|IFF|DELIMIT|MATCH|REMCOHORT|UNMAP|PROTECT|UNPROTECT'),
+    ruletype: $ => kwd('SELECT|REMOVE|IFF|DELIMIT|MATCH|REMCOHORT|UNMAP|PROTECT|UNPROTECT|REMPARENT'),
 
     ruletype_substitute_etc: $ => kwd('SUBSTITUTE|SETVARIABLE|EXECUTE'),
 

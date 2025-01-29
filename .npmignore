@@ -4,3 +4,12 @@ Cargo.toml
 binding.gyp
 *~
 *.wasm
+/bindings/python
+/bindings/go
+/bindings/rust
+/bindings/swift
+Package.swift
+setup.py
+Pyproject.toml
+go.mod
+*.so

@@ -3113,7 +3113,7 @@
                       "value": "B"
                     },
                     "named": true,
-                    "value": "ctx_back_of_tags"
+                    "value": "ctx_bag_of_tags"
                   },
                   {
                     "type": "ALIAS",
@@ -3528,7 +3528,7 @@
                         }
                       },
                       "named": true,
-                      "value": "ctx_back_of_tags"
+                      "value": "ctx_bag_of_tags"
                     },
                     {
                       "type": "ALIAS",
@@ -3696,7 +3696,7 @@
     },
     "ruletype": {
       "type": "PATTERN",
-      "value": "[Ss][Ee][Ll][Ee][Cc][Tt]|[Rr][Ee][Mm][Oo][Vv][Ee]|[Ii][Ff][Ff]|[Dd][Ee][Ll][Ii][Mm][Ii][Tt]|[Mm][Aa][Tt][Cc][Hh]|[Rr][Ee][Mm][Cc][Oo][Hh][Oo][Rr][Tt]|[Uu][Nn][Mm][Aa][Pp]|[Pp][Rr][Oo][Tt][Ee][Cc][Tt]|[Uu][Nn][Pp][Rr][Oo][Tt][Ee][Cc][Tt]"
+      "value": "[Ss][Ee][Ll][Ee][Cc][Tt]|[Rr][Ee][Mm][Oo][Vv][Ee]|[Ii][Ff][Ff]|[Dd][Ee][Ll][Ii][Mm][Ii][Tt]|[Mm][Aa][Tt][Cc][Hh]|[Rr][Ee][Mm][Cc][Oo][Hh][Oo][Rr][Tt]|[Uu][Nn][Mm][Aa][Pp]|[Pp][Rr][Oo][Tt][Ee][Cc][Tt]|[Uu][Nn][Pp][Rr][Oo][Tt][Ee][Cc][Tt]|[Rr][Ee][Mm][Pp][Aa][Rr][Ee][Nn][Tt]"
     },
     "ruletype_substitute_etc": {
       "type": "PATTERN",
