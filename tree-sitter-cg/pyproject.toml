@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tree-sitter-cg"
 description = "tree-sitter grammar of VISL-CG"
-version = "1.1.4"
+version = "1.1.5"
 keywords = ["incremental", "parsing", "tree-sitter", "cg"]
 classifiers = [
   "Intended Audience :: Developers",
